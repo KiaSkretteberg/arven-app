@@ -19,5 +19,20 @@ class Router extends Site_Controller
 	 */
 	public function index()
 	{
+		$users = $this->model->get_users(array('device' => 'rx-ar2023-0001'));
+
+		foreach($users as $user)
+		{
+			$user->schedules = $this->model->get_schedules(array('user_id' => $user->id));
+
+			foreach($user->schedules as $schedule)
+			{
+				$schedule->date = strtotime($schedule->schedule_datetime);
+			}
+		}
+
+		$this->set_view_data(array(
+			'users' => $users
+		));
 	}
 }
