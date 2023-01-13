@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'https://app.conexus-centre.com';
+$config['base_url'] = 'https://app.rx-arven.com';
 
 /*
 |--------------------------------------------------------------------------

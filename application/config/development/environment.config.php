@@ -13,7 +13,7 @@
 | Currently this file is only loaded into index.php
 */
 
-$environment['root_path'] = '/var/www/app.conexus-centre.com';
+$environment['root_path'] = '/var/www/app.rx-arven.com';
 
 //Define the required paths that codeigniter uses
 $environment['application_path'] = $environment['root_path'].'/application';

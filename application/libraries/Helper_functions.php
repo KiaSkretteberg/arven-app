@@ -34,7 +34,7 @@ class Helper_functions
 		return md5($item . ($hash ? $hash : ($include ? rand(111111, 999999) : '')));
 	}
 
-	public function send_email($to, $subject, $message, $from_name = 'CoNexus Centre', $from_email = 'no-reply@conexus-centre.com')
+	public function send_email($to, $subject, $message, $from_name = 'Arven App', $from_email = 'no-reply@rx-arven.com')
 	{
 		$this->ci->load->library('email');
 		
