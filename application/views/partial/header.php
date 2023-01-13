@@ -28,17 +28,17 @@
             <div class="bar middle"></div>
             <div class="bar bottom"></div>
         </button>
-        <h1><a href="//app.arven.com">Arven</a></h1>
+        <h1><a href="//app.rx-arven.com">Arven</a></h1>
         <nav class="primary full-screen">
             <ul>
-                <li><a href="//app.arven.com">Dashboard</a></li>
+                <li><a href="//app.rx-arven.com">Dashboard</a></li>
             </ul>
         </nav>
     </header>
     <aside class="sidenav">
         <nav class="primary small-screen">
             <ul>
-                <li><a href="//app.arven.com">Dashboard</a></li>
+                <li><a href="//app.rx-arven.com">Dashboard</a></li>
             </ul>
         </nav>
     </aside>
