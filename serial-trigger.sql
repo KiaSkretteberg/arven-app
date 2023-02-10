@@ -1,4 +1,5 @@
 -- Must be run as "root", cannot be run as "db_mng_arven"
+use arven
 DELIMITER $$
 CREATE TRIGGER GenerateSerial 
 BEFORE INSERT ON Devices FOR EACH ROW 
