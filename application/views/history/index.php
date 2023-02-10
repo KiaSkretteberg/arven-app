@@ -8,8 +8,6 @@ $this->load->view('partial/header');
         <div>
             <h2></h2>
             <p>
-                From Latin <i>arveho</i> - Meaning "carry", "bring", or "convey".<br>
-                Also from the name <i>Arvin</i> - Meaning "friend"
             </p>
         </div>
     </div>

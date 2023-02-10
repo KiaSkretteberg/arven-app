@@ -8,7 +8,7 @@
 					<li><a href="#">Sample</a></li>
 				</ul>
 			</nav>
-			<p>&copy; 2023 - Kia Skretteberg. All Rights Reserved.</p>
+			<p>&copy; 2023 - Kia Skretteberg, Sam Suitor, & Nubal Manhas. All Rights Reserved.</p>
 		</div>
 	</footer>
 	<?php endif;?>

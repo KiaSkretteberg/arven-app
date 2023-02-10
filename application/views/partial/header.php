@@ -32,6 +32,9 @@
         <nav class="primary full-screen">
             <ul>
                 <li><a href="//app.rx-arven.com">Dashboard</a></li>
+                <li><a href="//app.rx-arven.com/medication">Medications</a></li>
+                <li><a href="//app.rx-arven.com/history">History</a></li>
+                <li><a href="//app.rx-arven.com/configuration">Configuration</a></li>
             </ul>
         </nav>
     </header>
@@ -39,6 +42,9 @@
         <nav class="primary small-screen">
             <ul>
                 <li><a href="//app.rx-arven.com">Dashboard</a></li>
+                <li><a href="//app.rx-arven.com/medication">Medications</a></li>
+                <li><a href="//app.rx-arven.com/history">History</a></li>
+                <li><a href="//app.rx-arven.com/configuration">Configuration</a></li>
             </ul>
         </nav>
     </aside>
