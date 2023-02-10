@@ -8,9 +8,15 @@ $this->load->view('partial/header');
         <div>
             <h2></h2>
             <p>
+                
             </p>
         </div>
     </div>
+    <section>
+        <?php foreach($devices as $device):?>
+            <p><?=$device->SerialNum?></p>
+        <?php endforeach;?>
+    </section>
 </main>
 
 <?php $this->load->view('partial/footer'); ?>
