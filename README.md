@@ -3,6 +3,7 @@
 - IDE: Visual Studio Code
 - Technology: PHP, HTML, JS, CSS, MySQL
 - Running on a Ubuntu 22.04 server
+- PHP Framework: Codeigniter 3
 
 This repo is the code that handles all web based communications. 
 - User Interface for managing the robot and their medication
