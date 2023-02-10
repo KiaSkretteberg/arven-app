@@ -6,10 +6,9 @@
 	
 	<link rel="stylesheet" type="text/css" href="/assets/css/mapsvg.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=2">
-	<link rel="stylesheet" type="text/css" href="/assets/css/<?=$this->uri->segment(1) ? str_replace('-', '_', $this->uri->segment(1)) : 'home'?>.css?v=2">
+	<link rel="stylesheet" type="text/css" href="/assets/css/<?=$this->uri->segment(1) ? str_replace('-', '_', $this->uri->segment(1)) : 'home'?>.css?v=1">
 	
 	<script src="/assets/js/jquery-2.1.3.js"></script>
-	<script src="/assets/js/mapsvg.js"></script>
 	<script src="/assets/js/main.js"></script>
 	<script src="https://kit.fontawesome.com/285cb3eb3c.js" crossorigin="anonymous"></script>
 	<?php if (isset($_GET['embed'])) :?>

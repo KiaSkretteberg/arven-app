@@ -18,4 +18,9 @@ class Configuration extends Site_Controller
 			'devices' => $devices
 		));
 	}
+
+	public function initial()
+	{
+		
+	}
 }

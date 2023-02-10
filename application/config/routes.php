@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 // configuration controller
+$route['setup'] = "configuration/initial";
 $route['configuration/(.+)'] = "configuration/$1";
 $route['configuration'] = "configuration";
 // medication controller

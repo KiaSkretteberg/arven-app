@@ -184,6 +184,26 @@ button:hover {
     margin-right: 5px;
 }
 
+form {
+    display: grid;
+    grid-template-columns: auto;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+form label, form input, form select, form button {
+    line-height: 16px;
+    height: 32px;
+    font-size: 16px;
+    padding: 4px 8px;
+    display: block;
+    box-sizing: border-box;
+}
+
+form label:not(:first-child), form button {
+    margin-top: 16px;
+}
+
 /* ------------------------------------------------------------ Navigation */
 .sidenav {
     height: 100%;
