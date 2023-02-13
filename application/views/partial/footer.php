@@ -1,5 +1,4 @@
-		</div>
-	</section>
+	</main>
 	<?php if (!isset($_GET['exclude-footer'])) :?>
 	<footer>
 		<div class="wrapper">

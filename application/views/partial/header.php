@@ -19,37 +19,19 @@
 		</style>
 	<?php endif;?>
 </head>
-<body>
+<body class="grid">
 <?php if (!isset($_GET['exclude-header'])) :?>
 	<header>
-        <button class="sidenav-toggle">
-            <div class="bar top"></div>
-            <div class="bar middle"></div>
-            <div class="bar bottom"></div>
-        </button>
-        <h1><a href="//app.rx-arven.com">Arven</a></h1>
-        <nav class="primary full-screen">
-            <ul>
-                <li><a href="//app.rx-arven.com">Dashboard</a></li>
-                <li><a href="//app.rx-arven.com/medication">Medications</a></li>
-                <li><a href="//app.rx-arven.com/history">History</a></li>
-                <li><a href="//app.rx-arven.com/configuration">Configuration</a></li>
-            </ul>
-        </nav>
+		<nav>
+			<h1><a href="//app.rx-arven.com">Arven</a></h1>
+			<a href="//app.rx-arven.com">Dashboard</a>
+			<a href="//app.rx-arven.com/medication">Medications</a>
+			<a href="//app.rx-arven.com/history">History</a>
+			<a href="//app.rx-arven.com/configuration">Configuration</a>
+		</nav>
     </header>
-    <aside class="sidenav">
-        <nav class="primary small-screen">
-            <ul>
-                <li><a href="//app.rx-arven.com">Dashboard</a></li>
-                <li><a href="//app.rx-arven.com/medication">Medications</a></li>
-                <li><a href="//app.rx-arven.com/history">History</a></li>
-                <li><a href="//app.rx-arven.com/configuration">Configuration</a></li>
-            </ul>
-        </nav>
-    </aside>
 <?php endif;?>
-	<section id="content" class="<?=$this->uri->segment(1) ? $this->uri->segment(1) : 'home'?>-page">
-		<div class="wrapper">
+	<main class="grid <?=$this->uri->segment(1) ? $this->uri->segment(1) : 'home'?>-page">
 			<?php if(isset($title)) :?><h2><?=$title?></h2><?php endif;?>
 			<?php if($this->session->flashdata('success')): ?>
 				<div class="success"><?php echo $this->session->flashdata('success');?></div>

@@ -5,12 +5,17 @@
 	clear:both;
 }
 :root {
-    --primary: #0f6073;
-    --secondary: #10243c;
-    --alt: #d39017;
-    --background: #e4e1dc;
-    --green: #96c115;
-    --dark-orange: #c46b15;
+    /* color for use with white text, or on a white background*/
+    --primary-dark: #b65747;
+    --secondary: #a74165;
+    --tertiary: #943b9f;
+    --quaternary: #693dae;
+    /*color for use with dark text or on a dark background */
+    --primary-light: #b67e19;
+
+    --background: rgb(245, 237, 226);
+    --light-text: var(--background);
+    --dark-text: rgb(32, 31, 30);
 }
 
 
@@ -24,7 +29,7 @@ html {
 }
   
 body {
-    color: var(--secondary);
+    color: var(--dark-text);
     margin: 0;
 }
   
@@ -74,138 +79,79 @@ nav ul, nav ol {
 }
 a, a:visited {
     text-decoration: none;
-    color: var(--primary);
+    color: var(--primary-dark);
 }
 a:hover, a:focus {
-    color: var(--alt);
+    color: var(--primary-light);
 }
 a.btn {
     text-transform: uppercase;
 }
 
 /* ------------------------------------------------------------ Layout */
-header, article, footer  {
-    padding: 0 1em;
-}
-  
-@media (min-width: 80em) {
-    header, article, footer, .banner div {
-        max-width: 64em;
-        margin: 0 auto;
-    }
-}
 
 .banner {
     /* height: 14em; */
-    background: var(--primary);
-    color: var(--background);
-    margin-bottom: 1em;
-}
-
-.banner div {
-    padding: 2em 1em;
-}
-
-.banner {
-    text-align: left;
-}
-.banner h2 {
-    text-align: center;
-}
-
-@media (min-width: 80em) {
-    .banner {
-        text-align: center;
-    }
-}
-
-
-.banner h2 {
-    margin-bottom: 1em;
-}
-
-header nav.primary {
-    display:none;
-}
-
-.container {
-    margin: 0 2em;
+    background: var(--primary-dark);
+    color: var(--light-text);
+    margin-bottom: 16px;
 }
 
 /* ------------------------------------------------------------ General */
-html {
+body, html {
     height: 100%;
     background: var(--background);
-    /* background-image: url(../images/bg.jpg);
-    background-size: cover;
-    background-position: center; */
 }
-a.btn {
+a.btn, button {
     text-decoration: none;
-    border-radius: 2px;
-    color: var(--secondary);
-    background:var(--primary);
-    padding: 0.5em 1em;
-}
-
-a.btn:hover {
-    background: var(--alt);
-}
-
-@media (min-width: 50em) {
-    html {
-        background-size: cover;
-        /*background-position: 0 10em;*/
-    }
-}
-
-button {
-    background: var(--primary);
     border: none;
-    border-radius: 3px;
-    padding: 5px 10px;
-    color: white;
-}
-button:hover {
-    opacity: 0.8;
-}
-.buttons {
-    display: flex;
-    column-gap: 5px;
-    margin-bottom: 1em;
-}
-.buttons button {
-    flex: auto;
-}
-.buttons button:first-child {
-    margin-left: 5px;
-}
-.buttons button:last-child {
-    margin-right: 5px;
-}
-
-form {
-    display: grid;
-    grid-template-columns: auto;
-    width: 80vw;
-    margin: 0 auto;
-}
-
-form label, form input, form select, form button {
-    line-height: 16px;
-    height: 32px;
-    font-size: 16px;
+    border-radius: 2px;
+    color: var(--light-text);
+    background: var(--primary-dark);
     padding: 4px 8px;
-    display: block;
-    box-sizing: border-box;
 }
 
-form label:not(:first-child), form button {
-    margin-top: 16px;
+a.btn:hover, button:hover {
+    background: var(--secondary);
 }
 
 /* ------------------------------------------------------------ Navigation */
-.sidenav {
+
+header nav {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+/* portrait tablet */
+@media (min-width: 600px) {
+    header nav {
+        justify-content: flex-start;
+    }
+
+    nav a, nav h1 {
+        margin-right: 8px;
+    }
+
+}
+
+/* landscape tablet */
+@media (min-width: 905px) {
+    header nav {
+        height: 100%;
+        width: auto;
+        flex-direction: column;
+    }
+
+    nav a, nav h1 {
+        margin-right: 0;
+        margin-bottom: 32px;
+    }
+}
+/*.sidenav {
     height: 100%;
     position: absolute;
     top: 5em;
@@ -216,7 +162,7 @@ form label:not(:first-child), form button {
     -ms-transform: translateX(-100%);
     -o-transform: translateX(-100%);
     transform: translateX(-100%);
-    background: var(--primary);
+    background: var(--primary-dark);
     width: 100%;
 }
 .sidenav .primary {
@@ -225,14 +171,14 @@ form label:not(:first-child), form button {
 .sidenav {
     padding: 0;
 }
-.sidenav li a {
+.sidenav a a {
     padding: 0.5em 1em;
     color: var(--background);
     display: block;
     width: 100%;
     height: 100%;
 }
-.sidenav li a:hover, .sidenav li a:focus {
+.sidenav a a:hover, .sidenav a a:focus {
     color: var(--alt);
     background-color: var(--secondary);
 }
@@ -324,10 +270,10 @@ header nav.primary li {
     .sidenav, .sidenav-toggle {
         display: none;
     }
-}
+}*/
 
 /* ------------------------------------------------------------ Header */
-header {
+/*header {
     height: 100px;
 }
 header h1 {
@@ -335,39 +281,83 @@ header h1 {
     vertical-align: middle;
     margin: 0.4em 0;
 }
-
+*/
 /* ------------------------------------------------------------ Banner */
 
-h2 {
+/* h2 {
     text-align: center;
-}
+} */
 
 /* ------------------------------------------------------------ Layout */
-.grid{
+.grid {
     display: grid;
-    gap: 1em;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 0 16px;
 }
 
-.grid .grid-heading {
-    grid-column: 1/1;
-    margin-bottom: 0.5em;
-    margin-top: 1em;
-    padding: 0 1em;
+.grid header {
+    grid-column: 1 / -1;
+    grid-row: 1 / 1;
 }
 
-@media (min-width: 80em) {
-    .grid {
-        grid-template-columns: 1fr 1fr 1fr;
+.grid footer {
+    grid-column: 1 / -1;
+    grid-row: end;
+}
+
+.grid main {
+    grid-column: 1 / -1;
+    grid-row: 2 / end;
+}
+
+/* portrait tablet */
+@media (min-width: 600px) {
+    .grid{
+        grid-template-columns: repeat(8, 1fr);
     }
-    .grid .grid-heading {
-        grid-column: 1 / span 3;
-        padding: 0;
+}
+
+/* landscape tablet */
+@media (min-width: 905px) {
+    .grid {
+        grid-template-columns: repeat(12, 1fr);
+        margin: 0 32px;
+        gap: 32px;
+    }
+
+    .grid footer {
+        grid-column: 3 / -1;
+    }
+
+    .grid header {
+        grid-column: 1 / span 2;
+        grid-row: 1 / -1;
+    }
+
+    .grid main {
+        grid-column: 3 / -1;
+        grid-row: 1 / end;
+    }
+}
+
+/* desktop */
+@media (min-width: 1240px) {
+    .grid header {
+        grid-column: 1 / 1;
+    }
+
+    .grid footer {
+        grid-column: 2 / -1;
+    }
+
+    .grid main {
+        grid-column: 2 / -1;
     }
 }
 
 /* ------------------------------------------------------------ Footer */
-footer {
+/*footer {
     padding: 1.5em 0;
     margin-top: 0.5em;
 }
@@ -395,4 +385,4 @@ footer nav ul li a, footer nav ul li a:visited {
 }  
 footer nav ul li a:hover, footer nav ul li a:focus {
     color: var(--alt);
-}
+}*/
