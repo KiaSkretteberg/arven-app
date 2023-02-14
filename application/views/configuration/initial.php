@@ -1,17 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-$this->load->view('partial/header');
+$this->load->view('partial/header', array("exclude_header" => true));
 ?>
 <div class="banner">
-    <div>
-        <h2>Say Hello to <em>Arven<em>:</h2>
-        <p>
-            Your Personal Medication Assitant
-        </p>
-    </div>
+    <h2>Say Hello to <em class="accent">Arven</em>:</h2>
+    <p>
+        Your Personal Medication Assitant
+    </p>
 </div>
-<form action="">
+<form action="" class="grid">
     <label for="">Device Serial *</label>
     <input type="text" placeholder="e.g. RX-AR2023-XXXX" required>
 
@@ -32,7 +29,7 @@ $this->load->view('partial/header');
     <label for="">Login Password *</label>
     <input type="password" placeholder="*****" required>
 
-    <button>Get Started</button>
+    <button>Let's Go!</button>
 </form>
 
 <?php $this->load->view('partial/footer'); ?>

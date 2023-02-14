@@ -94,9 +94,9 @@ body, html {
 a.btn, button {
     text-decoration: none;
     border: none;
-    border-radius: 2px;
+    border-radius: 3px;
     background: var(--quaternary);
-    padding: 4px 8px;
+    padding: 4px 16px;
 }
 
 a.btn:hover, button:hover {
@@ -179,6 +179,7 @@ footer {
     height: 48px;
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 

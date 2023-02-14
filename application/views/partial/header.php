@@ -9,7 +9,6 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 	<title><?=$title ? $title . " | " : ''?>Arven</title>
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0"/>
 	
-	<link rel="stylesheet" type="text/css" href="/assets/css/mapsvg.css">
 	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=1">
 	<link rel="stylesheet" type="text/css" href="/assets/css/<?=$page_tag?>.css?v=1">
 	
@@ -25,7 +24,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 	<?php endif;?>
 </head>
 <body class="grid">
-<?php if (!isset($_GET['exclude-header'])) :?>
+<?php if (!isset($_GET['exclude-header']) && !$exclude_header) :?>
 	<header>
 		<nav>
 			<h1><a href="//app.rx-arven.com">Arven</a></h1>
