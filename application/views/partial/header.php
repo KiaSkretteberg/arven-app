@@ -1,12 +1,17 @@
-	<!DOCTYPE html>
+<?php 
+$page_tag = $this->uri->segment(1) ? str_replace('-', '_', $this->uri->segment(1)) : 'home';
+function active_page($tag, $page_tag) { return $page_tag == $tag; }
+function active_page_class($tag, $page_tag)  { return active_page($tag, $page_tag) ? ' class="active"' : '';  }
+function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag) ? ' aria_current="page"' : '';  }?>
+<!DOCTYPE html>
 <html>
 <head>
 	<title><?=$title ? $title . " | " : ''?>Arven</title>
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0"/>
 	
 	<link rel="stylesheet" type="text/css" href="/assets/css/mapsvg.css">
-	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=2">
-	<link rel="stylesheet" type="text/css" href="/assets/css/<?=$this->uri->segment(1) ? str_replace('-', '_', $this->uri->segment(1)) : 'home'?>.css?v=1">
+	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=1">
+	<link rel="stylesheet" type="text/css" href="/assets/css/<?=$page_tag?>.css?v=1">
 	
 	<script src="/assets/js/jquery-2.1.3.js"></script>
 	<script src="/assets/js/main.js"></script>
@@ -24,10 +29,18 @@
 	<header>
 		<nav>
 			<h1><a href="//app.rx-arven.com">Arven</a></h1>
-			<a href="//app.rx-arven.com">Dashboard</a>
-			<a href="//app.rx-arven.com/medication">Medications</a>
-			<a href="//app.rx-arven.com/history">History</a>
-			<a href="//app.rx-arven.com/configuration">Configuration</a>
+			<?php $pages = array(
+				array("url" => "", "tag" => "home", "icon" => "tachometer-alt", "name" => "Dashboard"),
+				array("url" => "medication", "icon" => "prescription", "name" => "Medications"),
+				array("url" => "history", "icon" => "history", "name" => "History"),
+				array("url" => "configuration", "icon" => "cog", "name" => "Configuration"),
+			);?>
+			<?php foreach($pages as $page): $tag = $page["tag"] ?? $page["url"]?>
+			<a href="//app.rx-arven.com/<?=$page["url"]?>"<?=active_page_aria($tag, $page_tag)?><?=active_page_class($tag, $page_tag)?>>
+				<i class="fas fa-<?=$page["icon"]?>"></i>
+				<span><?=$page["name"]?></span>
+			</a>
+			<?php endforeach;?>
 		</nav>
     </header>
 <?php endif;?>
