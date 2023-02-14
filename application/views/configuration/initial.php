@@ -5,7 +5,7 @@ $this->load->view('partial/header', array("exclude_header" => true));
 <div class="banner">
     <h2>Say Hello to <em class="accent">Arven</em>:</h2>
     <p>
-        Your Personal Medication Assitant
+        Your Personal Medication Assistant
     </p>
 </div>
 <form action="" class="grid">
