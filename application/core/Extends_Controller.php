@@ -23,6 +23,10 @@ class Site_Controller extends CI_Controller
 			//Load the default model.
 			$this->load->model(strtolower($model), 'model');
 		}
+
+		$this->load->model(array(
+			"schedule_frequencies_model"
+		));
  	}
  	
 	function _remap($method)

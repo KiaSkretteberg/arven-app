@@ -3,6 +3,7 @@
 // CRUD functionality for the Users table
 class Users_model extends CI_Model
 {	
+	//READ
 	function get($options = array(), $result = true) 
 	{
 		extract(filter_options(array('id', 'device', 'email'), $options));

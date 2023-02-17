@@ -66,8 +66,8 @@ $route['login'] = "login";
 $route['dashboard/(.+)'] = "dashboard/$1";
 $route['dashboard'] = "dashboard";
 // schedule controller
-$route['schedule/(.+)'] = "schedule/$1";
-$route['schedule'] = "schedule";
+$route['schedules/(.+)'] = "schedules/$1";
+$route['schedules'] = "schedules";
 // api controller -- no index access
 $route['api/(.+)'] = "api/$1";
 // other pages

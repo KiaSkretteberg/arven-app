@@ -8,7 +8,7 @@ class Router extends Site_Controller
 		parent::__construct();
 
 		//TODO: Determine if using a library to detect current user
-		//$this->ci->load->library('users');
+		//$this->load->library('users');
 	}
 	/**
 	 * This is the default controller so "url/" will map to the index function
