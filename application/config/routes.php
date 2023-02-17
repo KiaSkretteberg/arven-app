@@ -59,6 +59,15 @@ $route['medication'] = "medication";
 // history controller
 $route['history/(.+)'] = "history/$1";
 $route['history'] = "history";
+// login controller
+$route['login/(.+)'] = "login/$1";
+$route['login'] = "login";
+// dashboard controller
+$route['dashboard/(.+)'] = "dashboard/$1";
+$route['dashboard'] = "dashboard";
+// schedule controller
+$route['schedule/(.+)'] = "schedule/$1";
+$route['schedule'] = "schedule";
 // api controller -- no index access
 $route['api/(.+)'] = "api/$1";
 // other pages

@@ -6,6 +6,9 @@ class Router extends Site_Controller
 	public function __construct()
 	{
 		parent::__construct();
+
+		//TODO: Determine if using a library to detect current user
+		//$this->ci->load->library('users');
 	}
 	/**
 	 * This is the default controller so "url/" will map to the index function
@@ -14,20 +17,13 @@ class Router extends Site_Controller
 	 */
 	public function index()
 	{
-		$users = $this->model->get_users(array('device' => 'rx-ar2023-0001'));
+		// TODO: Get current logged in user (the below is a suggestion)
+		//$users = $this->users->get_current_user();
 
-		foreach($users as $user)
-		{
-			$user->schedules = $this->model->get_schedules(array('user_id' => $user->id));
+		// TODO: If user found, direct to dashboard
+		redirect("/dashboard");
 
-			foreach($user->schedules as $schedule)
-			{
-				$schedule->date = strtotime($schedule->schedule_datetime);
-			}
-		}
-
-		$this->set_view_data(array(
-			'users' => $users
-		));
+		// TODO: If no user found, direct to
+		//redirect("/login");
 	}
 }

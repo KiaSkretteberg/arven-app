@@ -10,6 +10,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0"/>
 	
 	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=1">
+	<link rel="stylesheet" type="text/css" href="/assets/css/full-page.css?v=1">
 	<link rel="stylesheet" type="text/css" href="/assets/css/<?=$page_tag?>.css?v=1">
 	
 	<script src="/assets/js/jquery-2.1.3.js"></script>
@@ -23,13 +24,13 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 		</style>
 	<?php endif;?>
 </head>
-<body class="grid">
+<body class="grid<?=$page_tag == "login" || $page_tag == "setup" ? ' full-page' : ''?>">
 <?php if (!isset($_GET['exclude-header']) && !$exclude_header) :?>
 	<header>
 		<nav>
 			<h1><a href="//app.rx-arven.com">Arven</a></h1>
 			<?php $pages = array(
-				array("url" => "", "tag" => "home", "icon" => "tachometer-alt", "name" => "Dashboard"),
+				array("url" => "dashboard", "tag" => "dashboard", "icon" => "tachometer-alt", "name" => "Dashboard"),
 				array("url" => "medication", "icon" => "prescription", "name" => "Medications"),
 				array("url" => "history", "icon" => "history", "name" => "History"),
 				array("url" => "configuration", "icon" => "cog", "name" => "Configuration"),
