@@ -1,8 +1,10 @@
 <?php
 
-class Router_model extends CI_Model
+// CRUD functionality for the Schedules table
+class Schedules_model extends CI_Model
 {	
-	function get_schedules($options = array(), $result = true) 
+	//READ 
+	function get($options = array(), $result = true) 
 	{
 		extract(filter_options(array('id', 'user_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency'), $options));
 
@@ -31,30 +33,27 @@ class Router_model extends CI_Model
 		return $this->helper_functions->return_result($query, $result);
 	}
 
-	function get_users($options = array(), $result = true) 
-	{
-		extract(filter_options(array('id', 'device', 'email'), $options));
+    // CREATE/UPDATE
+    function save()
+    {
+        //CREATE
+        //$query = $this->db->insert('Schedule');
 
-		if($id) $this->db->where('UserID', $id);
-		if($email) $this->db->where('Email', $email);
+        //UPDATE
+        //$query = $this->db->update('Schedule');
 
-		if($device) 
-		{
-			$this->db->join('Devices', 'Devices.DeviceID = Users.DeviceID');
+		//return $this->helper_functions->return_result($query, $result);
+    }
 
-			$this->db->where('Devices.SerialNum', $device);
-		}
-
-		$query = $this->db->get('Users');
-
-		return $this->helper_functions->return_result($query, $result);
-	}
-
+    //DELETE
+    function delete()
+    {
+        //return $this->db->delete('Schedule');
+    }
 	/********************************************************************** 
 	
 	Helper/Private Functions
 
 	**********************************************************************/ 
 	
-
 }
