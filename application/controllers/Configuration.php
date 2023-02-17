@@ -6,8 +6,6 @@ class Configuration extends Site_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		
-		$this->load->model('devices_model');
 	}
 
 	public function index()
@@ -21,6 +19,9 @@ class Configuration extends Site_Controller
 
 	public function initial()
 	{
-		
+		if($this->input->post('method') == 'ajax')
+		{
+
+		}
 	}
 }

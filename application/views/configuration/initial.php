@@ -14,7 +14,9 @@ $this->load->view('partial/header', array("exclude_header" => true));
 
     <label for="">Timezone</label>
     <select>
-        <option value="America/Edmonton">America/Edmonton (MST) -7:00</option>
+        <?php foreach(DateTimeZone::listIdentifiers() as $timezone):?>
+            <option value="<?=$timezone?>"<?=$timezone == "America/Edmonton" ? ' selected' : ''?>><?=$timezone?></option>
+        <?php endforeach;?>
     </select>
 
     <label for="">Your First Name *</label>

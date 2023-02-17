@@ -25,7 +25,9 @@ class Site_Controller extends CI_Controller
 		}
 
 		$this->load->model(array(
-			"schedule_frequencies_model"
+			"schedule_frequencies_model",
+			"devices_model",
+			"users_model"
 		));
  	}
  	
