@@ -85,7 +85,7 @@ a, a:visited {
     color: var(--light-text);
     font-weight: bold;
     font-family: monospace;
-    font-size: 18px;
+    font-size: 16px;
 }
 a:hover, a:focus {
     color: var(--quaternary-lightened);
@@ -95,6 +95,8 @@ a:hover, a:focus {
 a.btn, button {
     color: var(--primary-lightened);
     text-transform: uppercase;
+    font-size: 16px;
+    line-height: 1.5em;
 }
 a.btn:hover, a.btn:focus,
 button:hover, button:focus {
@@ -185,6 +187,9 @@ input::placeholder, textarea::placeholder {
     border: none;
     color: var(--light-text);
 }
+.form-field input:read-only {
+    padding-bottom: 4px;
+}
 /* ------------------------------------------------------------ Header/Navigation */
 
 header.header nav {
@@ -217,22 +222,22 @@ nav a {
 nav a span {
     opacity: 0;
 }
-nav a i {
+nav a .fas {
     opacity: 0.7;
     line-height: 16px;
+    font-size: 20px;
 }
-nav a.active i, nav a.active span,
-nav a:hover i, nav a:hover span,
-nav a:focus i, nav a:focus span {
+nav a.active .fas, nav a.active span,
+nav a:hover .fas, nav a:hover span,
+nav a:focus .fas, nav a:focus span {
     font-weight: bold;
     opacity: 1;
 }
 
-nav a.active i,
-nav a:hover i,
-nav a:focus i {
-    font-size: 1.1em;
-    line-height: 18px;
+nav a.active .fas,
+nav a:hover .fas,
+nav a:focus .fas {
+    font-size: 24px;
 }
 
 
@@ -278,7 +283,9 @@ section, aside {
 }
 
 .btn-holder {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 8px;
 }
 .btn-holder 
 .btn-holder .btn i {
@@ -337,7 +344,8 @@ footer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: min-content auto min-content;
-    gap: 8px;
+    column-gap: 8px;
+    row-gap: 16px;
     margin: 0 16px;
 }
 

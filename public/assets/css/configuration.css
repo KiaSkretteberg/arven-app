@@ -1,0 +1,54 @@
+.grid main.grid {
+    grid-template-rows: min-content min-content;
+}
+
+main.grid > .form-field:first-child {
+    grid-column: 1 / -1;
+}
+
+/* landscape tablet */
+@media (min-width: 905px) {
+    main.grid > .form-field:first-child {
+        grid-column: 1 / span 5;
+    }
+}
+
+.btn-holder {
+    justify-content: space-between;
+    column-gap: 16px;
+}
+
+
+.grid form.grid {
+    grid-column: 1 / -1;
+    grid-template-rows: repeat(5, min-content);
+}
+
+form .form-field {
+    grid-column: 1 / -1;
+}
+
+
+/* landscape tablet */
+@media (min-width: 905px) {
+    .grid form.grid {
+        grid-template-rows: repeat(3, min-content);
+    }
+    form .form-field {
+        grid-column-end: span 5;
+    }
+    form .form-field:nth-child(even) {
+        grid-column-start: 6;
+    }
+
+    form button {
+        grid-column: 1 / span 2;
+    }
+}
+
+/* desktop */
+@media (min-width: 1240px) {
+    form .form-field:nth-child(even) {
+        grid-column: 6 / span 6;
+    }
+}
