@@ -4,7 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('partial/header');
 ?>
 <aside>
-    <h2>Alerts</h2>
+    <header>
+        <h2>Alerts</h2>
+        <a href="/history">View All</a>
+    </header>
 </aside>
 <section class="half">
     <header>
@@ -15,7 +18,7 @@ $this->load->view('partial/header');
 <section class="half">
     <header>
         <h2>Active Schedules</h2>
-        <a href="/history">View All</a>
+        <a href="/medication">View All</a>
     </header>
 </section>
 

@@ -12,7 +12,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=1">
 	<link rel="stylesheet" type="text/css" href="/assets/css/full-page.css?v=1">
 	<?php if(file_exists(SITEPATH."assets/css/$page_tag.css")):?>
-		<link rel="stylesheet" type="text/css" href="/assets/css/<?=$page_tag?>.css?v=2">
+		<link rel="stylesheet" type="text/css" href="/assets/css/<?=$page_tag?>.css?v=1">
 	<?php endif;?>
 	
 	<script src="/assets/js/jquery-2.1.3.js"></script>

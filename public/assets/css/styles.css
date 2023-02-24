@@ -132,7 +132,6 @@ a.btn i:last-child, button i:last-child {
     margin-left: 4px;
 }
 
-.form-field label,
 .form-field input,
 .form-field select,
 .form-field textarea {
@@ -143,6 +142,48 @@ a.btn i:last-child, button i:last-child {
     padding: 4px 8px;
     display: block;
     box-sizing: border-box;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--quaternary);
+    color: var(--light-text);
+}
+.form-field input:focus, .form-field input:hover,
+.form-field select:focus, .form-field select:hover,
+.form-field textarea:focus, .form-field textarea:hover {
+    border-color: var(--light-text);
+    border-bottom-width: 3px;
+    padding-bottom: 3px;
+    outline: none;
+} 
+
+.form-field select {
+    padding: 1px 4px;
+}
+.form-field select:hover, .form-field select:focus {
+    padding-bottom: 0;
+}
+
+.form-field select option {
+    color: var(--dark-text);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--light-text);
+    opacity: 0.7;
+}
+
+.form-field label {
+    font-size: 14px;
+    line-height: 14px;
+    padding: 0 7px;
+    font-weight: bold;
+}
+
+.form-field input:read-only {
+    background: transparent;
+    opacity: 0.8;
+    border: none;
+    color: var(--light-text);
 }
 /* ------------------------------------------------------------ Header/Navigation */
 
@@ -161,7 +202,7 @@ nav h1 {
     width: 64px;
     border-radius: 100px;
     background: var(--light-text);
-    font-size: 0;
+    text-indent:-999999px;
     flex-shrink: 0;
 }
 
@@ -233,8 +274,6 @@ section header, aside header {
 
 section, aside {
     border-radius: 4px;
-    /* TEMPORARY */
-    background: rgba(255, 255, 255, 0.25);
     min-height: 120px;
 }
 

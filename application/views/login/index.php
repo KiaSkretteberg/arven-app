@@ -9,13 +9,17 @@ $this->load->view('partial/header', array("exclude_header" => true));
     </p>
 </div>
 <form action="" class="grid">
-    <label for="">Your Email *</label>
-    <input type="email" placeholder="e.g. john.smith@example.com" required>
+    <div class="form-field">
+        <label for="">Your Email *</label>
+        <input type="email" name="email" placeholder="e.g. john.smith@example.com" required>
+    </div>
 
-    <label for="">Login Password *</label>
-    <input type="password" placeholder="*****" required>
+    <div class="form-field">
+        <label for="">Login Password *</label>
+        <input type="password" name="password" placeholder="*****" required>
+    </div>
 
-    <button>Login</button>
+    <button type="submit">Login</button>
     <p>Don't have an account? <a href="/setup">Get started</a> first.</p>
 </form>
 
