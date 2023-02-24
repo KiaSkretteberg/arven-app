@@ -2,7 +2,7 @@
 
 class Devices_model extends CI_Model
 {	
-	function get_devices($options = array(), $result = true) 
+	function get($options = array(), $result = true) 
 	{
 		extract(filter_options(array('id', 'serial'), $options));
 

@@ -16,11 +16,7 @@ $this->load->view('partial/header', array("exclude_header" => true));
 
     <div class="form-field">
         <label for="">Timezone</label>
-        <select name="timezone">
-            <?php foreach($timezones as $timezone):?>
-                <option value="<?=$timezone?>"<?=$timezone == ($this->input->post("timezone") ? $this->input->post("timezone") : $default_timezone) ? ' selected' : ''?>><?=$timezone?></option>
-            <?php endforeach;?>
-        </select>
+        <?php $this->load->view('partial/timezone_list', array("timezones" => $timezones, "selected" => ($this->input->post("timezone") ? $this->input->post("timezone") : $default_timezone))); ?>
     </div>    
 
     <div class="form-field">
