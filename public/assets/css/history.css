@@ -1,0 +1,14 @@
+.grid main.grid {
+    grid-template-rows: min-content min-content;
+}
+
+main.grid > .form-field:first-child {
+    grid-column: 1 / -1;
+}
+
+/* landscape tablet */
+@media (min-width: 905px) {
+    main.grid > .form-field:first-child {
+        grid-column: 1 / span 5;
+    }
+}

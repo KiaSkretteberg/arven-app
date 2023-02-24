@@ -11,9 +11,7 @@
 }
 
 .full-page .banner, 
-.full-page form.grid label, 
-.full-page form.grid input, 
-.full-page form.grid select,
+.full-page form.grid .form-field, 
 .full-page form.grid p {
     grid-column: 1 / -1;
 }
@@ -45,9 +43,7 @@
         grid-template-rows: min-content;
     }
     .full-page .banner, 
-    .full-page form.grid label, 
-    .full-page form.grid input, 
-    .full-page form.grid select {
+    .full-page form.grid .form-field {
         grid-column: 3 / span 8;
     }
 
@@ -78,7 +74,7 @@
 }
 
 .full-page form.grid {
-    row-gap: 0;
+    row-gap: 16px;
 }
 
 /* ---------------------------------------------------- Specific Styles */
@@ -96,10 +92,7 @@
     color: var(--quaternary);
     font-weight: bold;
 }
-
-.full-page form label, 
-.full-page form input, 
-.full-page form select, 
+ 
 .full-page form button {
     line-height: 16px;
     height: 32px;
@@ -114,14 +107,10 @@
     margin-top: 8px;
 }
 
-.full-page form.grid label:not(:first-child), 
-.full-page form.grid button {
-    margin-top: 16px;
-}
-
 .full-page form.grid button {
     padding: 8px 16px;
     height: 40px;
+    width: auto;
 }
 
 .full-page footer p {

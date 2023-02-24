@@ -131,6 +131,19 @@ a.btn i:first-child, button i:first-child {
 a.btn i:last-child, button i:last-child {
     margin-left: 4px;
 }
+
+.form-field label,
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    line-height: 16px;
+    height: 32px;
+    font-size: 16px;
+    padding: 4px 8px;
+    display: block;
+    box-sizing: border-box;
+}
 /* ------------------------------------------------------------ Header/Navigation */
 
 header.header nav {
@@ -233,6 +246,42 @@ section, aside {
     padding-right: 4px;
 }
 
+
+.add-filter {
+    margin-right: 16px;
+    background-color: transparent;
+    color: var(--primary-lightened);
+    text-decoration: underline;
+    padding: 0;
+}
+.add-filter:hover, .add-filter:focus {
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--primary-lightened);
+}
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 8px;
+}
+.filters button.filter {
+    border-radius: 20px;
+    margin-right: 8px;
+    text-transform: none;
+}
+.filters button.filter:nth-child(3n + 1) {
+    background-color: var(--secondary);
+}
+.filters button.filter:nth-child(3n + 2) {
+    background-color: var(--tertiary);
+}
+.filters button.filter:nth-child(3n + 1):hover,
+.filters button.filter:nth-child(3n + 1):focus,
+.filters button.filter:nth-child(3n + 2):hover,
+.filters button.filter:nth-child(3n + 2):focus {
+    background-color: var(--primary-lightened);
+}
+
 /* ------------------------------------------------------------ Footer */
 footer {
     margin-top: auto;
@@ -255,6 +304,7 @@ footer {
 
 .grid .grid {
     margin: 0;
+    grid-template-rows: min-content;
 }
 
 .grid header.header {
