@@ -19,9 +19,12 @@ class Configuration extends Site_Controller
 
 	public function initial()
 	{
-		if($this->input->post('method') == 'ajax')
-		{
+		$timezones = DateTimeZone::listIdentifiers();
+		$default_timezone = "America/Edmonton";
 
-		}
+		$this->set_view_data(array(
+			'timezones' => $timezones,
+			'default_timezone' => $default_timezone
+		));
 	}
 }

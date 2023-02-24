@@ -13,8 +13,13 @@
     /*color for use with dark text or on a dark background */
     --primary-light: #b67e19;
 
+
+    --primary-lightened: #faeeef;
+    --quaternary-lightened: #ede7f5;
+
+
     --background: var(--primary-dark);
-    --light-text: rgb(245, 237, 226);
+    --light-text: white;
     --dark-text: rgb(32, 31, 30);
 }
 
@@ -37,20 +42,25 @@ h1, h2, h3, h4, h5, h6, ul, ol, li, p {
     margin: 0;
     padding: 0;
 }
-  
-h1 {
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    font-size: inherit;
+    font-family: inherit;
+}
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Calibri Light', sans-serif;
     font-weight: 900;
-    font-size: 2em;
+}
+  
+h1 {
+    font-size: 36px;
     line-height: 1.5;
     margin: 0;
 }
   
 h2 {
-    font-weight: normal;
-    font-size: 1.5em;
+    font-size: 24px;
     line-height: 1;
-    margin-bottom: 1em;
+    margin-bottom: 8px;
 }
   
 p {
@@ -61,8 +71,7 @@ p:last-child {
     margin-bottom: 0;
 }
 
-nav a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-    color: inherit;
+nav a, nav a:visited, nav a:hover, nav a:focus {
     text-decoration: none;
 }
 
@@ -71,19 +80,30 @@ nav a, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     font-family: "Calibri Light", sans-serif;
     letter-spacing: 0.1em;
 }
+/**** Links *****/
 a, a:visited {
-    text-decoration: none;
-    color: var(--quaternary);
+    color: var(--light-text);
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 18px;
 }
 a:hover, a:focus {
-    color: var(--light-text);
-}
-a.btn, button {
-    color: var(--light-text);
+    color: var(--quaternary-lightened);
     text-transform: uppercase;
 }
-a.btn:hover, button:hover {
+/**** Buttons *****/
+a.btn, button {
+    color: var(--primary-lightened);
+    text-transform: uppercase;
+}
+a.btn:hover, a.btn:focus,
+button:hover, button:focus {
     color: var(--quaternary);
+}
+
+nav a:hover, nav a:focus,
+h1 a:hover, h1 a:focus {
+    text-transform: initial;
 }
 
 /* ------------------------------------------------------------ General */
@@ -99,22 +119,30 @@ a.btn, button {
     padding: 4px 16px;
 }
 
-a.btn:hover, button:hover {
-    background: var(--light-text);
+a.btn:hover, a.btn:focus,
+button:hover, button:focus{
+    background: var(--quaternary-lightened);
 }
 
 /* ------------------------------------------------------------ Header/Navigation */
 
-header nav {
+header.header nav {
     height: 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    margin-top: 16px;
 }
 
 nav h1 {
     margin-right: 16px;
+    height: 64px;
+    width: 64px;
+    border-radius: 100px;
+    background: var(--light-text);
+    font-size: 0;
+    flex-shrink: 0;
 }
 
 nav a {
@@ -125,29 +153,31 @@ nav a {
     height: 100%;
 }
 
-nav a, nav a:visited,
-nav h1, nav h1 a:visited {
-    color: var(--light-text);
-}
-nav a:hover, nav h1 a:hover {
-    color: var(--quaternary);
-}
-
 nav a span {
     opacity: 0;
 }
 nav a i {
-    opacity: 0.8;
+    opacity: 0.7;
+    line-height: 16px;
 }
-nav a.active i, nav a.active span {
+nav a.active i, nav a.active span,
+nav a:hover i, nav a:hover span,
+nav a:focus i, nav a:focus span {
     font-weight: bold;
     opacity: 1;
+}
+
+nav a.active i,
+nav a:hover i,
+nav a:focus i {
+    font-size: 1.1em;
+    line-height: 18px;
 }
 
 
 /* portrait tablet */
 @media (min-width: 600px) {
-    header nav {
+    header.header nav {
         justify-content: flex-start;
     }
 
@@ -158,7 +188,7 @@ nav a.active i, nav a.active span {
 
 /* landscape tablet */
 @media (min-width: 905px) {
-    header nav {
+    header.header nav {
         height: 100%;
         width: auto;
         flex-direction: column;
@@ -167,16 +197,32 @@ nav a.active i, nav a.active span {
     nav a, nav h1 {
         margin-right: 0;
         margin-bottom: 32px;
+    }
+    nav a {
         height: initial;
     }
 }
 
 /* ------------------------------------------------------------ Main */
 
+section header, aside header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+section, aside {
+    border-radius: 4px;
+    /* TEMPORARY */
+    background: rgba(255, 255, 255, 0.25);
+    min-height: 120px;
+}
+
+
 /* ------------------------------------------------------------ Footer */
 footer {
     margin-top: auto;
-    height: 48px;
+    min-height: 48px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -197,7 +243,7 @@ footer {
     margin: 0;
 }
 
-.grid header {
+.grid header.header {
     grid-column: 1 / -1;
     grid-row: 1 / 1;
 }
@@ -210,6 +256,10 @@ footer {
 .grid footer {
     grid-column: 1 / -1;
     grid-row: 3 / span 1;
+}
+
+section, aside {
+    grid-column: 1 / -1;
 }
 
 /* portrait tablet */
@@ -230,9 +280,10 @@ footer {
 
     .grid .grid {
         grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: min-content auto;
     }
 
-    .grid header {
+    .grid header.header {
         grid-column-end: span 2;
         grid-row-end: span 2;
     }
@@ -248,11 +299,25 @@ footer {
     .grid footer {
         grid-row-start: 2;
     }
+
+    .grid section.half {
+        grid-column-end: span 5;
+    }
+    .grid section.half {
+        grid-column-start: 1;
+    }
+    .grid section.half + section.half {
+        grid-column-start: 6;
+    }
+
+    .grid main aside {
+        margin-top: 16px;
+    }
 }
 
 /* desktop */
 @media (min-width: 1240px) {
-    .grid header {
+    .grid header.header {
         grid-column-end: span 1;
     }
 
@@ -264,4 +329,28 @@ footer {
     .grid main, .grid footer {
         grid-column-start: 2;
     }
+
+    .grid aside {
+        grid-column: 9 / span 3;
+        grid-row: 1 / -1;
+    }    
+    .grid main aside + section.half,
+    .grid main aside + section.half + section.half {
+        margin-top: 16px;
+    }
+
+    .grid section.half {
+        grid-column-end: span 4;
+    }
+    .grid section.half {
+        grid-column-start: 1;
+    }
+    .grid section.half + section.half {
+        grid-column-start: 5;
+    }
+
+    .grid section.full {
+        grid-column: 3 / span 8;
+    }
+
 }

@@ -11,10 +11,15 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 	
 	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=1">
 	<link rel="stylesheet" type="text/css" href="/assets/css/full-page.css?v=1">
-	<link rel="stylesheet" type="text/css" href="/assets/css/<?=$page_tag?>.css?v=1">
+	<?php if(file_exists("/assets/css/$page_tag.css")):?>
+		<link rel="stylesheet" type="text/css" href="/assets/css/<?=$page_tag?>.css?v=2">
+	<?php endif;?>
 	
 	<script src="/assets/js/jquery-2.1.3.js"></script>
 	<script src="/assets/js/main.js"></script>
+	<?php if(file_exists("/assets/js/$page_tag.js")):?>
+		<link rel="stylesheet" type="text/js" href="/assets/js/<?=$page_tag?>.js?v=1">
+	<?php endif;?>
 	<script src="https://kit.fontawesome.com/285cb3eb3c.js" crossorigin="anonymous"></script>
 	<?php if (isset($_GET['embed'])) :?>
 		<style>
@@ -26,7 +31,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 </head>
 <body class="grid<?=$page_tag == "login" || $page_tag == "setup" ? ' full-page' : ''?>">
 <?php if (!isset($_GET['exclude-header']) && !$exclude_header) :?>
-	<header>
+	<header class="header">
 		<nav>
 			<h1><a href="//app.rx-arven.com">Arven</a></h1>
 			<?php $pages = array(

@@ -38,6 +38,7 @@
 @media (min-width: 905px) {
     .full-page.grid .grid {
         grid-template-columns: repeat(12, 1fr);
+        grid-column-start: 1;
     }
     
     .full-page form.grid {
@@ -62,6 +63,7 @@
     }
     .full-page.grid .grid {
         grid-template-columns: repeat(12, 1fr);
+
     }
 
     .full-page form.grid button {
@@ -109,6 +111,7 @@
 
 .full-page form p {
     text-align: center;
+    margin-top: 8px;
 }
 
 .full-page form.grid label:not(:first-child), 
