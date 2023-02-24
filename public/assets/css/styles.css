@@ -117,13 +117,20 @@ a.btn, button {
     border-radius: 3px;
     background: var(--quaternary);
     padding: 4px 16px;
+    display: block;
+    width: max-content;
 }
 
 a.btn:hover, a.btn:focus,
 button:hover, button:focus{
     background: var(--quaternary-lightened);
 }
-
+a.btn i:first-child, button i:first-child {
+    margin-right: 4px;
+}
+a.btn i:last-child, button i:last-child {
+    margin-left: 4px;
+}
 /* ------------------------------------------------------------ Header/Navigation */
 
 header.header nav {
@@ -218,6 +225,13 @@ section, aside {
     min-height: 120px;
 }
 
+.btn-holder {
+    display: block;
+}
+.btn-holder 
+.btn-holder .btn i {
+    padding-right: 4px;
+}
 
 /* ------------------------------------------------------------ Footer */
 footer {
@@ -258,7 +272,7 @@ footer {
     grid-row: 3 / span 1;
 }
 
-section, aside {
+section, aside, .btn-holder {
     grid-column: 1 / -1;
 }
 
@@ -310,7 +324,7 @@ section, aside {
         grid-column-start: 6;
     }
 
-    .grid main aside {
+    .grid main > :first-child {
         margin-top: 16px;
     }
 }
@@ -348,9 +362,4 @@ section, aside {
     .grid section.half + section.half {
         grid-column-start: 5;
     }
-
-    .grid section.full {
-        grid-column: 3 / span 8;
-    }
-
 }

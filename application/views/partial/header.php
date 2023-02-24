@@ -11,13 +11,13 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 	
 	<link rel="stylesheet" type="text/css" href="/assets/css/styles.css?v=1">
 	<link rel="stylesheet" type="text/css" href="/assets/css/full-page.css?v=1">
-	<?php if(file_exists("/assets/css/$page_tag.css")):?>
+	<?php if(file_exists(SITEPATH."assets/css/$page_tag.css")):?>
 		<link rel="stylesheet" type="text/css" href="/assets/css/<?=$page_tag?>.css?v=2">
 	<?php endif;?>
 	
 	<script src="/assets/js/jquery-2.1.3.js"></script>
 	<script src="/assets/js/main.js"></script>
-	<?php if(file_exists("/assets/js/$page_tag.js")):?>
+	<?php if(file_exists(SITEPATH."assets/js/$page_tag.js")):?>
 		<link rel="stylesheet" type="text/js" href="/assets/js/<?=$page_tag?>.js?v=1">
 	<?php endif;?>
 	<script src="https://kit.fontawesome.com/285cb3eb3c.js" crossorigin="anonymous"></script>
