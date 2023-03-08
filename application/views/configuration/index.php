@@ -28,22 +28,26 @@ $this->load->view('partial/header');
 <form action="" method="POST" class="grid">
     <div class="form-field">
         <label for="">Timezone</label>
-        <?php $this->load->view('partial/timezone_list', array("timezones" => $timezones, "selected" => $user->Timezone)); ?>
+        <?php $this->load->view('partial/timezone_list', array("timezones" => $timezones, "default" => $user->Timezone)); ?>
+        <div class="form-error"><?=form_error("timezone", "**")?></div>
     </div>   
 
     <div class="form-field">
         <label for="">Your Email *</label>
-        <input type="email" name="email" placeholder="e.g. john.smith@example.com" required value="<?=$user->Email?>">
+        <input type="email" name="email" placeholder="e.g. john.smith@example.com" required value="<?=set_value("email", $user->Email)?>">
+        <div class="form-error"><?=form_error("email", "**")?></div>
     </div> 
 
     <div class="form-field">
         <label for="">Your First Name *</label>
-        <input type="text" name="first_name" placeholder="e.g. John" required value="<?=$user->FirstName?>">
+        <input type="text" name="first_name" placeholder="e.g. John" required value="<?=set_value("first_name", $user->FirstName)?>">
+        <div class="form-error"><?=form_error("first_name", "**")?></div>
     </div>
 
     <div class="form-field">
         <label for="">Your Last Name</label>
-        <input type="text" name="last_name" placeholder="e.g. Smith" value="<?=$user->LastName?>">
+        <input type="text" name="last_name" placeholder="e.g. Smith" value="<?=set_value("last_name", $user->LastName)?>">
+        <div class="form-error"><?=form_error("last_name", "**")?></div>
     </div>
 
     <button type="submit">Update</button>

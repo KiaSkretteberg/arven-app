@@ -52,14 +52,17 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 	<main class="grid <?=$this->uri->segment(1) ? $this->uri->segment(1) : 'home'?>-page">
 			<?php if(isset($title)) :?><h2><?=$title?></h2><?php endif;?>
 			<?php if($this->session->flashdata('success')): ?>
-				<div class="success"><?php echo $this->session->flashdata('success');?></div>
+				<?php $this->load->view('partial/message', array("message_type" => "success"));?>
 			<?php endif; ?>
 			<?php if($this->session->flashdata('error')): ?>
-				<div class="error"><?php echo $this->session->flashdata('error');?></div>
+				<?php $this->load->view('partial/message', array("message_type" => "error"));?>
 			<?php endif; ?>
-			<?php $errors = explode('<div/>', trim(validation_errors('<div/>', ''), '<div/>')); ?>
-			<?php if(count($errors) <= 2):?>
-				<?= validation_errors('<div class="error">', '</div>');?>
-			<?php else:?>
-				 <div class="error">There are still <?=count($errors)?> problems or required fields.</div>
+			<?php $error_string = trim(validation_errors('<div/>', ''), '<div/>'); 
+				$errors = explode('<div/>', $error_string);
+				$error_count = count($errors); 
+				if(!empty($error_string) && $error_count > 0):?>
+				<?php $this->load->view('partial/message', array(
+					"message_type" => "error",
+					"message" => "There ".($error_count != 1 ? "were" : "was")." $error_count error".($error_count != 1 ? "s" : "")." in your submission. Please review the fields for errors and try again."
+				));?>
 			<?php endif; ?>

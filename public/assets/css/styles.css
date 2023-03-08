@@ -134,6 +134,9 @@ a.btn i:last-child, button i:last-child {
     margin-left: 4px;
 }
 
+.form-field {
+    margin-bottom: 16px;
+}
 .form-field input,
 .form-field select,
 .form-field textarea {
@@ -168,6 +171,14 @@ a.btn i:last-child, button i:last-child {
 .form-field select option {
     color: var(--dark-text);
 }
+.form-field .form-error {
+    position: absolute;
+    text-align: left;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 14px;
+    margin-top: 0;
+    padding-left: 8px;
+}
 
 input::placeholder, textarea::placeholder {
     color: var(--light-text);
@@ -189,6 +200,28 @@ input::placeholder, textarea::placeholder {
 }
 .form-field input:read-only {
     padding-bottom: 4px;
+}
+
+.message {
+    display: flex;
+    position: fixed;
+    top: 32px;
+    background: var(--light-text);
+    color: var(--primary-dark);
+    border-radius: 4px;
+    padding: 4px 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 6px 12px #00000040;
+}
+.message button {
+    margin-left: 4px;
+    background-color: transparent;
+    color: var(--primary-dark);
+    cursor: pointer;
+}
+.message button:hover, .message button:focus {
+    color: var(--quaternary);
 }
 /* ------------------------------------------------------------ Header/Navigation */
 

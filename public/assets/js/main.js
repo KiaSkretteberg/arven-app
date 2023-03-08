@@ -8,15 +8,10 @@ var delay_submit = (function() {
 
 
 $(document).ready(function() {
-	function toggleSidebar() {
-        $(".sidenav-toggle").toggleClass("active");
-        $(".content").toggleClass("menu-open");
-        $(".sidenav").toggleClass("menu-open");
-    }
-  
-    $(".sidenav-toggle").on("click tap", function() {
-        toggleSidebar();
-    });
+
+	$(document).on("click", ".dismiss-msg", function(e) {
+		$(e.target.parentElement).fadeOut();
+	});
 	
 	/**
 	 * hover captions for icons.

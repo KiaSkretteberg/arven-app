@@ -2,42 +2,38 @@
 
 $config = array
 (
-	//RSVP
-	'rsvp' => array
+	'setup' => array
 	(
 		array
 		(
-			'field' => 'name',
-			'label' => 'name',
-			'rules' => 'required|trim'
-		)
-	),
-	'update_address' => array
-	(
+			'field' => 'serial',
+			'label' => 'device serial',
+			'rules' => 'required|trim|callback_serial_exists'
+		),
 		array
 		(
-			'field' => 'city',
-			'label' => 'city',
+			'field' => 'first_name',
+			'label' => 'your first name',
 			'rules' => 'required|trim'
 		),
 		array
 		(
-			'field' => 'province',
-			'label' => 'province',
-			'rules' => 'required|trim'
+			'field' => 'last_name',
+			'label' => 'your last name',
+			'rules' => 'trim'
 		),
 		array
 		(
-			'field' => 'postal_code',
-			'label' => 'postal code',
-			'rules' => 'required|trim'
+			'field' => 'email',
+			'label' => 'your email',
+			'rules' => 'required|trim|valid_email|callback_email_unique'
 		),
 		array
 		(
-			'field' => 'address',
-			'label' => 'address',
-			'rules' => 'required|trim'
-		)
+			'field' => 'password',
+			'label' => 'login password',
+			'rules' => 'required|trim|callback_password_complexity'
+		),
 	)
 );
 

@@ -24,15 +24,35 @@ class Users_model extends CI_Model
 	}
 
     // CREATE/UPDATE
-    function save()
+    function save($data, $id = false, $return_user = false)
     {
-        //CREATE
-        //$query = $this->db->insert('Users');
+		$this->db->set($data);
+		
+		// UPDATE
+		if($id !== false)
+		{
+			$this->db->where('UserID', $id);
+			
+			$this->db->update('Users');
+		}
+		//CREATE
+		else
+		{
+			$this->db->insert('Users');
+		}
 
-        //UPDATE
-        //$query = $this->db->update('Users');
+		$user_id = $this->helper_functions->return_id($id);
+		
+		if(!$return_user || !$user_id)
+		{
+			return $user_id;
+		}
+		else
+		{
+			$options = array('id' => $user_id);
 
-		//return $this->helper_functions->return_result($query, $result);
+			return $this->get($options, false);
+		}
     }
 
     //DELETE
