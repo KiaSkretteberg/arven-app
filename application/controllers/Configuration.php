@@ -19,6 +19,26 @@ class Configuration extends Site_Controller
 		//TODO: Replace with grabbing the device serial from the user
 		$device = $this->devices_model->get(array('serial' => 'RX-AR2023-0001'), false);
 
+		if($this->form_validation->run('configuration')) 
+		{
+			$first_name = $this->input->post('first_name');
+			$last_name = $this->input->post('last_name');
+			$email = $this->input->post('email');
+			$timezone = $this->input->post('timezone');
+			
+			$user = $this->user = $this->users_model->save(array(
+				'FirstName' => $first_name, 
+				'LastName' => $last_name, 
+				'Email' => $email, 
+				'DeviceID' => $device->DeviceID, 
+				'Timezone' => $timezone
+			), $user->UserID, true);
+
+			//TODO: update the user in the session
+
+			//TODO: Do we need to prompt for tracker?
+		}
+
 		$this->set_view_data(array(
 			'device' => $device,
 			'user' => $user,
@@ -49,11 +69,12 @@ class Configuration extends Site_Controller
 				'LastName' => $last_name, 
 				'Email' => $email, 
 				'DeviceID' => $device->DeviceID, 
-				'Timezone' => $timezone,
-				"Tracker" => ""
+				'Timezone' => $timezone
 			), false, true);
 
 			//TODO: store the user in the session
+
+			//TODO: Do we need to prompt for tracker?
 
 			redirect("/dashboard");
 		}
@@ -86,6 +107,7 @@ class Configuration extends Site_Controller
 
 	public function email_unique($email)
 	{
+		//TODO: Add the ability to exclude current user from uniqueness check on configuration page
 		$user = $this->users_model->get(array('device' => $this->input->post("serial"), 'email' => $email), false);
 
 		if($user)
