@@ -9,6 +9,10 @@ $this->load->view('partial/header');
 </div>
 <div class="btn-holder">
     <button>
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Connect Tracker</span>
+    </button>
+    <button>
         <i class="fas fa-tram"></i>
         <span>Locate Stairs</span>
     </button>
