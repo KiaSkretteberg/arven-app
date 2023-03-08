@@ -11,7 +11,7 @@ $this->load->view('partial/header', array("exclude_header" => true));
 <form action="" class="grid">
     <div class="form-field">
         <label for="">Your Email *</label>
-        <input type="email" name="email" placeholder="e.g. john.smith@example.com" required>
+        <input type="email" name="email" placeholder="e.. john.smith@example.com" required>
     </div>
 
     <div class="form-field">
