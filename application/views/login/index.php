@@ -8,10 +8,10 @@ $this->load->view('partial/header', array("exclude_header" => true));
         Your Personal Medication Assistant
     </p>
 </div>
-<form action="" class="grid">
+<form action=<? $this->Login ?> class="grid">
     <div class="form-field">
         <label for="">Your Email *</label>
-        <input type="email" name="email" placeholder="e.. john.smith@example.com" required>
+        <input type="email" name="email" placeholder="ex. john.smith@example.com" required>
     </div>
 
     <div class="form-field">
