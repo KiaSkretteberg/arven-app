@@ -63,18 +63,26 @@ class Configuration extends Site_Controller
 			$password = $this->input->post('password');
 
 			$device = $this->devices_model->get(array('serial' => $serial), false);
+
+			$password_details = $this->helper_functions->generate_password($password);
 			
 			$user = $this->user = $this->users_model->save(array(
 				'FirstName' => $first_name, 
 				'LastName' => $last_name, 
+				'PasswordSalt' => $password_details["salt"],
+				'PasswordHash' => $password_details["hash"],
 				'Email' => $email, 
 				'DeviceID' => $device->DeviceID, 
 				'Timezone' => $timezone
 			), false, true);
 
-			//TODO: store the user in the session
-
-			//TODO: Do we need to prompt for tracker?
+			// store user id and name in session
+			$sessiondata = array(
+				'UserID'=> $user->UserID,
+				'Name' => $user->FirstName
+			);
+			// set session
+			$this->session->set_userdata($sessiondata);
 
 			redirect("/dashboard");
 		}

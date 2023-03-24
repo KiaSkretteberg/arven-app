@@ -14,6 +14,15 @@ $this->load->view('partial/header');
         <h2>Medications</h2>
         <a href="/medication">View All</a>
     </header>
+    <ul>
+        <?php foreach($medications as $medication):?>
+            <li>
+                <span><?=$medication->MedicineName?></span>
+                <?php if($medication->Volume < $medication->Low):?><span></span><?php endif;?>
+                <span><?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?> left</span>
+            </li>
+        <?php endforeach;?>
+    </ul>
 </section>
 <section class="half">
     <header>

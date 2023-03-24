@@ -8,15 +8,17 @@ $this->load->view('partial/header', array("exclude_header" => true));
         Your Personal Medication Assistant
     </p>
 </div>
-<form action="" class="grid">
+<form action="" method="POST" class="grid">
     <div class="form-field">
-        <label for="">Your Email *</label>
-        <input type="email" name="email" placeholder="e.. john.smith@example.com" required>
+        <label for="email">Your Email *</label>
+        <input type="email" name="email" id="email" placeholder="e.g. john.smith@example.com" required value="<?= set_value('email'); ?>">
+        <div class="form-error"><?=form_error("email", "**")?></div>
     </div>
 
     <div class="form-field">
-        <label for="">Login Password *</label>
-        <input type="password" name="password" placeholder="*****" required>
+        <label for="password">Login Password *</label>
+        <input type="password" name="password" id="password" placeholder="*****" required>
+        <div class="form-error"><?=form_error("password", "**")?></div>
     </div>
 
     <button type="submit">Login</button>

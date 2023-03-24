@@ -1,4 +1,4 @@
-<select name="timezone">
+<select name="timezone" id="timezone">
     <?php foreach($timezones as $timezone):
         $tz = new DateTimeZone($timezone);
         $offset = $tz->getOffset(new DateTime());
