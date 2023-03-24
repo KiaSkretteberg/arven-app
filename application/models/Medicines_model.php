@@ -11,7 +11,7 @@ class Medicines_model extends CI_Model
 		if($id) $this->db->where('MedicineID', $id);
 		if($user_id) $this->db->where('UserID', $user_id);
 
-		$query = $this->db->get('Mediciness');
+		$query = $this->db->get('Medicines');
 
 		return $this->helper_functions->return_result($query, $result);
 	}
