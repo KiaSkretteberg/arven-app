@@ -13,19 +13,19 @@ $config = array
 		array
 		(
 			'field' => 'first_name',
-			'label' => 'your first name',
+			'label' => 'first name',
 			'rules' => 'required|trim'
 		),
 		array
 		(
 			'field' => 'last_name',
-			'label' => 'your last name',
+			'label' => 'last name',
 			'rules' => 'trim'
 		),
 		array
 		(
 			'field' => 'email',
-			'label' => 'your email',
+			'label' => 'email',
 			'rules' => 'required|trim|valid_email|callback_email_unique'
 		),
 		array
@@ -40,21 +40,36 @@ $config = array
 		array
 		(
 			'field' => 'first_name',
-			'label' => 'your first name',
+			'label' => 'first name',
 			'rules' => 'required|trim'
 		),
 		array
 		(
 			'field' => 'last_name',
-			'label' => 'your last name',
+			'label' => 'last name',
 			'rules' => 'trim'
 		),
 		array
 		(
 			'field' => 'email',
-			'label' => 'your email',
+			'label' => 'email',
 			'rules' => 'required|trim|valid_email'
 		)
+	),
+	'login' => array
+	(
+		array
+		(
+			'field' => 'email',
+			'label' => 'email',
+			'rules' => 'required|trim|valid_email|callback_verify_login'
+		),
+		array
+		(
+			'field' => 'password',
+			'label' => 'password',
+			'rules' => 'required|trim'
+		),
 	)
 );
 

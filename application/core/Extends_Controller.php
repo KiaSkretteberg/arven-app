@@ -7,6 +7,10 @@ class Site_Controller extends CI_Controller
 	public $view_data;
 	
 	public $view_file;
+
+	protected $userID = null;
+
+	protected $userName = null;
 		
     function __construct()
     {
@@ -27,8 +31,28 @@ class Site_Controller extends CI_Controller
 		$this->load->model(array(
 			"schedule_frequencies_model",
 			"devices_model",
-			"users_model"
+			"users_model",
+			"medicines_model"
 		));
+		//var_dump(phpinfo());exit;
+
+		// check for an authenticated user
+		$this->userID = $this->session->userdata("UserID");
+		$this->userName = $this->session->userdata("Name");
+
+		// list of pages that do not require an authenticated user
+		$non_authenticated_pages = array("login", "setup");
+
+		// if we're on a page that does not require authentication but we're authenticated, redirect us to the dashboard
+		// if(in_array($this->uri->segment(1), $non_authenticated_pages) && $userID)
+		// {
+		// 	redirect("/dashboard");
+		// }
+		// // if we're on a page that DOES require authenticatedion and we're NOT authenticated, redirect to login
+		// elseif(!in_array($this->uri->segment(1), $non_authenticated_pages) && !$userID)
+		// {
+		// 	redirect("/login");
+		// }
  	}
  	
 	function _remap($method)

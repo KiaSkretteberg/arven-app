@@ -13,13 +13,13 @@ class Schedule_frequencies_model extends CI_Model
 		{
 			$this->db->where('Schedule.SchedueID', $schedule_id);
 
-			$this->db->join('Schedule', 'ScheduleFrequencies.FrequencyID = Schedule.FrequencyID');
+			$this->db->join('Schedule', 'ScheduleFrequency.FrequencyID = Schedule.FrequencyID');
 		}
 		if($frequency) $this->db->where('FrequencyName', $frequency);
 
-		$this->db->select("ScheduleFrequencies.*");
+		$this->db->select("ScheduleFrequency.*");
 
-		$query = $this->db->get('ScheduleFrequencies');
+		$query = $this->db->get('ScheduleFrequency');
 
 		return $this->helper_functions->return_result($query, $result);
 	}

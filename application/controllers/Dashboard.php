@@ -10,5 +10,10 @@ class Dashboard extends Site_Controller
 
 	public function index()
 	{
+		$medications = $this->medicines_model->get(array("user_id" => $this->userID, false));
+
+		$this->set_view_data(array(
+			"medications" => $medications
+		));
 	}
 }

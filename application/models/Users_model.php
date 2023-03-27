@@ -61,6 +61,36 @@ class Users_model extends CI_Model
         //return $this->db->delete('Users');
     }
 
+	// check login
+	function login($email, $pass)
+	{
+		if($email == null)
+		{
+			error_log("User_model login. No email entered. ");
+			return null;
+		}
+		if($pass == null)
+		{
+			error_log("User_model login. No user entered. ");
+			return null;
+		}
+
+		$this->db->where('Email', $email);
+
+		$query = $this->db->get('Users');
+
+		$user = $this->helper_functions->return_result($query, false);
+
+		if($user)
+		{
+			if($this->helper_functions->create_hash($pass, $user->PasswordHash) === $user->PasswordSalt)
+			{
+				return $user;
+			}
+		}
+		return null;
+	}
+
 	/********************************************************************** 
 	
 	Helper/Private Functions

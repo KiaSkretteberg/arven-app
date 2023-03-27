@@ -17,18 +17,18 @@ class Schedules_model extends CI_Model
 
 		if($user_id) 
 		{
-			$this->db->join('Medicine', 'Medicine.MedicineID = Schedule.PrescriptionID');
+			$this->db->join('Medicines', 'Medicines.MedicineID = Schedule.MedicineID');
 
 			$this->db->where('UserID', $user_id);
 		}
 
-		if($frequency) $this->db->where('ScheduleFrequency.FrequencyName', $frequency);
+		if($frequency) $this->db->where('ScheduleFrequencies.FrequencyName', $frequency);
 
-		$this->db->join('ScheduleFrequency', 'ScheduleFrequency.FrequencyID = Schedule.FrequencyID');
+		$this->db->join('ScheduleFrequencies', 'ScheduleFrequencies.FrequencyID = Schedules.FrequencyID');
 
-		$this->db->select("Schedule.*, ScheduleFrequency.FrequencyName as frequency");
+		$this->db->select("Schedules.*, ScheduleFrequencies.FrequencyName as frequency");
 
-		$query = $this->db->get('Schedule');
+		$query = $this->db->get('Schedules');
 
 		return $this->helper_functions->return_result($query, $result);
 	}
