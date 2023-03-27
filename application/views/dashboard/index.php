@@ -85,11 +85,10 @@ function determine_schedule($date, $frequency)
         <a href="/medication">View All</a>
     </header>
     <ul>
-        <!-- Limit to 3 -->
         <?php foreach($medications as $medication):?>
             <li>
                 <span><?=$medication->MedicineName?></span>
-                <?php if($medication->Volume < $medication->Low):?><span><i class="fas fa-exclamation-triangle"></i></span><?php endif;?>
+                <?php if($medication->Volume < $medication->Low):?><span></span><?php endif;?>
                 <span><?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?> left</span>
             </li>
         <?php endforeach;?>
