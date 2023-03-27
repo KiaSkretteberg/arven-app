@@ -17,7 +17,7 @@ class Medicines_model extends CI_Model
 	}
 
     // CREATE/UPDATE
-    function save()
+    function save($options = array(), $result = false)
     {
         //CREATE
         //$query = $this->db->insert('Medicines');
@@ -29,7 +29,7 @@ class Medicines_model extends CI_Model
     }
 
     //DELETE
-    function delete()
+    function delete($options = array())
     {
         //return $this->db->delete('Medicines');
     }

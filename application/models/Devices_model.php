@@ -14,6 +14,17 @@ class Devices_model extends CI_Model
 		return $this->helper_functions->return_result($query, $result);
 	}
 
+	function save()
+	{
+		//CREATE
+        //$query = $this->db->insert('Devices');
+
+        //UPDATE
+        //$query = $this->db->update('Devices');
+
+		//return $this->helper_functions->return_result($query, $result);
+	}
+
 	/********************************************************************** 
 	
 	Helper/Private Functions

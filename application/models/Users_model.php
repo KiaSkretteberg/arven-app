@@ -55,34 +55,43 @@ class Users_model extends CI_Model
 		}
     }
 
-    //DELETE
-    function delete()
+    //DELETE??
+	// implement if we have time
+	// archive?? active state
+	//make sure to confirm cascading LUL
+    function delete($options = array())
     {
+		//extract(filter_options(array('email'), $options));
         //return $this->db->delete('Users');
     }
 
 	// check login
 	function login($email, $pass)
 	{
+		// no user, return error and message
 		if($email == null)
 		{
 			error_log("User_model login. No email entered. ");
 			return null;
 		}
+
+		// no password, return error and message
 		if($pass == null)
 		{
 			error_log("User_model login. No user entered. ");
 			return null;
 		}
 
-		$this->db->where('Email', $email);
+		$this->db->where('Email', $email);		
 
 		$query = $this->db->get('Users');
 
+		// check if user exists
 		$user = $this->helper_functions->return_result($query, false);
 
 		if($user)
 		{
+			// check if password matches user
 			if($this->helper_functions->create_hash($pass, $user->PasswordHash) === $user->PasswordSalt)
 			{
 				return $user;
@@ -90,6 +99,8 @@ class Users_model extends CI_Model
 		}
 		return null;
 	}
+	
+
 
 	/********************************************************************** 
 	

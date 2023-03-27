@@ -8,7 +8,8 @@ class Router extends Site_Controller
 		parent::__construct();
 
 		//TODO: Determine if using a library to detect current user
-		//$this->load->library('users');
+		// unneeded
+		
 	}
 	/**
 	 * This is the default controller so "url/" will map to the index function
@@ -17,13 +18,19 @@ class Router extends Site_Controller
 	 */
 	public function index()
 	{
-		// TODO: Get current logged in user (the below is a suggestion)
-		//$users = $this->users->get_current_user();
+		// Get current logged in user 
+		$user =  $this->helper_functions->get_session();
 
-		// TODO: If user found, direct to dashboard
-		redirect("/dashboard");
+		//If user found, direct to dashboard
+		if($user)  
+		{
+			redirect("/dashboard");
+		}
+		else
+		{
+			redirect("/login");
+		}
 
-		// TODO: If no user found, direct to
-		//redirect("/login");
+		
 	}
 }

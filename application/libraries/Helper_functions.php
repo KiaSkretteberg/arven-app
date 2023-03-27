@@ -86,4 +86,33 @@ class Helper_functions
                 return false;
         }
 	}
+
+
+	/**
+	 * Returns any sesssion data for use
+	 * @return Array -of all session data
+	 */
+	function get_session()
+	{
+		$sessiondata = array(
+			'UserID'=> $this->session->UserID,
+			'Name' => $this->session->Name,			
+		);
+		
+		return $sessiondata;
+	}
+/**
+ * Set session for user
+ * @param String $id - user id for use on queries on other pages
+ * @param String $name - set user name for use on other pages
+ */
+	function set_session($id, $name)
+	{
+		$sessiondata = array(
+			'UserID'=> $id,
+			'Name' => $name
+		);
+		// set session
+		$this->session->set_userdata($sessiondata);
+	}
 }

@@ -76,13 +76,19 @@ class Configuration extends Site_Controller
 				'Timezone' => $timezone
 			), false, true);
 
-			// store user id and name in session
-			$sessiondata = array(
-				'UserID'=> $user->UserID,
-				'Name' => $user->FirstName
-			);
-			// set session
-			$this->session->set_userdata($sessiondata);
+
+			$this->helper_functions->set_session($user->UserID, $user->FirstName);
+			
+			// // store user id and name in session
+			// $sessiondata = array(
+			// 	'UserID'=> $user->UserID,
+			// 	'Name' => $user->FirstName
+			// );
+			
+			// // set session
+			// $this->session->set_userdata($sessiondata);
+
+		
 
 			redirect("/dashboard");
 		}
