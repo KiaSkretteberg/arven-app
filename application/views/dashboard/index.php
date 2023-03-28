@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('partial/header');
 
 // TODO: This should be put in a library or something
-function determine_schedule($date, $frequency) 
+function determine_next_delivery($date, $frequency) 
 {
     // create a copy of the original date for use later
     $originalDate = clone $date;
@@ -148,6 +148,7 @@ function determine_schedule($date, $frequency)
         <?php foreach($medications as $medication):?>
             <li>
                 <span><?=$medication->MedicineName?></span>
+                <!-- TODO: Instead of Volume, we need to pull this data as a calculated column based on logs -->
                 <?php if($medication->Volume < $medication->Low):?><span><i class="fas fa-exclamation-triangle"></i></span><?php endif;?>
                 <span><?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?> left</span>
             </li>
@@ -163,7 +164,7 @@ function determine_schedule($date, $frequency)
         <?php foreach($active_schedules as $schedule): ?>
             <li>
                 <span><?=$schedule->MedicineName?></span>
-                <span>next dose @ <?=determine_schedule(new DateTime($schedule->ScheduleDateTime), $schedule->Frequency)?></span>
+                <span>next dose @ <?=determine_next_delivery(new DateTime($schedule->ScheduleDateTime), $schedule->Frequency)?></span>
             </li>
         <?php endforeach;?>
     </ul>

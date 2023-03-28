@@ -1,14 +1,72 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// TODO: This should be put in a library or something
+function determine_schedule($date, $frequency) 
+{
+    $schedule;
+    switch($frequency)
+    {
+        case "daily":
+            $schedule = "Daily";
+            break;
+        case "weekly":
+            $day = $date->format("D");
+            // get the day as a single character, unless it's tues/thurs then 2 characters
+            $schedule = ($day[0] == "T" ? substr($day, 0, 2) : $day[0]);
+            break;
+        case "monthly":
+            $schedule = "on the " . $date->format("jS");
+            break;
+        case "annually":
+            $schedule = $date->format("M jS");
+            break;
+    }
+    $schedule .= ": ".$date->format("g:ia");
+    return $schedule;
+}
+
 $this->load->view('partial/header');
 ?>
 <div class="btn-holder">
-    <a href="#" class="btn">
+    <a href="/medication/save" class="btn">
         <i class="fas fa-prescription-bottle-alt"></i>
         <span>Add Medication</span>
     </a>
 </div>
-<section class="full"></section>
+<table>
+    <thead>
+        <tr class="grid">
+            <th class="col-medication">Medication</th>
+            <th class="col-remain">Remaining</th>
+            <th class="col-schedule">Schedules</th>
+            <th class="col-actions">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($medications as $medication):?>
+            <tr class="grid">
+                <td class="col-medication"><?=$medication->MedicineName?></td>
+                <td class="col-remain"><?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?></td>
+                <td class="col-schedule">
+                    <button aria-label="modify schedules">
+                    <?php if($medication->schedules):?>
+                        <?php $idx = 0; foreach($medication->schedules as $schedule): $idx++;?>
+                            <?=determine_schedule(new DateTime($schedule->ScheduleDateTime), $schedule->Frequency);?><?php if(count($medication->schedules) > $idx):?>,<?php endif;?>
+                        <?php endforeach;?>
+                    <?php else:?>
+                       <i class="fas fa-plus"></i> Add Schedule
+                    <?php endif;?>
+                    </button>
+                </td>
+                <td class="col-actions">
+                    <button aria-label="request one time delivery"><i class="fas fa-route"></i></button>
+                    <button aria-label="delete medication"><i class="fas fa-trash"></i></button>
+                    <button aria-label="log a dose taken"><i class="fas fa-capsules"></i></button>
+                </td>
+            </tr>
+        <?php endforeach;?>
+    </tbody>
+</table>
 
 <?php $this->load->view('partial/footer'); ?>

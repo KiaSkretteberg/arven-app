@@ -1,0 +1,36 @@
+table th {
+    text-align: left;
+}
+
+table thead {
+    border-bottom: 1px solid var(--quaternary);
+}
+
+.grid table tr.grid {
+    margin: 16px 0;
+}
+
+
+table .grid .col-medication {
+    grid-column: 1 / span 2;
+}
+
+table .grid .col-remain {
+    grid-column: 3 / span 2;
+}
+
+table .grid .col-schedule {
+    grid-column: 5 / span 5;
+}
+
+table .grid .col-actions {
+    grid-column: 10 / -1;
+}
+
+.col-actions {
+    display: flex;
+}
+.col-actions button:not(:last-child) {
+    margin-right: 8px;
+}
+

@@ -361,6 +361,20 @@ section, aside {
     background-color: var(--primary-lightened);
 }
 
+/* ------------------------------------------------------------ Table */
+table {
+    width: 100%;
+}
+
+.grid table {
+    grid-column: 1 / -1;
+}
+
+.grid table .grid {
+    grid-template-rows: auto;
+}
+
+
 /* ------------------------------------------------------------ Footer */
 footer {
     margin-top: auto;
