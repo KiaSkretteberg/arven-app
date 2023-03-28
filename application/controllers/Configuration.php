@@ -34,8 +34,8 @@ class Configuration extends Site_Controller
 				'Timezone' => $timezone
 			), $user->UserID, true);
 
-			//TODO: update the user in the session
-
+			// set user session
+			$this->helper_functions->set_session($user->UserID, $user->FirstName);
 			//TODO: Do we need to prompt for tracker?
 		}
 
