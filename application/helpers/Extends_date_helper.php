@@ -3,7 +3,8 @@ if ( ! function_exists('is_current_year'))
 {
 	function is_current_year($date)
 	{
-		return $date->format("Y") == (now())->format("Y");
+		$today = new DateTime();
+		return $date->format("Y") == $today->format("Y");
 	}
 }
 
@@ -11,8 +12,9 @@ if ( ! function_exists('is_current_month'))
 {
 	function is_current_month($date)
 	{
+		$today = new DateTime();
 		return is_current_year($date) && 
-			   $date->format("m") == (now())->format("m");
+			   $date->format("m") == $today->format("m");
 	}
 }
 
@@ -20,9 +22,10 @@ if ( ! function_exists('is_today'))
 {
 	function is_today($date)
 	{
+		$today = new DateTime();
 		return is_current_year($date) && 
 			   is_current_month($date) && 
-			   $date->format("j") == (now())->format("j");
+			   $date->format("j") == $today->format("j");
 	}
 }
 
@@ -30,7 +33,7 @@ if ( ! function_exists('is_tomorrow'))
 {
 	function is_tomorrow($date)
 	{
-		$tomorrow = now()->modify("+ 1 day");
+		$tomorrow = new DateTime("+ 1 day");
 
 		$day = $tomorrow->format("j");
 		$month = $tomorrow->format("m");
