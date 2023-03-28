@@ -99,71 +99,29 @@ function determine_schedule($date, $frequency)
             break;
     }
 
-    // the event WOULD be today (by day of the month), but it's already past the time, so increment to next one
-    /*if($date->format("j") == $today->format("j") && $date->format("H") < $today->format("H"))
-    {
-        switch($frequency)
-        {
-            case "daily":
-                $date = new DateTime("+ 1 day", $today);
-                break;
-            case "weekly":
-                $date = new DateTime("+ 1 week", $today);
-                break;
-            case "monthly";
-                $date = new DateTime("+ 1 month", $today);
-                break;
-            case "annually":
-                $date = new DateTime("+ 1 year", $today);
-                break;
-        }
-    }
-    else
-    {
-        switch($frequency)
-        {
-            // if it's not tomorrow (previous check), it's today
-            case "daily";
-                $date = $today;
-                break;
-            // if it's not tomorrow, check if it's today, 
-            case "weekly":
-
-            case "annually":
-                $date = new DateTime("+ 1 year", $today);
-                break;
-        }
-    }*/
-
     // ensure the time is correct on the date
     $date->setTime($originalDate->format("H"), $originalDate->format("i"));
-    pre_var_dump($date->format("l jS \o\\f F Y h:i:s A"));exit;
 
-    $schedule = $date->format("h:ig");
+    // populte the schedule text with the time first
+    $schedule = $date->format("g:ia ");
+
     $is_today = is_today($date);
     $is_tomorrow = is_tomorrow($date);
-    if($is_today) $schedule .= "today";
-    if($is_tomorrow) $schedule .= "tomorrow";
 
-    if(!($is_today || $is_tomorrow))
+    if($is_today) 
     {
-        switch($frequency)
-        {
-            case "weekly":
-                break;
-            case "monthly";
-                break;
-            case "annually":
-                break;
-            case "once":
-                break;
-        }
+        $schedule .= "today";
+    }
+    elseif($is_tomorrow) 
+    {
+        $schedule .= "tomorrow";
+    }
+    elseif(!$is_today && !$is_tomorrow)
+    {
+        // add the date in the format "Mon, Jun 10th"
+        $schedule .= $date->format("D, M jS");
     }
     return $schedule;
-}
-
-if($this->helper_functions->cookie_wrap("kia")) {
-    determine_schedule(new DateTime("March 28th 2022 2:00am"), "annually");exit;
 }
 ?>
 <aside>
