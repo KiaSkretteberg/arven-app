@@ -145,7 +145,6 @@ function determine_schedule($date, $frequency)
         <a href="/medication">View All</a>
     </header>
     <ul>
-        <!-- Limit to 3 -->
         <?php foreach($medications as $medication):?>
             <li>
                 <span><?=$medication->MedicineName?></span>
@@ -161,12 +160,10 @@ function determine_schedule($date, $frequency)
         <a href="/medication">View All</a>
     </header>
     <ul>
-        <!-- Limit to 3 -->
-        <?php foreach($active_schedules as $schedule):?>
+        <?php foreach($active_schedules as $schedule): ?>
             <li>
                 <span><?=$schedule->MedicineName?></span>
-                <!-- Frequency == ScheduleFrequencies.FrequencyTag -->
-                <span>next dose @ <?=determine_schedule($schedule->ScheduleDateTime, $schedule->Frequency)?></span>
+                <span>next dose @ <?=determine_schedule(new DateTime($schedule->ScheduleDateTime), $schedule->Frequency)?></span>
             </li>
         <?php endforeach;?>
     </ul>

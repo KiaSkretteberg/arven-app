@@ -26,7 +26,7 @@ class Schedules_model extends CI_Model
 
 		$this->db->join('ScheduleFrequencies', 'ScheduleFrequencies.FrequencyID = Schedules.FrequencyID');
 
-		$this->db->select("Schedules.*, ScheduleFrequencies.FrequencyName as frequency");
+		$this->db->select("Schedules.*, ScheduleFrequencies.FrequencyTag as Frequency");
 
 		$query = $this->db->get('Schedules');
 
