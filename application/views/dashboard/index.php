@@ -6,7 +6,9 @@ $this->load->view('partial/header');
 // TODO: This should be put in a library or something
 function determine_schedule($date, $frequency) 
 {
-    $originalDate = $date;
+    // create a copy of the original date for use later
+    $originalDate = clone $date;
+    // grab an instance of today
     $today = new DateTime();
     // the time has already passed
     $time_past = $date->format("H") <= $today->format("H");
@@ -25,7 +27,7 @@ function determine_schedule($date, $frequency)
             break;
         case "weekly":
             // if it's the same day of the week
-            if($date->format( "N") == $today->format("N")) 
+            if($date->format("N") == $today->format("N")) 
             {
                 // if the time already passed, next will be next week
                 if($time_past)
@@ -35,21 +37,48 @@ function determine_schedule($date, $frequency)
                     $date = $today;
             }
             // if the event is later in the week
-            elseif($date->format( "N") > $today->format("N")) 
+            elseif($date->format("N") > $today->format("N")) 
             {
-                $date = new DateTime($date->format( "l"));
+                $date = new DateTime($date->format("l"));
             }
             // if the event was earlier in the week
             else  
             {
-                $date = new DateTime("next ".$date->format( "l"), $today);
+                $date = new DateTime("next ".$date->format("l"));
             }
             break;
-        
+        case "monthly":
+            // if it's the same day of the month
+            if($date->format("j") == $today->format("j")) 
+            {
+                // if the time already passed, next will be next month
+                if($time_past)
+                    $date = new DateTime("+ 1 month");
+                // if the time hasn't passed, next will be today
+                else
+                    $date = $today;
+            }
+            // if the event is not today
+            else 
+            {
+                // keep today for now, we'll shift the date after
+                $date = clone $today;
+                // keep today's month/year, take the date's "day" value
+                $date->setDate($today->format("Y"), $today->format("m"), $originalDate->format("j"));
+                
+                // if the event was earlier in the month, move to the next month
+                if($date->format("j") < $today->format("j")) 
+                {
+                    $date = $date->modify("next month");
+                }
+            }
+            break;
+        case "anually":
+            break;
     }
 
     // the event WOULD be today (by day of the month), but it's already past the time, so increment to next one
-    /*if($date->format( "j") == $today->format("j") && $date->format("H") < $today->format("H"))
+    /*if($date->format("j") == $today->format("j") && $date->format("H") < $today->format("H"))
     {
         switch($frequency)
         {
@@ -85,7 +114,7 @@ function determine_schedule($date, $frequency)
     }*/
 
     // ensure the time is correct on the date
-    $date->setTime($originalDate->format( "H"), $originalDate->format("i"));
+    $date->setTime($originalDate->format("H"), $originalDate->format("i"));
     pre_var_dump($date->format("l jS \o\\f F Y h:i:s A"));exit;
 
     $schedule = $date->format("h:ig");
@@ -112,7 +141,7 @@ function determine_schedule($date, $frequency)
 }
 
 if($this->helper_functions->cookie_wrap("kia")) {
-    determine_schedule(new DateTime("March 20th 1:00am"), "weekly");exit;
+    determine_schedule(new DateTime("January 27th 5:00am"), "monthly");exit;
 }
 ?>
 <aside>
