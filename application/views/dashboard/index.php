@@ -73,7 +73,29 @@ function determine_schedule($date, $frequency)
                 }
             }
             break;
-        case "anually":
+        case "annually":
+            // if it's the same month and day of the year
+            if($date->format("m") == $today->format("m") && $date->format("j") == $today->format("j")) 
+            {
+                // if the time already passed, next will be next yyear
+                if($time_past)
+                    $date = new DateTime("+ 1 year");
+                // if the time hasn't passed, next will be today
+                else
+                    $date = $today;
+            }
+            // if the event is not today
+            else 
+            {
+                // keep the date's month and day value, take today's year
+                $date->setDate($today->format("Y"), $date->format("m"), $date->format("j"));
+                
+                // if the event was earlier in the year, move to the next year
+                if($date->format("m") < $today->format("m") || $date->format("j") < $today->format("j")) 
+                {
+                    $date = $date->modify("next year");
+                }
+            }
             break;
     }
 
@@ -141,7 +163,7 @@ function determine_schedule($date, $frequency)
 }
 
 if($this->helper_functions->cookie_wrap("kia")) {
-    determine_schedule(new DateTime("January 27th 5:00am"), "monthly");exit;
+    determine_schedule(new DateTime("March 28th 2022 2:00am"), "annually");exit;
 }
 ?>
 <aside>
