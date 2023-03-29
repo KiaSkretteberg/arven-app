@@ -45,6 +45,12 @@ $(document).ready(function() {
 			$('body').removeClass("sticky-nav");
 		}
 	});
-})
+});
 
 
+function closeModal(modal) {
+	$(document).on("click", ":not(.modal)", (e) => {
+		modal.remove();
+		$(document).off("click", ":not(.modal)");
+	});
+}

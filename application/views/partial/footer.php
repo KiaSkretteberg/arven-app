@@ -1,4 +1,9 @@
 	</main>
+	
+	<div class="modal">
+		<div class="modal-content"></div>
+		<div class="modal-overlay"></div>
+	</div>
 	<?php if (!isset($_GET['exclude-footer'])) :?>
 	<footer>
 		<a href="//rx-arven.com">Arven</a>

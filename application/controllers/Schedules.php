@@ -10,10 +10,24 @@ class Schedules extends Site_Controller
 
 	public function index()
 	{
-		$this->set_view_data(array(
-			"schedules" => $this->model->get(),
-			"frequencies" => $this->schedule_frequencies_model->get()
-		));
+		if($this->input->post('method') == 'ajax')
+		{
+			$medicationId = $this->input->post("medicationId");
+			// TODO: Filter the schedules based on medicationId
+			$html = $this->load->view('schedules/index', array(
+				"schedules" => $this->model->get(),
+				"frequencies" => $this->schedule_frequencies_model->get()
+			), true);
+
+			$this->set_view_data('data', $html);
+
+			$this->set_view_file('partial/json_encode');
+		}
+		// if this wasn't an ajax request, get out of here
+		else
+		{
+			redirect("/");
+		}
 	}
 
 	public function add()

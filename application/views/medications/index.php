@@ -45,11 +45,11 @@ $this->load->view('partial/header');
     </thead>
     <tbody>
         <?php foreach($medications as $medication):?>
-            <tr class="grid">
+            <tr class="grid" data-id="medicine-<?=$medication->MedicineID?>">
                 <td class="col-medication"><?=$medication->MedicineName?></td>
                 <td class="col-remain"><?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?></td>
                 <td class="col-schedule">
-                    <button aria-label="modify schedules">
+                    <button aria-label="modify schedules" class="js-modify-schedules">
                     <?php if($medication->schedules):?>
                         <?php $idx = 0; foreach($medication->schedules as $schedule): $idx++;?>
                             <?=determine_schedule(new DateTime($schedule->ScheduleDateTime), $schedule->Frequency);?><?php if(count($medication->schedules) > $idx):?>,<?php endif;?>
@@ -61,7 +61,7 @@ $this->load->view('partial/header');
                 </td>
                 <td class="col-actions">
                     <button aria-label="request one time delivery"><i class="fas fa-route"></i></button>
-                    <button aria-label="delete medication"><i class="fas fa-trash"></i></button>
+                    <a aria-label="delete medication" href="/medications/delete/<?=$medication->MedicineID?>" class="btn"><i class="fas fa-trash"></i></a>
                     <button aria-label="log a dose taken"><i class="fas fa-capsules"></i></button>
                 </td>
             </tr>

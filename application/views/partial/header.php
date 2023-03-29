@@ -31,7 +31,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 </head>
 <body class="grid<?=$page_tag == "login" || $page_tag == "setup" ? ' full-page' : ''?>">
 <?php if (!isset($_GET['exclude-header']) && !$exclude_header) :?>
-	<header class="header">
+	<header class="header load-content">
 		<nav>
 			<h1><a href="//app.rx-arven.com">Arven</a></h1>
 			<?php $pages = array(

@@ -12,12 +12,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php endforeach;?>
         </select>
         <label>Start: </label>
-        <!-- <input class="datetime" type="datetime-local" value="<?=$schedule->NextDelivery?>"> -->
+        <input class="datetime" type="datetime-local" value="<?=$schedule->ScheduleDateTime?>">
         <input class="date" type="date" value="<?=$datetime->format("Y-m-d")?>" name="date">
         <input class="time" type="time" value="<?=$datetime->format('H:i')?>" name="time">
     </li>
 <?php endforeach;?>
 </ul>
-
-<script>
-</script>
