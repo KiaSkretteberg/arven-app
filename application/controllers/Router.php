@@ -6,9 +6,6 @@ class Router extends Site_Controller
 	public function __construct()
 	{
 		parent::__construct();
-
-		//TODO: Determine if using a library to detect current user
-		// unneeded
 		
 	}
 	/**
