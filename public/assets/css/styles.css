@@ -119,7 +119,8 @@ a.btn, button {
     border-radius: 3px;
     background: var(--quaternary);
     padding: 4px 16px;
-    display: block;
+    display: flex;
+    align-items: center;
     width: max-content;
 }
 
@@ -127,11 +128,26 @@ a.btn:hover, a.btn:focus,
 button:hover, button:focus{
     background: var(--quaternary-lightened);
 }
-a.btn i:first-child, button i:first-child {
-    margin-right: 4px;
+a.btn i:first-child:not(:last-child), button i:first-child:not(:last-child) {
+    margin-right: 8px;
 }
-a.btn i:last-child, button i:last-child {
-    margin-left: 4px;
+a.btn i:last-child:not(:first-child), button i:last-child:not(:first-child) {
+    margin-left: 8px;
+}
+
+div#caption {
+    position: absolute;
+    background: var(--dark-text);
+    color: var(--light-text);
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin: 0;
+    text-align: center;
+    font-size: 1em;
+    opacity: 0.7;
+    filter: alpha(opacity=90);
+    z-index: 100000;
+    font-variant: small-caps;
 }
 
 .form-field {

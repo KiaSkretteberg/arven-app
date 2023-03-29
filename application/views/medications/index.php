@@ -55,14 +55,14 @@ $this->load->view('partial/header');
                             <?=determine_schedule(new DateTime($schedule->ScheduleDateTime), $schedule->Frequency);?><?php if(count($medication->schedules) > $idx):?>,<?php endif;?>
                         <?php endforeach;?>
                     <?php else:?>
-                       <i class="fas fa-plus"></i> Add Schedule
+                       <i class="fas fa-plus"></i> <span>Add Schedule</span>
                     <?php endif;?>
                     </button>
                 </td>
                 <td class="col-actions">
-                    <button aria-label="request one time delivery"><i class="fas fa-route"></i></button>
-                    <a aria-label="delete medication" href="/medications/delete/<?=$medication->MedicineID?>" class="btn"><i class="fas fa-trash"></i></a>
-                    <button aria-label="log a dose taken"><i class="fas fa-capsules"></i></button>
+                    <button class="tooltip" title="request delivery" aria-label="request one time delivery"><i class="fas fa-route"></i></button>
+                    <a class="tooltip" title="delete medication" aria-label="delete medication" href="/medications/delete/<?=$medication->MedicineID?>" class="btn"><i class="fas fa-trash"></i></a>
+                    <button class="tooltip" title="log a dose" aria-label="log a dose taken"><i class="fas fa-capsules"></i></button>
                 </td>
             </tr>
         <?php endforeach;?>

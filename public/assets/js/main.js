@@ -19,7 +19,7 @@ $(document).ready(function() {
 	xOffset = 10;
 	yOffset = 15;
 	// these 2 variable determine popup's distance from the cursor
-	$(document).on('mouseenter', ".definition, .tooltip", function(e){
+	$(document).on('mouseenter', ".tooltip", function(e){
 		this.t = this.title;
 		this.title = "";
 		var c = (this.t != "") ? this.t : "";
@@ -28,11 +28,11 @@ $(document).ready(function() {
 			.css("top",(e.pageY - xOffset) + "px")
 			.css("left",(e.pageX + yOffset) + "px")
 	});
-	$(document).on('mouseleave', ".definition, .tooltip", function(e){
+	$(document).on('mouseleave', ".tooltip", function(e){
 		this.title = this.t;
 		$("#caption").remove();
 	});
-	$(document).on('mousemove', ".definition, .tooltip", function(e){
+	$(document).on('mousemove', ".tooltip", function(e){
 		$("#caption")
 			.css("top",(e.pageY - xOffset) + "px")
 			.css("left",(e.pageX + yOffset) + "px");

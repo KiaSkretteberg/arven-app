@@ -8,6 +8,7 @@ table thead {
 
 .grid table tr.grid {
     margin: 16px 0;
+    align-items: center;
 }
 
 
@@ -29,10 +30,30 @@ table .grid .col-actions {
 
 .col-actions {
     display: flex;
+    align-items: center;
 }
-.col-actions button:not(:last-child) {
+.col-actions button:not(:last-child),
+.col-actions a:not(:last-child) {
     margin-right: 8px;
 }
+.col-actions button,
+.col-actions .btn {
+    background: transparent;
+    color: var(--light-text);
+    justify-content: center;
+    padding: 4px;
+    height: 30px;
+    width: 30px;
+    box-sizing: border-box;
+}
+
+.col-actions button:hover, .col-actions button:focus,
+.col-actions .btn:hover, .col-actions .btn:focus {
+    border-radius: 300px;
+    background: var(--light-text);
+    color: var(--quaternary);
+}
+
 
 .schedules .modal-content {
     max-width: 600px;
