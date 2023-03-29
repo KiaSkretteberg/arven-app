@@ -18,7 +18,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 	<script src="/assets/js/jquery-2.1.3.js"></script>
 	<script src="/assets/js/main.js"></script>
 	<?php if(file_exists(SITEPATH."assets/js/$page_tag.js")):?>
-		<link rel="stylesheet" type="text/js" href="/assets/js/<?=$page_tag?>.js?v=1">
+		<script src="/assets/js/<?=$page_tag?>.js?v=1"></script>
 	<?php endif;?>
 	<script src="https://kit.fontawesome.com/285cb3eb3c.js" crossorigin="anonymous"></script>
 	<?php if (isset($_GET['embed'])) :?>
