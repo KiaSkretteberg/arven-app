@@ -95,24 +95,33 @@ class Helper_functions
 	function get_session()
 	{
 		$sessiondata = array(
-			'UserID'=> $this->session->UserID,
-			'Name' => $this->session->Name,			
+			"UserID"=> $this->ci->session->userdata("UserID"),
+			"Name" => $this->ci->session->userdata("Name")		
 		);
+
+		//var_dump($sessiondata);
 		
+	
 		return $sessiondata;
 	}
-/**
- * Set session for user
- * @param String $id - user id for use on queries on other pages
- * @param String $name - set user name for use on other pages
- */
+	/**
+ 	* Set session for user
+ 	* @param String $id - user id for use on queries on other pages
+ 	* @param String $name - set user name for use on other pages
+ 	*/
 	function set_session($id, $name)
 	{
-		$sessiondata = array(
-			'UserID'=> $id,
-			'Name' => $name
-		);
-		// set session
-		$this->session->set_userdata($sessiondata);
+
+			$sessiondata = array(
+			"UserID"=> $id,
+			"Name" => $name
+			);
+			// set session
+			$this->ci->session->set_userdata($sessiondata);
+		
+		//var_dump("ab");
+		//var_dump($id);
+		//var_dump($name);
+		//var_dump($this->ci->session->get_userdata('Name'));
 	}
 }

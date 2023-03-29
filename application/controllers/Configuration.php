@@ -14,9 +14,9 @@ class Configuration extends Site_Controller
 
 	public function index()
 	{
-		//TODO: Replace with grabbing the current user
+		// Replace with grabbing the current user
 		$user = $this->users_model->get(array('device' =>  'RX-AR2023-0001'), false);
-		//TODO: Replace with grabbing the device serial from the user
+		// Replace with grabbing the device serial from the user
 		$device = $this->devices_model->get(array('serial' => 'RX-AR2023-0001'), false);
 
 		if($this->form_validation->run('configuration')) 
@@ -35,8 +35,12 @@ class Configuration extends Site_Controller
 			), $user->UserID, true);
 
 			// set user session
+		
 			$this->helper_functions->set_session($user->UserID, $user->FirstName);
 			//TODO: Do we need to prompt for tracker?
+			//$this->helper_functions->set_session(1, "a");
+			//var_dump($user->FirstName);
+			
 		}
 
 		$this->set_view_data(array(
