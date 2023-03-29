@@ -160,6 +160,10 @@ a.btn i:last-child, button i:last-child {
     padding-bottom: 3px;
     outline: none;
 } 
+.form-field input[type="checkbox"]:focus, 
+.form-field input[type="checkbox"]:hover {
+    outline: initial; 
+} 
 
 .form-field select {
     padding: 1px 4px;
@@ -235,12 +239,13 @@ input::placeholder, textarea::placeholder {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 80vw;
     min-height: 200px;
     border-radius: 4px;
     box-shadow: 0 6px 12px #00000040;
     background: white;
     color: var(--primary-dark);
+    padding: 16px;
 }
 
 .modal .modal-content:empty,

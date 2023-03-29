@@ -49,8 +49,8 @@ $(document).ready(function() {
 
 
 function closeModal(modal) {
-	$(document).on("click", ":not(.modal)", (e) => {
+	$(document).on("click", ".modal-overlay", (e) => {
 		modal.remove();
-		$(document).off("click", ":not(.modal)");
+		$(document).off("click", ".modal-overlay");
 	});
 }

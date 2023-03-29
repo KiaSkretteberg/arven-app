@@ -34,3 +34,37 @@ table .grid .col-actions {
     margin-right: 8px;
 }
 
+.schedules .modal-content {
+    max-width: 600px;
+}
+.schedules ul {
+    list-style-type: none;
+    margin: 0;
+}
+.schedules li {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    margin-bottom: 24px;
+}
+
+.schedules .form-field input,
+.schedules .form-field select{
+    color: var(--primary-dark);
+}
+.schedules .form-field {
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.schedules .form-field input:focus, .schedules .form-field input:hover,
+.schedules .form-field select:focus, .schedules .form-field select:hover,
+.schedules .form-field textarea:focus, .schedules .form-field textarea:hover {
+    border-color: var(--primary-dark);
+} 
+
+.schedules input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+}
