@@ -60,9 +60,10 @@ $this->load->view('partial/header');
                     </button>
                 </td>
                 <td class="col-actions">
-                    <button class="tooltip" title="request delivery" aria-label="request one time delivery"><i class="fas fa-route"></i></button>
-                    <a class="tooltip" title="delete medication" aria-label="delete medication" href="/medications/delete/<?=$medication->MedicineID?>" class="btn"><i class="fas fa-trash"></i></a>
-                    <button class="tooltip" title="log a dose" aria-label="log a dose taken"><i class="fas fa-capsules"></i></button>
+                    <!-- TODO: These links all need to work/do their appropriate tasks -->
+                    <a class="tooltip btn" title="request delivery" aria-label="request one time delivery" href="/medications/request-delivery/<?=$medication->MedicineID?>"><i class="fas fa-route"></i></a>
+                    <a class="tooltip btn" title="delete medication" aria-label="delete medication" href="/medications/delete/<?=$medication->MedicineID?>"><i class="fas fa-trash"></i></a>
+                    <a class="tooltip btn" title="log a dose" aria-label="log a dose taken" href="/medicaitons/log-dose/<?=$medication->MedicineID?>"><i class="fas fa-capsules"></i></a>
                 </td>
             </tr>
         <?php endforeach;?>
