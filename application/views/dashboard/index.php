@@ -142,7 +142,7 @@ function determine_next_delivery($date, $frequency)
 <section class="half">
     <header>
         <h2>Medications</h2>
-        <a href="/medication">View All</a>
+        <a href="/medications">View All</a>
     </header>
     <ul>
         <?php foreach($medications as $medication):?>
@@ -158,7 +158,7 @@ function determine_next_delivery($date, $frequency)
 <section class="half">
     <header>
         <h2>Active Schedules</h2>
-        <a href="/medication">View All</a>
+        <a href="/medications">View All</a>
     </header>
     <ul>
         <?php foreach($active_schedules as $schedule): ?>

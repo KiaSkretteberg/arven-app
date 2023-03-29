@@ -53,9 +53,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['setup'] = "configuration/initial";
 $route['configuration/(.+)'] = "configuration/$1";
 $route['configuration'] = "configuration";
-// medication controller
-$route['medication/(.+)'] = "medication/$1";
-$route['medication'] = "medication";
+// medications controller
+$route['medications/(.+)'] = "medications/$1";
+$route['medications'] = "medications";
 // history controller
 $route['history/(.+)'] = "history/$1";
 $route['history'] = "history";

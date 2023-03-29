@@ -36,7 +36,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 			<h1><a href="//app.rx-arven.com">Arven</a></h1>
 			<?php $pages = array(
 				array("url" => "dashboard", "tag" => "dashboard", "icon" => "tachometer-alt", "name" => "Dashboard"),
-				array("url" => "medication", "icon" => "prescription", "name" => "Medications"),
+				array("url" => "medications", "icon" => "prescription", "name" => "Medications"),
 				array("url" => "history", "icon" => "history", "name" => "History"),
 				array("url" => "configuration", "icon" => "cog", "name" => "Configuration"),
 			);?>

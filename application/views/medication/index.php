@@ -29,7 +29,7 @@ function determine_schedule($date, $frequency)
 $this->load->view('partial/header');
 ?>
 <div class="btn-holder">
-    <a href="/medication/save" class="btn">
+    <a href="/medications/save" class="btn">
         <i class="fas fa-prescription-bottle-alt"></i>
         <span>Add Medication</span>
     </a>

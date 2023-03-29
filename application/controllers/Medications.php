@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Medication extends Site_Controller 
+class Medications extends Site_Controller 
 {
 	public function __construct()
 	{
