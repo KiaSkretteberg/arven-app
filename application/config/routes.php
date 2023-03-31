@@ -70,6 +70,7 @@ $route['schedules/(.+)'] = "schedules/$1";
 $route['schedules'] = "schedules";
 // api controller -- no index access
 $route['api/(.+)'] = "api/$1";
+$route['api'] = "api";
 // other pages
 $route['(.+)'] = "router/$1";
 $route['default_controller'] = 'router';

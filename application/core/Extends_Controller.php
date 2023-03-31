@@ -60,6 +60,12 @@ class Site_Controller extends CI_Controller
  	
 	function _remap($method)
 	{
+		// if this is the api domain, and the controller isn't the api, take us to the api 
+		if($_SERVER["HTTP_HOST"] == "api.rx-arven.com" && $this->router->class != "api")
+		{
+			redirect("/api" . ($method != "index" ? "/$method" : ""));
+		}
+
 		//Is does the requested controller/action exist?
 		if(method_exists($this, $method))
 		{
