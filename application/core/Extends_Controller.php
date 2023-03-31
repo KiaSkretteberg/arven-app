@@ -35,13 +35,16 @@ class Site_Controller extends CI_Controller
 			"medicines_model",
 			"schedules_model"
 		));
-		//var_dump(phpinfo());exit;
+		
+		$this->load->helper(array(
+			"schedule"
+		));
 
 		// check for an authenticated user
 		$this->userID = $this->session->userdata("UserID");
 		$this->userName = $this->session->userdata("Name");
 		// TODO: We need this set to the current user's timezone from the database
-		date_default_timezone_set();
+		date_default_timezone_set("America/Edmonton");
 
 		// list of pages that do not require an authenticated user
 		$non_authenticated_pages = array("login", "setup");
