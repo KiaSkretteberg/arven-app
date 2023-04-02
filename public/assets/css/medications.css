@@ -4,14 +4,6 @@ table th {
     text-align: left;
 }
 
-table thead {
-    border-bottom: 1px solid var(--quaternary);
-}
-
-.grid table tr.grid {
-    margin: 16px 0;
-    align-items: center;
-}
 
  
 table .grid .col-medication {
@@ -23,11 +15,16 @@ table .grid .col-remain {
 }
 
 table .grid .col-schedule {
-    grid-column: 5 / span 5;
+    grid-column: 5 / span 4;
 }
 
 table .grid .col-actions {
-    grid-column: 10 / -1;
+    grid-column: 9 / -1;
+}
+
+table .col-schedule button {
+    width: 100%;
+    text-align: left;
 }
 
 .col-actions {
@@ -117,6 +114,10 @@ table.schedules .grid .col-date {
 
 table.schedules .grid .col-time {
     grid-column: 5 / span 5;
+}
+
+table.schedules .grid .col-actions {
+    grid-column: 10 / -1;
 }
 
 table.schedules + a {

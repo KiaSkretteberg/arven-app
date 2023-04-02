@@ -494,6 +494,35 @@ section, aside, .btn-holder {
     grid-column: 1 / -1;
 }
 
+section, aside, table {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+section, aside {
+    padding: 8px;
+}
+table tr {
+    padding: 0 8px;
+}
+
+table thead tr {
+    border-bottom: 2px solid var(--quaternary);
+    margin-bottom: 0 !important;
+}
+
+table tr.grid {
+    align-items: center;
+}
+
+table tbody tr:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.1);
+}
+table tr {
+    margin: 0;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
 /* portrait tablet */
 @media (min-width: 600px) {
     .grid{
