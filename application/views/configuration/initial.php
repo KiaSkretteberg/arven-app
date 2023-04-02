@@ -4,6 +4,7 @@ $this->load->view('partial/header', array("exclude_header" => true));
 
 ?>
 <div class="banner">
+    <h1><img src="/assets/logo-white.svg" alt="Arven"></h1>
     <h2>Say Hello to <em class="accent">Arven</em>:</h2>
     <p>
         Your Personal Medication Assistant

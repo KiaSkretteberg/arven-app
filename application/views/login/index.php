@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('partial/header', array("exclude_header" => true));
 ?>
 <div class="banner">
+    <h1><img src="/assets/logo-white.svg" alt="Arven"></h1>
     <h2><em class="accent">Arven</em> missed you...</h2>
     <p>
         Welcome back!

@@ -25,6 +25,14 @@
     grid-row: 2 / span 1;
 }
 
+.full-page .banner h1 {
+    height: 64px;
+}
+
+.full-page .banner h1 img {
+    height: 100%;
+}
+
 /* portrait tablet */
 @media (min-width: 600px) {
     .full-page form.grid button {

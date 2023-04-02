@@ -311,10 +311,11 @@ nav h1 {
     margin-right: 16px;
     height: 64px;
     width: 64px;
-    border-radius: 100px;
-    background: var(--light-text);
-    text-indent:-999999px;
     flex-shrink: 0;
+}
+
+nav h1 a, nav h1 img {
+    height: 100%;
 }
 
 nav a {

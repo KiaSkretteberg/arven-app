@@ -33,7 +33,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 <?php if (!isset($_GET['exclude-header']) && !$exclude_header) :?>
 	<header class="header load-content">
 		<nav>
-			<h1><a href="//app.rx-arven.com">Arven</a></h1>
+			<h1><a href="//app.rx-arven.com"><img src="/assets/logo-white.svg" alt="Arven"></a></h1>
 			<?php $pages = array(
 				array("url" => "dashboard", "tag" => "dashboard", "icon" => "tachometer-alt", "name" => "Dashboard"),
 				array("url" => "medications", "icon" => "prescription", "name" => "Medications"),
