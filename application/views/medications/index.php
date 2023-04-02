@@ -49,13 +49,13 @@ $this->load->view('partial/header');
                 <td class="col-medication"><?=$medication->MedicineName?></td>
                 <td class="col-remain"><?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?></td>
                 <td class="col-schedule">
-                    <button aria-label="modify schedules" class="js-modify-schedules">
+                    <button aria-label="modify schedules" class="js-modify-schedules button-link">
                     <?php if($medication->schedules):?>
                         <?php $idx = 0; foreach($medication->schedules as $schedule): $idx++;?>
                             <?=determine_schedule(new DateTime($schedule->ScheduleDateTime), $schedule->Frequency);?><?php if(count($medication->schedules) > $idx):?>,<?php endif;?>
                         <?php endforeach;?>
                     <?php else:?>
-                       <i class="fas fa-plus"></i> <span>Add Schedule</span>
+                       <span>+ Add Schedule</span>
                     <?php endif;?>
                     </button>
                 </td>

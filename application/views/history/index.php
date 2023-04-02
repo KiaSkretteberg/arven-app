@@ -10,7 +10,7 @@ $this->load->view('partial/header');
 
 <div class="btn-holder">
     <div class="filters">
-        <button class="add-filter">Filter +</button>
+        <button class="add-filter button-link">Filter +</button>
         <?php foreach($filters as $filter):?>
             <button>
                 <span><?=$filter?></span>

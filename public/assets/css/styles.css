@@ -400,14 +400,14 @@ section, aside {
 }
 
 
-.add-filter {
+.button-link {
     margin-right: 16px;
     background-color: transparent;
     color: var(--primary-lightened);
     text-decoration: underline;
     padding: 0;
 }
-.add-filter:hover, .add-filter:focus {
+.button-link:hover, .button-link:focus {
     font-weight: bold;
     background-color: transparent;
     color: var(--primary-lightened);
