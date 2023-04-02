@@ -1,43 +1,45 @@
-table th {
+/***************** TOP LEVEL LIST PAGE *****************/
+
+:not(.save-page) table th {
     text-align: left;
 }
 
-table thead {
+:not(.save-page) table thead {
     border-bottom: 1px solid var(--quaternary);
 }
 
-.grid table tr.grid {
+:not(.save-page) .grid table tr.grid {
     margin: 16px 0;
     align-items: center;
 }
 
-
-table .grid .col-medication {
+ 
+:not(.save-page) table .grid .col-medication {
     grid-column: 1 / span 2;
 }
 
-table .grid .col-remain {
+:not(.save-page) table .grid .col-remain {
     grid-column: 3 / span 2;
 }
 
-table .grid .col-schedule {
+:not(.save-page) table .grid .col-schedule {
     grid-column: 5 / span 5;
 }
 
-table .grid .col-actions {
+:not(.save-page) table .grid .col-actions {
     grid-column: 10 / -1;
 }
 
-.col-actions {
+:not(.save-page) .col-actions {
     display: flex;
     align-items: center;
 }
-.col-actions button:not(:last-child),
-.col-actions a:not(:last-child) {
+:not(.save-page) .col-actions button:not(:last-child),
+:not(.save-page) .col-actions a:not(:last-child) {
     margin-right: 8px;
 }
-.col-actions button,
-.col-actions .btn {
+:not(.save-page) .col-actions button,
+:not(.save-page) .col-actions .btn {
     background: transparent;
     color: var(--light-text);
     justify-content: center;
@@ -46,46 +48,113 @@ table .grid .col-actions {
     width: 30px;
     box-sizing: border-box;
 }
-
-.col-actions button:hover, .col-actions button:focus,
-.col-actions .btn:hover, .col-actions .btn:focus {
+ 
+:not(.save-page) .col-actions button:hover, :not(.save-page) .col-actions button:focus,
+:not(.save-page) .col-actions .btn:hover, :not(.save-page) .col-actions .btn:focus {
     border-radius: 300px;
     background: var(--light-text);
     color: var(--quaternary);
 }
-
-
-.schedules .modal-content {
+ 
+:not(.save-page) .schedules .modal-content {
     max-width: 600px;
 }
-.schedules ul {
+:not(.save-page) .schedules ul {
     list-style-type: none;
     margin: 0;
 }
-.schedules li {
+:not(.save-page) .schedules li, :not(.save-page) .schedules .action-row {
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: min-content repeat(4, auto);
     margin-bottom: 24px;
 }
-
-.schedules .form-field input,
-.schedules .form-field select{
+ 
+:not(.save-page) .schedules .form-field input,
+:not(.save-page) .schedules .form-field select{
     color: var(--primary-dark);
 }
-.schedules .form-field {
+:not(.save-page) .schedules .form-field {
     margin-right: 16px;
     display: flex;
     align-items: center;
     margin-bottom: 0;
 }
-
-.schedules .form-field input:focus, .schedules .form-field input:hover,
-.schedules .form-field select:focus, .schedules .form-field select:hover,
-.schedules .form-field textarea:focus, .schedules .form-field textarea:hover {
+ 
+:not(.save-page) .schedules .form-field input:focus, :not(.save-page) .schedules .form-field input:hover,
+:not(.save-page) .schedules .form-field select:focus, :not(.save-page) .schedules .form-field select:hover,
+:not(.save-page) .schedules .form-field textarea:focus, :not(.save-page) .schedules .form-field textarea:hover {
     border-color: var(--primary-dark);
 } 
 
-.schedules input[type="checkbox"] {
+:not(.save-page) .schedules input[type="checkbox"] {
     width: 24px;
     height: 24px;
+}
+
+/***************** SAVE/EDIT PAGE *****************/
+
+.medications-page.save-page form {
+    width: 100%;
+    grid-column: 1 / -1;
+}
+
+.medications-page.save-page.grid form.grid {
+    grid-column: 1 / -1;
+    grid-template-rows: repeat(6, min-content);
+}
+
+.medications-page.save-page form .form-field {
+    grid-column: 1 / -1;
+}
+
+
+/* landscape tablet */
+@media (min-width: 905px) {
+    .medications-page.save-page.grid form.grid {
+        grid-template-rows: repeat(3, min-content);
+    }
+    .medications-page.save-page form .form-field.medication__name{
+        grid-column: 1 / span 4;
+    }
+    .medications-page.save-page form .form-field.medication__quantity {
+        grid-column: 5 / span 2;
+    }
+    .medications-page.save-page form .form-field.medication__units {
+        grid-column: 7 / span 2;
+    }
+    .medications-page.save-page form .form-field.medication__units-plural {
+        grid-column: 9 / span 2;
+    }
+    .medications-page.save-page form .form-field.medication__volume{
+        grid-column: 1 / span 4;
+    }
+    .medications-page.save-page form .form-field.medication__threshold {
+        grid-column: 5 / span 6;
+    }
+
+    .medications-page.save-page form button {
+        grid-column: 1 / span 2;
+    }
+}
+
+/* desktop */
+@media (min-width: 1240px) {
+    .medications-page.save-page form .form-field.medication__name{
+        grid-column: 1 / span 5;
+    }
+    .medications-page.save-page form .form-field.medication__quantity {
+        grid-column: 6 / span 2;
+    }
+    .medications-page.save-page form .form-field.medication__units {
+        grid-column: 8 / span 2;
+    }
+    .medications-page.save-page form .form-field.medication__units-plural {
+        grid-column: 10 / span 2;
+    }
+    .medications-page.save-page form .form-field.medication__volume{
+        grid-column: 1 / span 5;
+    }
+    .medications-page.save-page form .form-field.medication__threshold {
+        grid-column: 6 / span 6;
+    }
 }

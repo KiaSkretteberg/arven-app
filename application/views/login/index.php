@@ -3,26 +3,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $this->load->view('partial/header', array("exclude_header" => true));
 ?>
 <div class="banner">
-    <h2>Say Hello to <em class="accent">Arven</em>:</h2>
+    <h2><em class="accent">Arven</em> missed you...</h2>
     <p>
-        Your Personal Medication Assistant
+        Welcome back!
     </p>
 </div>
 <form action="" method="POST" class="grid">
     <div class="form-field">
-        <label for="email">Your Email *</label>
+        <label for="email">Email *</label>
         <input type="email" name="email" id="email" placeholder="e.g. john.smith@example.com" required value="<?= set_value('email'); ?>">
         <div class="form-error"><?=form_error("email", "**")?></div>
     </div>
 
     <div class="form-field">
-        <label for="password">Login Password *</label>
+        <label for="password">Password *</label>
         <input type="password" name="password" id="password" placeholder="*****" required>
         <div class="form-error"><?=form_error("password", "**")?></div>
     </div>
 
     <button type="submit">Login</button>
-    <p>Don't have an account? <a href="/setup">Get started</a> first.</p>
+    <p>Haven't met Arven yet? <a href="/setup">Connet with Arven</a> now.</p>
 </form>
 
 <?php $this->load->view('partial/footer'); ?>

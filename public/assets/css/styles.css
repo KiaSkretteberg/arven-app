@@ -103,6 +103,12 @@ button:hover, button:focus {
     color: var(--quaternary);
 }
 
+a.btn:disabled, button:disabled,
+a.btn:disabled:hover, button:disabled:hover 
+a.btn:disabled:focus, button:disabled:focus {
+    color: #444;
+}
+
 nav a:hover, nav a:focus,
 h1 a:hover, h1 a:focus {
     text-transform: initial;
@@ -128,6 +134,12 @@ a.btn:hover, a.btn:focus,
 button:hover, button:focus{
     background: var(--quaternary-lightened);
 }
+
+a.btn:disabled, button:disabled,
+a.btn:disabled:hover, button:disabled:hover 
+a.btn:disabled:focus, button:disabled:focus {
+    background-color: #ccc;
+}
 a.btn i:first-child:not(:last-child), button i:first-child:not(:last-child) {
     margin-right: 8px;
 }
@@ -148,6 +160,10 @@ div#caption {
     filter: alpha(opacity=90);
     z-index: 100000;
     font-variant: small-caps;
+}
+
+#template.template {
+    display: none;
 }
 
 .form-field {

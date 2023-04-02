@@ -29,7 +29,7 @@ function determine_schedule($date, $frequency)
 $this->load->view('partial/header');
 ?>
 <div class="btn-holder">
-    <a href="/medications/save" class="btn">
+    <a href="/medications/add" class="btn">
         <i class="fas fa-prescription-bottle-alt"></i>
         <span>Add Medication</span>
     </a>
@@ -61,6 +61,7 @@ $this->load->view('partial/header');
                 </td>
                 <td class="col-actions">
                     <!-- TODO: These links all need to work/do their appropriate tasks -->
+                    <a class="tooltip btn" title="edit medication" aria-label="edit medication" href="/medications/edit/<?=$medication->MedicineID?>"><i class="fas fa-edit"></i></a>
                     <a class="tooltip btn" title="request delivery" aria-label="request one time delivery" href="/medications/request-delivery/<?=$medication->MedicineID?>"><i class="fas fa-route"></i></a>
                     <a class="tooltip btn" title="delete medication" aria-label="delete medication" href="/medications/delete/<?=$medication->MedicineID?>"><i class="fas fa-trash"></i></a>
                     <a class="tooltip btn" title="log a dose" aria-label="log a dose taken" href="/medicaitons/log-dose/<?=$medication->MedicineID?>"><i class="fas fa-capsules"></i></a>

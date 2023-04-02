@@ -49,7 +49,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 		</nav>
     </header>
 <?php endif;?>
-	<main class="grid <?=$this->uri->segment(1) ? $this->uri->segment(1) : 'home'?>-page">
+	<main class="grid <?=$this->uri->segment(1) ? $this->uri->segment(1) : 'home'?>-page<?=$this->uri->segment(2) == "add" || $this->uri->segment(2) == "edit" ? " save-page" : ($this->uri->segment(2) ? " ". $this->uri->segment(2) . "-page" : "")?>">
 			<?php if(isset($title)) :?><h2><?=$title?></h2><?php endif;?>
 			<?php if($this->session->flashdata('success')): ?>
 				<?php $this->load->view('partial/message', array("message_type" => "success"));?>

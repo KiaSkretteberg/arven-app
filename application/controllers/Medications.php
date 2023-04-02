@@ -19,4 +19,26 @@ class Medications extends Site_Controller
 			'medications' => $medications
 		));
 	}
+
+	public function add()
+	{
+		$this->save();
+	}
+
+	public function edit($url, $id)
+	{
+		$this->save($id);
+	}
+
+	public function delete()
+	{
+	}
+
+	private function save($id = null)
+	{
+		$this->set_view_data(array(
+			"medication" => $id ? $this->medicines_model->get(array("id" => $id), false) : null
+		));
+		$this->set_view_file("save");
+	}
 }
