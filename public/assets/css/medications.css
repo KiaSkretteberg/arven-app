@@ -1,45 +1,45 @@
 /***************** TOP LEVEL LIST PAGE *****************/
 
-:not(.save-page) table th {
+table th {
     text-align: left;
 }
 
-:not(.save-page) table thead {
+table thead {
     border-bottom: 1px solid var(--quaternary);
 }
 
-:not(.save-page) .grid table tr.grid {
+.grid table tr.grid {
     margin: 16px 0;
     align-items: center;
 }
 
  
-:not(.save-page) table .grid .col-medication {
+table .grid .col-medication {
     grid-column: 1 / span 2;
 }
 
-:not(.save-page) table .grid .col-remain {
+table .grid .col-remain {
     grid-column: 3 / span 2;
 }
 
-:not(.save-page) table .grid .col-schedule {
+table .grid .col-schedule {
     grid-column: 5 / span 5;
 }
 
-:not(.save-page) table .grid .col-actions {
+table .grid .col-actions {
     grid-column: 10 / -1;
 }
 
-:not(.save-page) .col-actions {
+.col-actions {
     display: flex;
     align-items: center;
 }
-:not(.save-page) .col-actions button:not(:last-child),
-:not(.save-page) .col-actions a:not(:last-child) {
+.col-actions button:not(:last-child),
+.col-actions a:not(:last-child) {
     margin-right: 8px;
 }
-:not(.save-page) .col-actions button,
-:not(.save-page) .col-actions .btn {
+.col-actions button,
+.col-actions .btn {
     background: transparent;
     color: var(--light-text);
     justify-content: center;
@@ -49,44 +49,44 @@
     box-sizing: border-box;
 }
  
-:not(.save-page) .col-actions button:hover, :not(.save-page) .col-actions button:focus,
-:not(.save-page) .col-actions .btn:hover, :not(.save-page) .col-actions .btn:focus {
+.col-actions button:hover, .col-actions button:focus,
+.col-actions .btn:hover, .col-actions .btn:focus {
     border-radius: 300px;
     background: var(--light-text);
     color: var(--quaternary);
 }
  
-:not(.save-page) .schedules .modal-content {
+.schedules.modal .modal-content {
     max-width: 600px;
 }
-:not(.save-page) .schedules ul {
+.schedules.modal ul {
     list-style-type: none;
     margin: 0;
 }
-:not(.save-page) .schedules li, :not(.save-page) .schedules .action-row {
+.schedules.modal li, .schedules.modal .action-row {
     display: grid;
     grid-template-columns: min-content repeat(4, auto);
     margin-bottom: 24px;
 }
  
-:not(.save-page) .schedules .form-field input,
-:not(.save-page) .schedules .form-field select{
+.schedules.modal .form-field input,
+.schedules.modal .form-field select{
     color: var(--primary-dark);
 }
-:not(.save-page) .schedules .form-field {
+.schedules.modal .form-field {
     margin-right: 16px;
     display: flex;
     align-items: center;
     margin-bottom: 0;
 }
  
-:not(.save-page) .schedules .form-field input:focus, :not(.save-page) .schedules .form-field input:hover,
-:not(.save-page) .schedules .form-field select:focus, :not(.save-page) .schedules .form-field select:hover,
-:not(.save-page) .schedules .form-field textarea:focus, :not(.save-page) .schedules .form-field textarea:hover {
+.schedules.modal .form-field input:focus, .schedules.modal .form-field input:hover,
+.schedules.modal .form-field select:focus, .schedules.modal .form-field select:hover,
+.schedules.modal .form-field textarea:focus, .schedules.modal .form-field textarea:hover {
     border-color: var(--primary-dark);
 } 
 
-:not(.save-page) .schedules input[type="checkbox"] {
+.schedules.modal input[type="checkbox"] {
     width: 24px;
     height: 24px;
 }
@@ -104,6 +104,22 @@
 }
 
 .medications-page.save-page form .form-field {
+    grid-column: 1 / -1;
+}
+
+table.schedules .grid .col-frequency {
+    grid-column: 1 / span 2;
+}
+
+table.schedules .grid .col-date {
+    grid-column: 3 / span 2;
+}
+
+table.schedules .grid .col-time {
+    grid-column: 5 / span 5;
+}
+
+table.schedules + a {
     grid-column: 1 / -1;
 }
 

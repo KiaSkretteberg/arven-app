@@ -34,10 +34,23 @@ class Medications extends Site_Controller
 	{
 	}
 
-	private function save($id = null)
+	private function save($id = "new")
 	{
+		$medication = $this->medicines_model->get(array("id" => $id), false);
+		// TODO: This should be removed once schedules have been added to be pulled as part of the above query
+		// TODO: This list of schedules needs to include the FrequencyName for each schedule
+		if($medication) $medication->schedules = $this->schedules_model->get();
+
+		//TODO: Set up the form validation rules in the config file
+		if($this->form_validation->run("save_medication"))
+		{
+			//TODO: Add the medication and grab the new id (only)
+			$medication_id = 0;
+			redirect("/medications/edit/$medication_id");
+		}
+
 		$this->set_view_data(array(
-			"medication" => $id ? $this->medicines_model->get(array("id" => $id), false) : null
+			"medication" => $medication
 		));
 		$this->set_view_file("save");
 	}

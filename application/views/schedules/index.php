@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <i class="fas fa-calendar-plus"></i> 
         <span>Add Schedule</span>
     </a>
-    <table>
+    <table class="schedules">
         <thead>
             <tr class="grid">
                 <th class="col-frequency">Frequency</th>
@@ -84,9 +84,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <tbody>
             <?php foreach($schedules as $schedule): $datetime = new DateTime($schedule->ScheduleDateTime);?>
                 <tr class="grid" data-id="schedule-<?=$schedule->ScheduleID?>">
-                    <td class="col-frequency"><?=$schedule->Frequency?></td>
+                    <td class="col-frequency"><?=$schedule->FrequencyName?></td>
                     <td class="col-date"><?=$datetime->format('Y-m-d')?></td>
-                    <td class="col-time"><?=$datetime->format('H:i')?></td>
+                    <td class="col-time"><?=$datetime->format('g:ia')?></td>
                     <td class="col-actions">
                         <!-- TODO: These links all need to work/do their appropriate tasks -->
                         <a class="tooltip btn" title="edit schedule" aria-label="edit schedule" href="/schedules/edit/<?=$schedule->ScheduleID?>"><i class="fas fa-edit"></i></a>
@@ -96,4 +96,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php endforeach;?>
         </tbody>
     </table>
+    <!-- TODO: This needs to pull from the list of delivery logs -->
+    <?php $last_delivery = new DateTime();?>
+    <!-- TODO: This needs to link to view the list of delivert events, maybe -->
+    <a href="<?=current_url()?>">Last Delivered: <?=$last_delivery->format("M jS, Y @ g:ia")?></a>
 <?php endif;?>
