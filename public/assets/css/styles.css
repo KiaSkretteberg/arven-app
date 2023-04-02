@@ -81,13 +81,13 @@ nav a, nav a:visited, nav a:hover, nav a:focus {
     letter-spacing: 0.1em;
 }
 /**** Links *****/
-a, a:visited {
+a:not(.btn), a:visited:not(.btn) {
     color: var(--light-text);
     font-weight: bold;
     font-family: monospace;
     font-size: 16px;
 }
-a:hover, a:focus {
+a:hover:not(.btn), a:focus:not(.btn) {
     color: var(--quaternary-lightened);
     text-transform: uppercase;
 }
@@ -95,7 +95,9 @@ a:hover, a:focus {
 a.btn, button {
     color: var(--primary-lightened);
     text-transform: uppercase;
+    font-family: monospace;
     font-size: 16px;
+    font-weight: bold;
     line-height: 1.5em;
 }
 a.btn:hover, a.btn:focus,
