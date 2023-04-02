@@ -21,6 +21,7 @@ class Api extends Site_Controller
 	{
 	}
 
+	// expect url format: "set_user_location/x/######/y/######/z/######"
 	public function set_user_location()
 	{
 		$params = $this->uri->uri_to_assoc(3);
@@ -32,6 +33,7 @@ class Api extends Site_Controller
 		exit;
 	}
 
+	// expect url format: "get_user_location"
 	public function get_user_location()
 	{
 		$params = $this->uri->uri_to_assoc(3);
@@ -43,6 +45,7 @@ class Api extends Site_Controller
 		exit;
 	}
 
+	// expect url format: "check_schedule/device_id/RX-AR2023-####"
 	public function check_schedule()
 	{
 		$params = $this->uri->uri_to_assoc(3);
@@ -78,4 +81,16 @@ class Api extends Site_Controller
 		// no schedules to process
 		echo "none";exit;
 	}
+
+	// TODO: function to receive "medication taken" event from robot
+
+	// TODO: function to receive "user found" event from robot
+
+	// TODO: function to receive "user not found" event from robot
+
+	// TODO: function to receive "battery low" event from robot
+
+	// TODO: function to receive error (event_log table entry) sent from robot
+
+	
 }
