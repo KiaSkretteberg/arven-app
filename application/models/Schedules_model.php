@@ -7,7 +7,7 @@ class Schedules_model extends CI_Model
 	function get($options = array(), $result = true) 
 	{
 		extract(filter_options(array('id', 'user_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency'), $options));
-
+		$val = "Schedules.*, ScheduleFrequencies.FrequencyTag as Frequency";
 		if($id) $this->db->where('SchedueID', $id);
 		// if($day) $this->db->where('DAY(DATE(NextDelivery))', $day);
 		// if($date) $this->db->where('DATE(NextDelivery)', $date);
@@ -17,16 +17,17 @@ class Schedules_model extends CI_Model
 
 		if($user_id) 
 		{
-			$this->db->join('Medicines', 'Medicines.MedicineID = Schedule.MedicineID');
+			$this->db->join('Medicines', 'Medicines.MedicineID = Schedules.MedicineID');
 
 			$this->db->where('UserID', $user_id);
+			$val += ", Medicine.MedicineName";
 		}
 
 		if($frequency) $this->db->where('ScheduleFrequencies.FrequencyName', $frequency);
 
 		$this->db->join('ScheduleFrequencies', 'ScheduleFrequencies.FrequencyID = Schedules.FrequencyID');
 
-		$this->db->select("Schedules.*, ScheduleFrequencies.FrequencyTag as Frequency");
+		$this->db->select($val);
 
 		$query = $this->db->get('Schedules');
 
