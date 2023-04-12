@@ -37,9 +37,10 @@ class Configuration extends Site_Controller
 			// set user session
 		
 			$this->helper_functions->set_session($user->UserID, $user->FirstName);
+
+			
 			//TODO: Do we need to prompt for tracker?
-			//$this->helper_functions->set_session(1, "a");
-			//var_dump($user->FirstName);
+			
 			
 		}
 
@@ -82,16 +83,6 @@ class Configuration extends Site_Controller
 
 
 			$this->helper_functions->set_session($user->UserID, $user->FirstName);
-			
-			// // store user id and name in session
-			// $sessiondata = array(
-			// 	'UserID'=> $user->UserID,
-			// 	'Name' => $user->FirstName
-			// );
-			
-			// // set session
-			// $this->session->set_userdata($sessiondata);
-
 		
 
 			redirect("/dashboard");
@@ -125,7 +116,7 @@ class Configuration extends Site_Controller
 
 	public function email_unique($email)
 	{
-		//TODO: Add the ability to exclude current user from uniqueness check on configuration page
+		//Add the ability to exclude current user from uniqueness check on configuration page
 		$user = $this->users_model->get(array('device' => $this->input->post("serial"), 'email' => $email), false);
 
 		if($user)
