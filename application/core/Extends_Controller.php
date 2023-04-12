@@ -39,12 +39,20 @@ class Site_Controller extends CI_Controller
 		$this->load->helper(array(
 			"schedule"
 		));
-
+		
 		// check for an authenticated user
 		$this->userID = $this->session->userdata("UserID");
 		$this->userName = $this->session->userdata("Name");
-		// TODO: We need this set to the current user's timezone from the database
-		date_default_timezone_set("America/Edmonton");
+
+
+		// We need this set to the current user's timezone from the database
+		// get which timezone user is in
+		$values = $this->users_model->get(array(
+			'id'=> $this->userID
+		));
+		
+		// then set timezone
+		date_default_timezone_set($values[0]->Timezone);
 
 		// list of pages that do not require an authenticated user
 		$non_authenticated_pages = array("login", "setup");
