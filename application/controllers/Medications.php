@@ -18,6 +18,9 @@ class Medications extends Site_Controller
 		$this->set_view_data(array(
 			'medications' => $medications
 		));
+
+		var_dump($this->delivery_logs_model->get(array()));
+		exit;
 	}
 
 	public function add()

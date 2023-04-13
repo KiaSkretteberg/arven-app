@@ -5,14 +5,12 @@ class Delivery_logs_model extends CI_Model
     function get($options = array(), $result = true) 
 	{
         
-		extract(filter_options(array('id', 'userid' ), $options));
+		extract(filter_options(array('id' ), $options));
 
-        if($userid)
+        if($id)
         {
-            $this->db->join('Schedules', 'Schedules.ScheduleID = DeliveryLogs.DeviceID');
-            $this->db->join('Medicines', 'Schedules.MedicineID = Medicines.MedicineID');
-            $this->db->join('Users', 'Users.UserID = Medicines.UserID');
-            $this->db->where('Users.UserID', $userid);
+           
+            $this->db->where('DeliveryID', $id);
         }
 
         $query = $this->db->get('DeliveryLogs');
