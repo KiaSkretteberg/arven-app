@@ -18,8 +18,10 @@ class Api extends Site_Controller
 		}
 
 		$this->params = $this->uri->uri_to_assoc(3);
+		
 		extract(filter_options(array('device'), $this->params));
-		$this->device = $this->devices_model->get(array("serial" => $device), false);
+
+		if($device) $this->device = $this->devices_model->get(array("serial" => $device), false);
 	}
 
 	public function index()
