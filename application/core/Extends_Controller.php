@@ -33,7 +33,9 @@ class Site_Controller extends CI_Controller
 			"devices_model",
 			"users_model",
 			"medicines_model",
-			"schedules_model"
+			"schedules_model",
+			"events_model",
+			"deliveries_model"
 		));
 		
 		$this->load->helper(array(
