@@ -32,10 +32,11 @@ class Api extends Site_Controller
 		//NOTE: This would normally send a user id or tracker id 
 		// with it in order to update the x/y/z coordinates for the proper tag
 		// but given our hardware limitations, we only need x/y/z coordinates
-		extract(filter_options(array('x', 'y', 'z'), $this->params));
-		pre_var_dump($params, $x, $y, $z);
+		extract(filter_options(array("x", "y", "z"), $this->params));
 
-		exit;
+		$user_id = 22; // hardcoded for ease of testing to the "User" user
+
+		$this->users_model->save(array("TrackerPosition" => json_encode(array("x" => $x, "y" => $y, "z" => $z))), $user_id);
 	}
 
 	// expect url format: "get_user_location"
@@ -46,7 +47,12 @@ class Api extends Site_Controller
 		// we only aren't filtering because of current hardware limitations (only one user tag, 1 robot)
 		extract(filter_options(array(), $this->params));
 
-		exit;
+		$user_id = 22; // hardcoded for ease of testing to the "User" user
+
+		$user = $this->users_model->get(array("id" => $user_id), false);
+
+		$position = json_decode($user->TrackerPosition);
+		echo "x:".$position->x.";y:".$position->y.";z:".$position->z;
 	}
 
 	// expect url format: "check_schedule/device/RX-AR2023-####"
@@ -99,7 +105,6 @@ class Api extends Site_Controller
 		));
 	}
 
-	// TODO: function to receive "user not found" event from robot
 	public function log_missing_user()
 	{
 		extract(filter_options(array("schedule_id"), $this->params));
@@ -110,9 +115,6 @@ class Api extends Site_Controller
 		));
 	}
 
-	// TODO: function to receive "battery low" event from robot
-
-	// TODO: function to receive error (event_log table entry) sent from robot
 	public function log_event()
 	{
 		extract(filter_options(array("event_type", "event_name", "event_description", "source"), $this->params));
@@ -128,5 +130,6 @@ class Api extends Site_Controller
 		));
 	}
 
+	// TODO: function to receive "battery low" event from robot
 	
 }

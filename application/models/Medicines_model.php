@@ -6,11 +6,20 @@ class Medicines_model extends CI_Model
 	//READ 
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'user_id', 'limit'), $options));
+		extract(filter_options(array('id', 'user_id', 'limit', "schedule_id"), $options));
 
 		if($id) $this->db->where('MedicineID', $id);
 		if($user_id) $this->db->where('UserID', $user_id);
+
+        if($schedule_id)
+        {
+            $this->db->where("ScheduleID", $schedule_id);
+            $this->db->join("Schedules", "Schedules.MedicineID = Medicines.MedicineID");
+        }
+
+
         if($limit) $this->db->limit($limit);
+
 
 		$query = $this->db->get('Medicines');
 
