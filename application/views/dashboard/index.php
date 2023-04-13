@@ -18,6 +18,16 @@ $this->load->view('partial/header');
         <?php endforeach;?>
     </ul>
 </aside>
+<section class="full">
+    <header>
+        <h2>Status</h2>
+    </header>
+    <ul>
+        <li>Location: </li>
+        <li>Connection: </li>
+        <li>Battery: </li>
+    </ul>
+</section>
 <section class="half">
     <header>
         <h2>Medications</h2>
@@ -28,8 +38,10 @@ $this->load->view('partial/header');
             <li>
                 <span><?=$medication->MedicineName?></span>
                 <!-- TODO: Instead of Volume, we need to pull this data as a calculated column based on logs -->
-                <?php if($medication->Volume < $medication->Low):?><span><i class="fas fa-exclamation-triangle"></i></span><?php endif;?>
-                <span><?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?> left</span>
+                <span>
+                    <?php if($medication->Volume < $medication->Low):?><span><i class="fas fa-exclamation-triangle tooltip" title="<?=$medication->MedicineName?> running low"></i></span><?php endif;?> 
+                    <?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?> left
+                </span>
             </li>
         <?php endforeach;?>
     </ul>
