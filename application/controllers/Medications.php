@@ -19,8 +19,9 @@ class Medications extends Site_Controller
 			'medications' => $medications
 		));
 
-		var_dump($this->delivery_logs_model->get(array()));
-		exit;
+		//y u no work ?!
+		//var_dump($this->delivery_logs_model->get(array()));
+		//exit;
 	}
 
 	public function add()
