@@ -19,13 +19,21 @@ class Medications extends Site_Controller
 			'medications' => $medications
 		));
 
-		//y u no work ?!
+		// test code
+	//	var_dump($this->medicines_model->save("create",  array(
+			//'userid'=> 1,
+			//'dose' => 4
+		//)));
 		//var_dump($this->delivery_logs_model->get(array()));
 		//exit;
 	}
+	
 
 	public function add()
 	{
+		
+		
+		
 		$this->save();
 	}
 

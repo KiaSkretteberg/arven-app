@@ -27,18 +27,62 @@ class Medicines_model extends CI_Model
 	}
 
     // CREATE/UPDATE
-    function save($options = array(), $result = false)
-    {
+    function save($action = "update", $options = array(), $result = false)
+    {   
+
+        extract(filter_options(array('id', 'userid', 'name', 'dose', 'unit', 'volume', 'low', 'plural' ), $options));
+
+       
+        // THINGS TO ADD / CHANGE
+        if($name) $this->db->set('MedicineName', $name);
+
+        if($dose) $this->db->set('Dose', $dose);
+      
+        if($unit) $this->db->set('Unit', $unit);
+
+        if($volume) $this->db->set('Volume', $volume);
+
+        if($low) $this->db->set('Low', $low);
+
+        if($plural) $this->db->set('UnitPlural', $plural);
+
+        
+       
+
+        $query = null;
         //CREATE
-        //$query = $this->db->insert('Medicines');
+        if($action == "create")
+       {     // join to userID
+        if($userid)
+        {
+            $this->db->set('UserID', $userid);
+            $this->db->where('UserID', $userid); 
+        }    
+             return $this->db->insert('Medicines');
 
-        //UPDATE
-        //$query = $this->db->update('Medicines');
+           //  var_dump($query);
+           // return $this->helper_functions->return_result($query, $result);
+       }
 
-		//return $this->helper_functions->return_result($query, $result);
+       //UPDATE
+        if($action == "update")
+       { 
+            // join to userID
+            if($userid) $this->db->where('UserID', $userid);
+            
+            if($id) $this->db->where('MedicineID', $id);            
+            return $this->db->update('Medicines');
+
+           // var_dump($query);
+           // return $this->helper_functions->return_result($query, $result);
+       }
+
+       return null;
+		
     }
 
     //DELETE
+    // TODO - not doing yet
     function delete($options = array())
     {
         //return $this->db->delete('Medicines');
