@@ -17,7 +17,7 @@ class Medicines_model extends CI_Model
             $this->db->join("Schedules", "Schedules.MedicineID = Medicines.MedicineID");
         }
 
-
+        // limit maxes out how many things returned
         if($limit) $this->db->limit($limit);
 
 
@@ -48,20 +48,19 @@ class Medicines_model extends CI_Model
 
         
        
-
+        // intialize to null so if it doesnt work, then clear error
         $query = null;
+
+
         //CREATE
         if($action == "create")
        {     // join to userID
-        if($userid)
-        {
+            
             $this->db->set('UserID', $userid);
             $this->db->where('UserID', $userid); 
-        }    
+                
              return $this->db->insert('Medicines');
 
-           //  var_dump($query);
-           // return $this->helper_functions->return_result($query, $result);
        }
 
        //UPDATE
@@ -70,11 +69,10 @@ class Medicines_model extends CI_Model
             // join to userID
             if($userid) $this->db->where('UserID', $userid);
             
-            if($id) $this->db->where('MedicineID', $id);            
-            return $this->db->update('Medicines');
-
-           // var_dump($query);
-           // return $this->helper_functions->return_result($query, $result);
+            if($id) $this->db->where('MedicineID', $id);  
+            
+            
+            return $this->db->update('Medicines');           
        }
 
        return null;
