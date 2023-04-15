@@ -17,31 +17,6 @@ $this->load->view('partial/header');
                 <span>x</span>
             </button>
         <?php endforeach;?>
-        <!-- TODO: Remove this is just test for styling -->
-        <button class="filter">
-            <span>Test Filter 1</span>
-            <span>x</span>
-        </button>
-        <button class="filter">
-            <span>Test Filter 2</span>
-            <span>x</span>
-        </button>
-        <button class="filter">
-            <span>Test Filter 3</span>
-            <span>x</span>
-        </button>
-        <button class="filter">
-            <span>Test Filter 1</span>
-            <span>x</span>
-        </button>
-        <button class="filter">
-            <span>Test Filter 2</span>
-            <span>x</span>
-        </button>
-        <button class="filter">
-            <span>Test Filter 3</span>
-            <span>x</span>
-        </button>
     </div>
 </div>
 

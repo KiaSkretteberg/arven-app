@@ -32,6 +32,9 @@ $this->load->view('partial/header');
         <input type="text" name="unit_plural" placeholder="e.g. pills" value="<?=set_value("unit_plural", $medication->UnitPlural)?>">
         <div class="form-error"><?=form_error("unit_plural", "**")?></div>
     </div>
+    <!-- TODO: How do we "reset" this value so that a calculated column will know what date to use as a base
+    Perhaps we store a date in the medicaitons table that says when it was last refilled?
+    Or do we use an event log to determine when a refill last happened? -->
     <div class="form-field medication__volume">
         <label for="">Starting Volume *</label>
         <input type="text" name="volume" placeholder="e.g. 30" value="<?=set_value("volume", $medication->Volume)?>">

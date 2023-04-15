@@ -8,22 +8,25 @@ $this->load->view('partial/header');
     <input type="text" readonly value="<?=$device->SerialNum?>">
 </div>
 <div class="btn-holder">
-    <button>
+    <!-- <button>
         <i class="fas fa-map-marker-alt"></i>
         <span>Connect Tracker</span>
-    </button>
-    <button>
+    </button> -->
+    <!-- <button>
         <i class="fas fa-tram"></i>
         <span>Locate Stairs</span>
-    </button>
+    </button> -->
+    <!-- TODO (Kia): Is this a thing we can even control programmatically? -->
     <button>
         <i class="fas fa-power-off"></i>
         <span>Reboot Device</span>
     </button>
+    <!-- TODO: Hook this up so that it sets a flag or something somewhere that the robot can query the server for -->
     <button>
         <i class="fas fa-heartbeat"></i>
         <span>Run Diagnostics</span>
     </button>
+    <!-- TODO (Kia): What does this button do? -->
     <button>
         <i class="fas fa-sync"></i>
         <span>Factory Reset</span>

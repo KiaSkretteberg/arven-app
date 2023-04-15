@@ -9,7 +9,7 @@ $this->load->view('partial/header');
         <a href="/history">View All</a>
     </header>
     <ul>
-        <!-- Limit to only 2 most recent alerts -->
+        <!-- TODO: This needs to pull from EventLogs and needs to be limited to only 2 most recent alerts -->
         <?php foreach($alerts as $alert):?>
             <li>
                 <span><?=$alert->EventDescrition?></span>
@@ -37,7 +37,7 @@ $this->load->view('partial/header');
         <?php foreach($medications as $medication):?>
             <li>
                 <span><?=$medication->MedicineName?></span>
-                <!-- TODO: Instead of Volume, we need to pull this data as a calculated column based on logs -->
+                <!-- TODO: Instead of Volume, we need to pull this data as a calculated column based on DeliveryLogs for this medication -->
                 <span>
                     <?php if($medication->Volume < $medication->Low):?><span><i class="fas fa-exclamation-triangle tooltip" title="<?=$medication->MedicineName?> running low"></i></span><?php endif;?> 
                     <?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?> left

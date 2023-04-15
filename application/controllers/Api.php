@@ -62,7 +62,7 @@ class Api extends Site_Controller
 	{
 		extract(filter_options(array(), $this->params));
 
-		//TODO: get needs to be able to filter where the TIME() portion of the ScheduleDateTime is >= TIME(time_after) 
+		// TODO: get needs to be able to filter where the TIME() portion of the ScheduleDateTime is >= TIME(time_after) 
 		// and the TIME() portion of the ScheduleDateTime is <= TIME(time_before)
 		// and it needs to be able to ORDER BY the order_by field in the specified order_dir (default to ASC)
 		// it ALSO needs to return the UserID of the user this schedule is tied to
@@ -132,6 +132,6 @@ class Api extends Site_Controller
 		));
 	}
 
-	// TODO: function to receive "battery low" event from robot
+	// TODO (Kia): function to receive "battery low" event from robot
 	
 }
