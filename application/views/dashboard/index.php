@@ -23,8 +23,11 @@ $this->load->view('partial/header');
         <h2>Status</h2>
     </header>
     <ul>
+        <!-- TODO: Pull this as the most recent (limit 1) event from the event logs table for "navigation" event type -->
         <li>Location: </li>
+        <!-- TODO: Pull this as the most recent (limit 1) event from the event logs table for "connection" event type (where maker == Arven)-->
         <li>Connection: </li>
+        <!-- TODO: Pull this as the most recent (limit 1) event from the event logs table for "battery" event type -->
         <li>Battery: </li>
     </ul>
 </section>
