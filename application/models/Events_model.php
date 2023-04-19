@@ -15,7 +15,7 @@ class Events_model extends CI_Model
 
 	function get($options = array(), $result = true)
 	{
-		extract(filter_options(array('tag', 'userid', 'limit', 'order'), $options));
+		extract(filter_options(array('tag', 'userid', 'limit', 'order', 'maker', 'before', 'after'), $options));
 
 		
 		if($userid)
@@ -25,19 +25,34 @@ class Events_model extends CI_Model
 			$this->db->where('Users.UserID', $userid);
 			
 		}
+		// get types of 
+		$this->db->join('EventTypes', 'EventTypes.EventTypeID = EventLogs.EventTypeID');
 		//specific events
 		if($tag)
 		{
-			$this->db->join('EventTypes', 'EventTypes.EventTypeID = EventLogs.EventTypeID');
-		
+			$this->db->where('EventTypes.EventTag', $tag);
+			
 		}
 		// amount wanted
 		if($limit) 
 		{
 			$this->db->limit($limit);			
 		}
+		if($maker)
+		{
+			$this->db->where('EventLogs.EventMaker', $maker);
+		}
+		if($before)
+		{
+			$this->db->where('EventLogs.EventDateTime <', $before);
+		}
+		if($after)
+		{
+			$this->db->where('EventLogs.EventDateTime >', $after);
+		}
 
 		// order of events
+		// asc vs desc
 		if($order)
 		{
 			$this->db->order_by('EventLogs.EventDateTime', $order);
