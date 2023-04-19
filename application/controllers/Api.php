@@ -83,7 +83,7 @@ class Api extends Site_Controller
 				// NOTE: This would ideally return the tracker id, user id, something that would
 				// uniquely identify which tag is associated with this schedule, so that future requests
 				// to check position would be able to specify which tag to look for
-				// given hardware limitations, we aren't returning that sicne we only have 1 user tag
+				// given hardware limitations, we aren't returning that since we only have 1 user tag
 				echo "UserID:1;ScheduleID:1";//"UserID:".$schedule->UserID.";ScheduleID:".$schedule->ScheduleID;
 				exit;
 			}
@@ -91,6 +91,16 @@ class Api extends Site_Controller
 
 		// no schedules to process
 		echo "none";exit;
+	}
+
+	public function retrieve_dose_stats()
+	{
+		extract(filter_options(array("schedule_id"), $this->params));
+
+		// TODO: Allow retrieving medicine by schedule_id
+		$medicine = $this->medicines_model->get(array("schedule_id" => $schedule_id), false);
+
+		echo $medicine->Volume;exit;
 	}
 
 	public function log_delivery()
