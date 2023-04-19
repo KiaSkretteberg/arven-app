@@ -17,9 +17,16 @@ $this->load->view('partial/header');
                 <span>x</span>
             </button>
         <?php endforeach;?>
+
+        
     </div>
 </div>
 
-<section class="full"></section>
+<section class="full">
+<?php 
+// TODO - display history
+            var_dump($history->EventName);
+         ?>
+</section>
 
 <?php $this->load->view('partial/footer'); ?>

@@ -24,11 +24,11 @@ $this->load->view('partial/header');
     </header>
     <ul>
         <!-- TODO: Pull this as the most recent (limit 1) event from the event logs table for "robot_navigation" event type -->
-        <li>Location: </li> <?php GetHistory(null, null);?>
+        <li>Location: </li> <?php ?>
         <!-- TODO: Pull this as the most recent (limit 1) event from the event logs table for "robot_connection" event type (where maker == Arven)-->
-        <li>Connection: </li>
+        <li>Connection: </li><?php ?>
         <!-- TODO: Pull this as the most recent (limit 1) event from the event logs table for "robot_battery" event type -->
-        <li>Battery: </li>
+        <li>Battery: </li><?php ?>
     </ul>
 </section>
 <section class="half">
