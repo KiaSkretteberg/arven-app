@@ -35,5 +35,22 @@ class History extends Site_Controller
 		
 	}
 
+	public function GetHistory($limit = null, $tag = null)
+	{
+		$options = array('userid'=> 1 /*$this->session->UserID*/);
+
+
+		if($limit != null)
+		{
+			array_push($options, array('limit'=>$limit));
+		}
+		if($tag != null)
+		{
+			array_push($options, array('tag'=>$tag));
+		}
+		$this->events_model->get($options, true);
+		echo("HISTORY");
+	}
+
 	
 }
