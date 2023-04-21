@@ -13,6 +13,7 @@ class Schedules extends Site_Controller
 		if($this->input->post('method') == 'ajax')
 		{
 			$medicationId = $this->input->post("medicationId");
+			
 			// TODO: Filter the schedules based on medicationId
 			$html = $this->load->view('schedules/index', array(
 				"list" => true,

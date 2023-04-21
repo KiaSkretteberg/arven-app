@@ -2,12 +2,16 @@
 
 if ( ! function_exists('determine_next_delivery'))
 {
-    function determine_next_delivery($date, $frequency) 
+    function determine_next_delivery($date, $frequency, $timezone = "America/Edmonton") 
     {
+        $timezone = new DateTimeZone($timezone);
         // create a copy of the original date for use later
         $originalDate = clone $date;
         // grab an instance of today
         $today = new DateTime();
+        $originalDate->setTimeZone($timezone);
+        $date->setTimeZone($timezone);
+        $today->setTimeZone($timezone);
         // the time has already passed
         $time_past = $date->format("H") <= $today->format("H") &&  $date->format("i") <= $today->format("i");
         // the time is some point in the future
@@ -18,7 +22,10 @@ if ( ! function_exists('determine_next_delivery'))
             case "daily":
                 // if the time has already passed, next will be tomorrow
                 if($time_past)
+                {
                     $date = new DateTime("+ 1 day");
+                    $date->setTimeZone($timezone);
+                }
                 // if the time hasn't passed, next will be today
                 else
                     $date = $today;
@@ -29,7 +36,10 @@ if ( ! function_exists('determine_next_delivery'))
                 {
                     // if the time already passed, next will be next week
                     if($time_past)
+                    {
                         $date = new DateTime("+ 1 week");
+                        $date->setTimeZone($timezone);
+                    }
                     // if the time hasn't passed, next will be today
                     else
                         $date = $today;
@@ -38,11 +48,13 @@ if ( ! function_exists('determine_next_delivery'))
                 elseif($date->format("N") > $today->format("N")) 
                 {
                     $date = new DateTime($date->format("l"));
+                    $date->setTimeZone($timezone);
                 }
                 // if the event was earlier in the week
                 else  
                 {
                     $date = new DateTime("next ".$date->format("l"));
+                    $date->setTimeZone($timezone);
                 }
                 break;
             case "monthly":
@@ -51,7 +63,10 @@ if ( ! function_exists('determine_next_delivery'))
                 {
                     // if the time already passed, next will be next month
                     if($time_past)
+                    {
                         $date = new DateTime("+ 1 month");
+                        $date->setTimeZone($timezone);
+                    }
                     // if the time hasn't passed, next will be today
                     else
                         $date = $today;
@@ -77,10 +92,15 @@ if ( ! function_exists('determine_next_delivery'))
                 {
                     // if the time already passed, next will be next yyear
                     if($time_past)
+                    {
                         $date = new DateTime("+ 1 year");
+                        $date->setTimeZone($timezone);
+                    }
                     // if the time hasn't passed, next will be today
                     else
                         $date = $today;
+                    
+                    $date->setTimeZone($timezone);
                 }
                 // if the event is not today
                 else 

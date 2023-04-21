@@ -97,7 +97,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </tbody>
     </table>
     <!-- TODO: This needs to pull from the list of delivery logs -->
-    <?php $last_delivery = new DateTime();?>
-    <!-- TODO: This needs to link to view the list of delivert events, maybe -->
-    <a href="<?=current_url()?>">Last Delivered: <?=$last_delivery->format("M jS, Y @ g:ia")?></a>
+    <?php if($latest_delivery):?>
+        <?php $last_delivery_date = new DateTime($latest_delivery->DeliveryLogDateTime); $last_delivery_date->setTimeZone(new DateTimeZone("America/Edmonton"));?>
+        <a href="<?=current_url()?>">Last Delivered: <?=$last_delivery_date ? $last_delivery_date->format("M jS, Y @ g:ia") : "Not delivered yet"?></a>
+    <?php else:?>
+    <span>No deliveries made yet.</span>
+    <?php endif;?>
+    <!-- TODO: This needs to link to view the list of delivery events, maybe -->
+    
 <?php endif;?>

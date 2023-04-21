@@ -30,7 +30,7 @@ class Events_model extends CI_Model
 		//specific events
 		if($tag)
 		{
-			$this->db->where('EventTypes.EventTag', $tag);
+			$this->db->where('EventTypes.TypeTag', $tag);
 			
 		}
 		// amount wanted

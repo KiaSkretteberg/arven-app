@@ -4,7 +4,7 @@ class Deliveries_model extends CI_Model
 {	
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('schedule_id', 'medicine_id'), $options));
+		extract(filter_options(array('schedule_id', 'medicine_id', 'limit', 'order_by', 'order_dir' => 'asc'), $options));
 
 		if($schedule_id) $this->db->where('ScheduleID', $schedule_id);
 
@@ -14,6 +14,10 @@ class Deliveries_model extends CI_Model
 
 			$this->db->join("Schedules", "Schedules.ScheduleID = DeliveryLogs.ScheduleID");
 		}
+
+		if($limit) $this->db->limit($limit);
+
+		if($order_by) $this->db->order_by($order_by, $order_dir);
 
 		$query = $this->db->get('DeliveryLogs');
 

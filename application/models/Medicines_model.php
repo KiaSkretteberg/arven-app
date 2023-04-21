@@ -26,6 +26,18 @@ class Medicines_model extends CI_Model
 		return $this->helper_functions->return_result($query, $result);
 	}
 
+    function get_list($options = array())
+    {
+		extract(filter_options(array('user_id', 'limit'), $options));
+
+        if($limit) $this->db->limit($limit);
+		if($user_id) $this->db->where('UserID', $user_id);
+
+        $query = $this->db->get('MedicationList');
+
+		return $this->helper_functions->return_result($query, true);
+    }
+
     // CREATE/UPDATE
     function save($action = "update", $options = array(), $result = false)
     {   

@@ -23,6 +23,8 @@ class Login extends Site_Controller
 		// set session
 		$this->session->set_userdata($sessiondata);
 		
+		//$this->users->set_session(1, 'a');	
+
 	}
 
 
@@ -35,7 +37,8 @@ class Login extends Site_Controller
 		// check if the email of the user and the entered password are correct/connected
 		$user = $this->users_model->login($email, $password);
 
-		// if user is found, set session for use on other oages
+		// if user is found, set session for use on other pages
+	
 		if($user)
 		{
 			// get and assign data
@@ -54,6 +57,8 @@ class Login extends Site_Controller
 			
 			// set error message HERE
 			$this->form_validation->set_message("verify_login", "User name or email invalid.");
+
+			
 			return false;
 		}
 	}

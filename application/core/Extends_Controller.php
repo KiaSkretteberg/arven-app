@@ -49,12 +49,18 @@ class Site_Controller extends CI_Controller
 
 		// We need this set to the current user's timezone from the database
 		// get which timezone user is in
-		$values = $this->users_model->get(array(
+		$user = $this->users_model->get(array(
 			'id'=> $this->userID
-		));
+		), false);
+
+		$timezone = "America/Edmonton";
 		
-		// then set timezone
-		date_default_timezone_set($values[0]->Timezone);
+		if($user)
+		{
+			$timezone = $user->Timezone;
+		}
+		// store timezone in session for later use
+		$this->session->set_userdata("timezone", $timezone);
 
 		// list of pages that do not require an authenticated user
 		$non_authenticated_pages = array("login", "setup");

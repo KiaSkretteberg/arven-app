@@ -49,6 +49,6 @@ $this->load->view('partial/header');
     <button type="submit">Save</button>
 </form>
 
-<?php if($medication) $this->load->view('schedules/index', array("schedules" => $medication->schedules)); ?>
+<?php if($medication) $this->load->view('schedules/index', array("schedules" => $medication->schedules, "latest_delivery" => $latest_delivery)); ?>
 
 <?php $this->load->view('partial/footer'); ?>

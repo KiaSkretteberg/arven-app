@@ -11,11 +11,10 @@ class Dashboard extends Site_Controller
 	public function index()
 	{
 		// This needs to be limited to pull 3 max
-		$medications = $this->medicines_model->get(array(
+		$medications = $this->medicines_model->get_list(array(
 			"user_id" => $this->userID,
 			"limit" => 3
-		));
-		
+		));		
 		
 		//  This needs to be limited to active ones for this user, 3 max
 		//  This needs to return the medicine name as well (e.g. schedules_model needs to return MedicineName for this schedule)

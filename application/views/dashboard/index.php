@@ -42,8 +42,8 @@ $this->load->view('partial/header');
                 <span><?=$medication->MedicineName?></span>
                 <!-- TODO: Instead of Volume, we need to pull this data as a calculated column based on DeliveryLogs for this medication -->
                 <span>
-                    <?php if($medication->Volume < $medication->Low):?><span><i class="fas fa-exclamation-triangle tooltip" title="<?=$medication->MedicineName?> running low"></i></span><?php endif;?> 
-                    <?=$medication->Volume?> <?=$medication->Volume != 1 ? $medication->UnitPlural : $medication->Unit?> left
+                    <?php if($medication->VolumeRemaining < $medication->Low):?><span><i class="fas fa-exclamation-triangle tooltip" title="<?=$medication->MedicineName?> running low"></i></span><?php endif;?> 
+                    <?=$medication->VolumeRemaining?> <?=$medication->VolumeRemaining != 1 ? $medication->UnitPlural : $medication->Unit?> left
                 </span>
             </li>
         <?php endforeach;?>

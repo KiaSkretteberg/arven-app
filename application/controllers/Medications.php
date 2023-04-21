@@ -57,8 +57,14 @@ class Medications extends Site_Controller
 			redirect("/medications/edit/$medication_id");
 		}
 
+		$latest_delivery = $this->deliveries_model->get(array(
+			"order_by" => "DeliveryLogDateTime",  
+			"order_dir" => "desc", 
+			"medicine_id" => $medicationId), false);
+			
 		$this->set_view_data(array(
-			"medication" => $medication
+			"medication" => $medication,
+			"latest_delivery" => $latest_delivery
 		));
 		$this->set_view_file("save");
 	}
