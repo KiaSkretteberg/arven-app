@@ -24,10 +24,42 @@ class Dashboard extends Site_Controller
 			"limit" => 3
 		));
 		
+		$connection = $this->events_model->get(array(
+			'userid'=> $this->session->UserID,
+			'limit' => 1,
+			'order'=> 'desc',
+			'tag'=> 'robot_battery'
+		));
 
 		$this->set_view_data(array(			
 			"medications" => $medications,
 			"active_schedules" => $schedules,
+			"last_connection" => $connection,
+		));
+	}
+
+	public function GetLastLocation()
+	{
+		
+	}
+	
+	public function GetLastConnection()
+	{
+		return $this->events_model->get(array(
+			'userid'=> $this->session->UserID,
+			'limit' => 1,
+			'order'=> 'desc',
+			'tag'=> 'robot_battery'
+		));
+	}
+	
+	public function GetLastBattery()
+	{
+		return $this->events_model->get(array(
+			'userid'=> $this->session->UserID,
+			'limit' => 1,
+			'order'=> 'desc',
+			'tag'=> 'robot_battery'
 		));
 	}
 }

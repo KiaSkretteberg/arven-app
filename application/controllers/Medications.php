@@ -11,7 +11,10 @@ class Medications extends Site_Controller
 	public function index()
 	{
 		// TODO: This needs to pull schedules associated with medications
-		$medications = $this->medicines_model->get(array("user_id" => $this->userID));
+		$medications = $this->medicines_model->get(array(
+			"user_id" => $this->userID
+			
+		));
 		// TODO: This should be removed once schedules have been added to be pulled as part of the above query
 		$medications[0]->schedules = $this->schedules_model->get();
 
@@ -25,17 +28,31 @@ class Medications extends Site_Controller
 	}
 	
 
-	public function add()
+	public function AddMedicine($options = array())
 	{
+		extract(filter_options(array('id', 'userid', 'name', 'dose', 'unit', 'volume', 'low', 'plural' ), $options));
+
+		$this->medicines_model->save($action = "create", $options = array(
+
+			'userid'=> $this->session->UserID,
+			'name' => $name,
+			'dose' => $dose,
+			'unit'=> $unit,
+			'plural' => $plural,
+			'volume' => $volume,
+			'low' => $low
+
+		));
 		
-		
-		
-		$this->save();
+		redirect("/medications");
 	}
 
-	public function edit($url, $id)
+	public function edit($options = array())
 	{
-		$this->save($id);
+		
+		
+
+	
 	}
 
 	public function delete()
