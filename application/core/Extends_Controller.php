@@ -66,15 +66,15 @@ class Site_Controller extends CI_Controller
 		$non_authenticated_pages = array("login", "setup");
 
 		// if we're on a page that does not require authentication but we're authenticated, redirect us to the dashboard
-		// if(in_array($this->uri->segment(1), $non_authenticated_pages) && $userID)
-		// {
-		// 	redirect("/dashboard");
-		// }
-		// // if we're on a page that DOES require authenticatedion and we're NOT authenticated, redirect to login
-		// elseif(!in_array($this->uri->segment(1), $non_authenticated_pages) && !$userID)
-		// {
-		// 	redirect("/login");
-		// }
+		if(in_array($this->uri->segment(1), $non_authenticated_pages) && $this->userID)
+		{
+			redirect("/dashboard");
+		}
+		// if we're on a page that DOES require authenticatedion and we're NOT authenticated, redirect to login
+		elseif(!in_array($this->uri->segment(1), $non_authenticated_pages) && !$this->userID)
+		{
+			redirect("/login");
+		}
  	}
  	
 	function _remap($method)

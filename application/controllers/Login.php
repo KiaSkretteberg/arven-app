@@ -15,16 +15,6 @@ class Login extends Site_Controller
 			// then redirect to dashboard
 			redirect("/dashboard");
 		}
-
-		$sessiondata = array(
-			'UserID'=> null,
-			'Name' => null,
-			'LoggedIn' => null);
-		// set session
-		$this->session->set_userdata($sessiondata);
-		
-		//$this->users->set_session(1, 'a');	
-
 	}
 
 
