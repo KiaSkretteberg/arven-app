@@ -8,6 +8,11 @@ class Devices_model extends CI_Model
 
 		if($id) $this->db->where('DeviceID', $id);
 		if($serial) $this->db->where('SerialNum', $serial);
+		if($user_id)
+		{
+			$this->db->join("Users", "Users.DeviceID = Devices.DeviceID");
+			$this->db->where("UserID", $user_id);
+		}
 
 		$query = $this->db->get('Devices');
 

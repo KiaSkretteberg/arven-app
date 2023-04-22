@@ -5,7 +5,7 @@ $this->load->view('partial/header');
 ?>
 <div class="form-field">
     <label for="">Device Serial</label>
-    <input type="text" readonly value="<?=$device->SerialNum?>">
+    <input type="text" readonly value="<?=$user->SerialNum?>">
 </div>
 <div class="btn-holder">
     <!-- <button>

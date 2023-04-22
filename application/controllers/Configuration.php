@@ -14,10 +14,7 @@ class Configuration extends Site_Controller
 
 	public function index()
 	{
-		// Replace with grabbing the current user
-		$user = $this->users_model->get(array('device' =>  'RX-AR2023-0001'), false);
-		// Replace with grabbing the device serial from the user
-		$device = $this->devices_model->get(array('serial' => 'RX-AR2023-0001'), false);
+		$user = $this->users_model->get(array('id' => $this->userID, "include_device" => true), false);
 
 		if($this->form_validation->run('configuration')) 
 		{
@@ -30,7 +27,6 @@ class Configuration extends Site_Controller
 				'FirstName' => $first_name, 
 				'LastName' => $last_name, 
 				'Email' => $email, 
-				'DeviceID' => $device->DeviceID, 
 				'Timezone' => $timezone
 			), $user->UserID, true);
 
@@ -39,7 +35,6 @@ class Configuration extends Site_Controller
 		}
 
 		$this->set_view_data(array(
-			'device' => $device,
 			'user' => $user,
 			'timezones' => $this->timezones
 		));

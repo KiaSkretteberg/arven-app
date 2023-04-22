@@ -6,16 +6,16 @@ class Users_model extends CI_Model
 	//READ
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'device', 'email'), $options));
+		extract(filter_options(array('id', 'device', 'email', "include_device"), $options));
 
 		if($id) $this->db->where('UserID', $id);
 		if($email) $this->db->where('Email', $email);
 
-		if($device) 
+		if($device || $include_device) 
 		{
 			$this->db->join('Devices', 'Devices.DeviceID = Users.DeviceID');
 
-			$this->db->where('Devices.SerialNum', $device);
+			if($device) $this->db->where('Devices.SerialNum', $device);
 		}
 
 		$query = $this->db->get('Users');
