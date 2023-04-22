@@ -45,9 +45,11 @@ class Medications extends Site_Controller
 			
 			if($medication)
 			{
+				$schedule = $this->schedules_model->get(array("manual" => true, "medicine_id" => $id), false);
+
 				$this->deliveries_model->log_delivery(array(
-					"ScheduleID" => $schedule_id,
-					"Success" => true,
+					"ScheduleID" => $schedule->ScheduleID,
+					"Automated" => false,
 					"DoseGiven" => $medication->Dose
 				));
 			}

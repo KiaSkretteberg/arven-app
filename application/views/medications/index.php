@@ -38,7 +38,7 @@ $this->load->view('partial/header');
                     <a class="tooltip btn" title="edit medication" aria-label="edit medication" href="/medications/edit/<?=$medication->MedicineID?>"><i class="fas fa-edit"></i></a>
                     <a class="tooltip btn" title="request delivery" aria-label="request one time delivery" href="/medications/request-delivery/<?=$medication->MedicineID?>"><i class="fas fa-route"></i></a>
                     <a class="tooltip btn" title="delete medication" aria-label="delete medication" href="/medications/delete/<?=$medication->MedicineID?>"><i class="fas fa-trash"></i></a>
-                    <a class="tooltip btn" title="log a dose" aria-label="log a dose taken" href="/medicaitons/log-dose/<?=$medication->MedicineID?>"><i class="fas fa-capsules"></i></a>
+                    <a class="tooltip btn" title="log a dose" aria-label="log a dose taken" href="/medications/log-dose/<?=$medication->MedicineID?>"><i class="fas fa-capsules"></i></a>
                 </td>
             </tr>
         <?php endforeach;?>
