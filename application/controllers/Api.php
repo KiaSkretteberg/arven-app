@@ -110,7 +110,7 @@ class Api extends Site_Controller
 
 		$this->deliveries_model->log_delivery(array(
 			"ScheduleID" => $schedule_id,
-			"Success" => true,
+			"Automated" => true,
 			"DoseGiven" => $medicine->Dose
 		));
 	}
@@ -119,9 +119,17 @@ class Api extends Site_Controller
 	{
 		extract(filter_options(array("schedule_id"), $this->params));
 
-		$this->deliveries_model->log_delivery(array(
-			"ScheduleID" => $schedule_id,
-			"Success" => false
+		$schedule = $this->schedules_model->get(array("id" => $schedule_id, "include_device_id" => true), false);
+		$event_type = $this->events_model->get_types(array("tag" => "system_err"), false);
+		$schedule_time = determine_delivery_stamp(new DateTime($schedule->ScheduleDateTime));
+
+		$this->events_model->log_event(array(
+			"DeviceID" => $schedule->DeviceID,
+			"EventName" => "User Not Found",
+			"EventTypeID" => $event_type->EventTypeID,
+			"EventDescription" => $schedule->MedicineName . " was not delivered " . str_replace("Daily: ", "@ ", $schedule_time).".",
+			"EventMaker" => "Arven",
+			"EventIcon" => "user-slash"
 		));
 	}
 

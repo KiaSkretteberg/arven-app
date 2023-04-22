@@ -170,3 +170,13 @@ if ( ! function_exists('determine_schedule'))
         return $schedule;
     }
 }
+
+if ( ! function_exists('determine_delivery_stamp')) 
+{
+    function determine_delivery_stamp($date) 
+    {
+        $date->setTimeZone(new DateTimeZone("America/Edmonton"));
+        $schedule = "on ". $date->format("M jS @ g:ia");
+        return $schedule;
+    }
+}

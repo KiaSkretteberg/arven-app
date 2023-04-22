@@ -22,18 +22,36 @@ class Medications extends Site_Controller
 		$this->save();
 	}
 
-	public function edit($url, $id)
+	public function edit($url, $id = false)
 	{
 		$this->save($id);
 	}
 
-	public function delete($url, $id)
+	public function delete($url, $id = false)
 	{
 		if($this->medicines_model->delete(array("id" => $id, "archive" => true)))
 		{
 			$this->session->set_flashdata("success", "Medication deleted successfully.");
 		}
 
+		redirect("/medications");
+	}
+
+	public function log_dose($url, $id = false)
+	{
+		if($id)
+		{
+			$medication = $this->medicines_model->get(array("id" => $id), false);
+			
+			if($medication)
+			{
+				$this->deliveries_model->log_delivery(array(
+					"ScheduleID" => $schedule_id,
+					"Success" => true,
+					"DoseGiven" => $medication->Dose
+				));
+			}
+		}
 		redirect("/medications");
 	}
 
@@ -64,6 +82,15 @@ class Medications extends Site_Controller
 
 			if($medication_id) 
 			{
+				$schedule_frequency = $this->schedule_frequencies_model->get(array("tag" => "once"), false);
+
+				// Add a default schedule that can be used for manual dose logging
+				$this->schedules_model->save(array(
+					"MedicineId" => $medication_id,
+					"FrequencyID" => $schedule_frequency->FrequencyID,
+					"Active" => 0
+				));
+
 				redirect("/medications/edit/$medication_id");
 			}
 			else 

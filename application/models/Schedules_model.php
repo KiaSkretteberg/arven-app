@@ -6,9 +6,9 @@ class Schedules_model extends CI_Model
 	//READ 
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'user_id', 'medicine_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency'), $options));
+		extract(filter_options(array('id', 'user_id', 'medicine_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency', 'include_device_id'), $options));
 		
-		if($id) $this->db->where('SchedueID', $id);
+		if($id) $this->db->where('ScheduleID', $id);
 		if($medicine_id) $this->db->where('MedicineID', $medicine_id);
 		// if($day) $this->db->where('DAY(DATE(NextDelivery))', $day);
 		// if($date) $this->db->where('DATE(NextDelivery)', $date);
@@ -16,21 +16,22 @@ class Schedules_model extends CI_Model
 		if($prescription_id) $this->db->where('PrescriptionID', $prescription_id);
 		if($frequency_id) $this->db->where('FrequencyID', $frequency_id);
 
-		if($user_id) 
+		if($user_id) $this->db->where('UserID', $user_id);
+
+		$this->db->join('ScheduleFrequencies', 'ScheduleFrequencies.FrequencyID = Schedules.FrequencyID');
+
+		$this->db->join('Medicines', 'Medicines.MedicineID = Schedules.MedicineID');
+
+		if($include_device_id)
 		{
-			$this->db->join('Medicines', 'Medicines.MedicineID = Schedules.MedicineID');
-
-			$this->db->where('UserID', $user_id);
-
-			$this->db->select("MedicineName");
-			
+			$this->db->join("Users", "Users.UserID = Medicines.UserID");
+			$this->db->select("Users.DeviceID");
 		}
 
 		if($frequency) $this->db->where('ScheduleFrequencies.FrequencyName', $frequency);
 
-		$this->db->join('ScheduleFrequencies', 'ScheduleFrequencies.FrequencyID = Schedules.FrequencyID');
 
-		$this->db->select("Schedules.*, ScheduleFrequencies.FrequencyName, ScheduleFrequencies.FrequencyTag as Frequency");
+		$this->db->select("Schedules.*, ScheduleFrequencies.FrequencyName, ScheduleFrequencies.FrequencyTag as Frequency, MedicineName");
 
 		$query = $this->db->get('Schedules');
 
