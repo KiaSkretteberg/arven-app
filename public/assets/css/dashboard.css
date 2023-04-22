@@ -24,16 +24,7 @@ ul li {
 }
 
 
-/* landscape tablet */
-@media (min-width: 905px) {
-    .grid main > :first-child {
-        margin-top: 0;
-    }
-    .grid .full {
-        margin-top: 16px;
-    }
-}
-
+/* desktop */
 @media (min-width: 1240px) {
     .grid main aside {
         grid-row: 2 / -1;

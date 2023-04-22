@@ -395,6 +395,7 @@ section, aside {
     display: flex;
     flex-wrap: wrap;
     row-gap: 8px;
+    margin-top: 16px;
 }
 .btn-holder 
 .btn-holder .btn i {
