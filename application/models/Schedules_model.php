@@ -6,7 +6,7 @@ class Schedules_model extends CI_Model
 	//READ 
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'user_id', 'medicine_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency', 'include_device_id', 'manual', 'include_once', 'time_after', 'time_before', 'order_by', 'order_dir' => 'asc'), $options));
+		extract(filter_options(array('id', 'user_id', 'medicine_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency', 'include_device_id', 'manual', 'include_once', 'time_after', 'time_before', 'order_by', 'order_dir' => 'asc', 'limit'), $options));
 		
 		if($id) $this->db->where('ScheduleID', $id);
 		if($medicine_id) $this->db->where('Schedules.MedicineID', $medicine_id);
@@ -45,10 +45,9 @@ class Schedules_model extends CI_Model
 
 		if($frequency) $this->db->where('ScheduleFrequencies.FrequencyName', $frequency);
 
-		if($order_by)
-		{
-			$this->db->order_by($order_by, $order_dir);
-		}
+		if($order_by) $this->db->order_by($order_by, $order_dir);
+		
+		if($limit) $this->db->limit($limit);
 
 		$this->db->select(
 			"Schedules.*, 

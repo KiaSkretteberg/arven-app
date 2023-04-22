@@ -19,6 +19,7 @@ class Dashboard extends Site_Controller
 		$schedules = $this->schedules_model->get(array(
 			"active"=> 1,
 			"user_id" => $this->userID,
+			"include_once" => true,
 			"limit" => 3
 		));
 
