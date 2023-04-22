@@ -6,7 +6,7 @@ class Medicines_model extends CI_Model
 	//READ 
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'user_id', 'limit', "schedule_id"), $options));
+		extract(filter_options(array('id', 'user_id', 'limit', 'schedule_id'), $options));
 
 		if($id) $this->db->where('MedicineID', $id);
 		if($user_id) $this->db->where('UserID', $user_id);
@@ -20,7 +20,6 @@ class Medicines_model extends CI_Model
         // limit maxes out how many things returned
         if($limit) $this->db->limit($limit);
 
-
 		$query = $this->db->get('Medicines');
 
 		return $this->helper_functions->return_result($query, $result);
@@ -28,10 +27,16 @@ class Medicines_model extends CI_Model
 
     function get_list($options = array())
     {
-		extract(filter_options(array('user_id', 'limit'), $options));
+		extract(filter_options(array('user_id', 'limit', 'schedule_id'), $options));
 
         if($limit) $this->db->limit($limit);
 		if($user_id) $this->db->where('UserID', $user_id);
+        
+        if($schedule_id)
+        {
+            $this->db->where("ScheduleID", $schedule_id);
+            $this->db->join("Schedules", "Schedules.MedicineID = Medicines.MedicineID");
+        }
 
         $query = $this->db->get('MedicationList');
 
@@ -39,56 +44,35 @@ class Medicines_model extends CI_Model
     }
 
     // CREATE/UPDATE
-    function save($action = "update", $options = array(), $result = false)
+    function save($data, $id = false, $return_medication = false)
     {   
+		$this->db->set($data);
 
-        extract(filter_options(array('id', 'userid', 'name', 'dose', 'unit', 'volume', 'low', 'plural' ), $options));
+        // UPDATE
+		if($id !== false)
+		{
+			$this->db->where('MedicineId', $id);
+			
+			$this->db->update('Medicines');
+		}
+		//CREATE
+		else
+		{
+			$this->db->insert('Medicines');
+		}
 
-       
-        // THINGS TO ADD / CHANGE
-        if($name) $this->db->set('MedicineName', $name);
-
-        if($dose) $this->db->set('Dose', $dose);
-      
-        if($unit) $this->db->set('Unit', $unit);
-
-        if($volume) $this->db->set('Volume', $volume);
-
-        if($low) $this->db->set('Low', $low);
-
-        if($plural) $this->db->set('UnitPlural', $plural);
-
-        
-       
-        // intialize to null so if it doesnt work, then clear error
-        $query = null;
-
-
-        //CREATE
-        if($action == "create")
-       {     // join to userID
-            
-            $this->db->set('UserID', $userid);
-            $this->db->where('UserID', $userid); 
-                
-             return $this->db->insert('Medicines');
-
-       }
-
-       //UPDATE
-        if($action == "update")
-       { 
-            // join to userID
-            if($userid) $this->db->where('UserID', $userid);
-            
-            if($id) $this->db->where('MedicineID', $id);  
-            
-            
-            return $this->db->update('Medicines');           
-       }
-
-       return null;
+		$medicine_id = $this->helper_functions->return_id($id);
 		
+		if(!$return_medication || !$medicine_id)
+		{
+			return $medicine_id;
+		}
+		else
+		{
+			$options = array('id' => $medicine_id);
+
+			return $this->get($options, false);
+		}
     }
 
     //DELETE
