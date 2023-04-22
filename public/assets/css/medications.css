@@ -120,7 +120,7 @@ table.schedules .grid .col-actions {
     grid-column: 10 / -1;
 }
 
-table.schedules + a {
+table.schedules + a, table.schedules + p {
     grid-column: 1 / -1;
 }
 

@@ -44,7 +44,8 @@ class Medications extends Site_Controller
 		if($this->form_validation->run("save_medication"))
 		{
 			$units = $this->input->post("unit");
-			$units_plural = $this->input->post("unit_plural") ?? $units . "s";
+			$units_plural = !empty($this->input->post("unit_plural")) ? $this->input->post("unit_plural") :  $units . "s";
+
 			$medication_id = $this->medicines_model->save(array(
 				"MedicineName" => $this->input->post("name"),
 				"Dose" => $this->input->post("dose"),
@@ -53,7 +54,7 @@ class Medications extends Site_Controller
 				"Low" => $this->input->post("low_threshold"),
 				"UserID" => $this->userID,
 				"UnitPlural" => $units_plural
-			), $id != "new" ? $id : null);
+			), $id != "new" ? $id : false);
 
 			if($medication_id) 
 			{
@@ -68,7 +69,7 @@ class Medications extends Site_Controller
 		$latest_delivery = $this->deliveries_model->get(array(
 			"order_by" => "DeliveryLogDateTime",  
 			"order_dir" => "desc", 
-			"medicine_id" => $medicationId), false);
+			"medicine_id" => $id), false);
 			
 		$this->set_view_data(array(
 			"medication" => $medication,

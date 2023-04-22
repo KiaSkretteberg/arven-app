@@ -103,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- TODO: This needs to link to view the list of delivery events, maybe -->
         <a href="<?=current_url()?>">Last Delivered: <?=$last_delivery_date ? $last_delivery_date->format("M jS, Y @ g:ia") : "Not delivered yet"?></a>
     <?php else:?>
-    <span>No deliveries made yet.</span>
+    <p>Latest delivery will appear here once a delivery has been made.</p>
     <?php endif;?>
     
 <?php endif;?>
