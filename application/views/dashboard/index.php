@@ -3,24 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $this->load->view('partial/header');
 ?>
-<aside>
-    <header>
-        <h2>Alerts</h2>
-        <a href="/history">View All</a>
-    </header>
-    <?php if($alerts):?>
-        <ul>
-            <?php foreach($alerts as $alert):?>
-                <li>
-                    <span><?=$alert->EventDescription?></span>
-                    <span><i class="fas fa-<?=$alert->EventIcon?>"></i></span>
-                </li>
-            <?php endforeach;?>
-        </ul>
-    <?php else:?>
-        <p>No active alerts.</p>
-    <?php endif;?>
-</aside>
 <section class="full status-bar">
     <header>
         <h2>Status</h2>
@@ -40,6 +22,24 @@ $this->load->view('partial/header');
         </li>
     </ul>
 </section>
+<aside>
+    <header>
+        <h2>Alerts</h2>
+        <a href="/history">View All</a>
+    </header>
+    <?php if($alerts):?>
+        <ul>
+            <?php foreach($alerts as $alert):?>
+                <li>
+                    <span><?=$alert->EventDescription?></span>
+                    <span><i class="fas fa-<?=$alert->EventIcon?>"></i></span>
+                </li>
+            <?php endforeach;?>
+        </ul>
+    <?php else:?>
+        <p>No active alerts.</p>
+    <?php endif;?>
+</aside>
 <section class="half">
     <header>
         <h2>Medications</h2>

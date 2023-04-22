@@ -597,11 +597,6 @@ table tr {
         grid-column: 9 / span 3;
         grid-row: 1 / -1;
     }    
-    .grid main aside + section.half,
-    .grid main aside + section.half + section.half {
-        margin-top: 16px;
-    }
-
     .grid section.half {
         grid-column-end: span 4;
     }
