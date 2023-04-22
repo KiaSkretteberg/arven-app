@@ -62,7 +62,7 @@ class Api extends Site_Controller
 	{
 		extract(filter_options(array(), $this->params));
 
-		$start_date = new DateTime();
+		$start_date = new DateTime("- 30 seconds"); // give 30 second leeway for one time deliveries
 		$end_date = new DateTime("+ $this->MAX_TRAVEL_TIME minutes");
 
 		$schedules = $this->schedules_model->get(array(
@@ -77,6 +77,7 @@ class Api extends Site_Controller
 		foreach($schedules as $schedule)
 		{
 			$next_schedule = determine_next_delivery(new DateTime($schedule->ScheduleDateTime), $schedule->Frequency);
+			
 			// the next schedule is today, so it's relevant, we want to process the first schedule we find
 			if(strpos($next_schedule, "today") !== false)
 			{
@@ -84,7 +85,7 @@ class Api extends Site_Controller
 				// uniquely identify which tag is associated with this schedule, so that future requests
 				// to check position would be able to specify which tag to look for
 				// given hardware limitations, we aren't returning that since we only have 1 user tag
-				"UserID:".$schedule->UserID.";ScheduleID:".$schedule->ScheduleID.";";
+				echo "UserID:".$schedule->UserID.";ScheduleID:".$schedule->ScheduleID.";";
 				exit;
 			}
 		}
