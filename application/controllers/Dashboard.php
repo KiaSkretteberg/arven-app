@@ -42,7 +42,7 @@ class Dashboard extends Site_Controller
 			"order_dir" => "desc"
 		), false);
 		$connection = $this->events_model->get(array(
-			'userid'=> $this->session->UserID
+			'userid'=> $this->session->UserID,
 			"tag" => "robot_connection",
 			"order_by" => "EventDateTime",
 			"order_dir" => "desc"

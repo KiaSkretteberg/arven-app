@@ -82,7 +82,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </tr>
         </thead>
         <tbody>
-            <?php foreach($schedules as $schedule): $datetime = new DateTime($schedule->ScheduleDateTime);?>
+            <?php foreach($schedules as $schedule): 
+                $datetime = new DateTime($schedule->ScheduleDateTime); 
+                $datetime->setTimeZone(new DateTimeZone("America/Edmonton"));?>
                 <tr class="grid" data-id="schedule-<?=$schedule->ScheduleID?>">
                     <td class="col-frequency"><?=$schedule->FrequencyName?></td>
                     <td class="col-date"><?=$datetime->format('Y-m-d')?></td>
@@ -96,13 +98,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <?php endforeach;?>
         </tbody>
     </table>
-    <!-- TODO: This needs to pull from the list of delivery logs -->
     <?php if($latest_delivery):?>
         <?php $last_delivery_date = new DateTime($latest_delivery->DeliveryLogDateTime); $last_delivery_date->setTimeZone(new DateTimeZone("America/Edmonton"));?>
+        <!-- TODO: This needs to link to view the list of delivery events, maybe -->
         <a href="<?=current_url()?>">Last Delivered: <?=$last_delivery_date ? $last_delivery_date->format("M jS, Y @ g:ia") : "Not delivered yet"?></a>
     <?php else:?>
     <span>No deliveries made yet.</span>
     <?php endif;?>
-    <!-- TODO: This needs to link to view the list of delivery events, maybe -->
     
 <?php endif;?>

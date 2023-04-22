@@ -142,3 +142,31 @@ if ( ! function_exists('determine_next_delivery'))
         return $schedule;
     }
 }
+
+if ( ! function_exists('determine_schedule')) 
+{
+    function determine_schedule($date, $frequency) 
+    {
+        $date->setTimeZone(new DateTimeZone("America/Edmonton"));
+        $schedule;
+        switch($frequency)
+        {
+            case "daily":
+                $schedule = "Daily";
+                break;
+            case "weekly":
+                $day = $date->format("D");
+                // get the day as a single character, unless it's tues/thurs then 2 characters
+                $schedule = ($day[0] == "T" ? substr($day, 0, 2) : $day[0]);
+                break;
+            case "monthly":
+                $schedule = "on the " . $date->format("jS");
+                break;
+            case "annually":
+                $schedule = $date->format("M jS");
+                break;
+        }
+        $schedule .= ": ".$date->format("g:ia");
+        return $schedule;
+    }
+}

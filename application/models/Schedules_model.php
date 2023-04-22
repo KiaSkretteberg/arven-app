@@ -21,6 +21,8 @@ class Schedules_model extends CI_Model
 			$this->db->join('Medicines', 'Medicines.MedicineID = Schedules.MedicineID');
 
 			$this->db->where('UserID', $user_id);
+
+			$this->db->select("MedicineName");
 			
 		}
 
@@ -28,7 +30,7 @@ class Schedules_model extends CI_Model
 
 		$this->db->join('ScheduleFrequencies', 'ScheduleFrequencies.FrequencyID = Schedules.FrequencyID');
 
-		
+		$this->db->select("Schedules.*, ScheduleFrequencies.FrequencyName, ScheduleFrequencies.FrequencyTag as Frequency");
 
 		$query = $this->db->get('Schedules');
 
