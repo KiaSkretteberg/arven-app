@@ -12,7 +12,7 @@ $(document).ready(function() {
 			type: "POST",
 			url: "/schedules",
 			dataType: 'json',
-			data: {medicationId: id, method: 'ajax'},
+			data: {medicationId: id.replace("medicine-", ""), method: 'ajax'},
 			beforeSend: function() {
 				$('.load-content').addClass('loading');
 			},

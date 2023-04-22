@@ -16,8 +16,7 @@ class Schedules extends Site_Controller
 			
 			$html = $this->load->view('schedules/index', array(
 				"list" => true,
-				"medicine_id" => $medicationId,
-				"schedules" => $this->model->get(),
+				"schedules" => $this->model->get(array("medicine_id" => $medicationId)),
 				"frequencies" => $this->schedule_frequencies_model->get()
 			), true);
 
