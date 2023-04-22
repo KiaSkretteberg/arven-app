@@ -19,7 +19,7 @@ class Events_model extends CI_Model
 		
 		if($userid)
 		{
-			$this->db->join('Devices', 'Devices.DeviceID = DeviceID');
+			$this->db->join('Devices', 'Devices.DeviceID = EventLogs.DeviceID');
 			$this->db->join('Users', 'Users.DeviceID = Devices.DeviceID');
 			$this->db->where('Users.UserID', $userid);
 		}
