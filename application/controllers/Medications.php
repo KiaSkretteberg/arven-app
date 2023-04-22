@@ -51,10 +51,18 @@ class Medications extends Site_Controller
 				"Unit" => $units,
 				"Volume" => $this->input->post("volume"),
 				"Low" => $this->input->post("low_threshold"),
+				"UserID" => $this->userID,
 				"UnitPlural" => $units_plural
-			), $id != "new" ? $id : null, false);
+			), $id != "new" ? $id : null);
 
-			redirect("/medications/edit/$medication_id");
+			if($medication_id) 
+			{
+				redirect("/medications/edit/$medication_id");
+			}
+			else 
+			{
+				$this->session->set_flashdata("error", "There was an error, please try again.");
+			}
 		}
 
 		$latest_delivery = $this->deliveries_model->get(array(
