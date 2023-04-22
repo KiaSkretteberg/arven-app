@@ -15,53 +15,58 @@ class Events_model extends CI_Model
 
 	function get($options = array(), $result = true)
 	{
-		extract(filter_options(array('tag', 'userid', 'limit', 'order', 'maker', 'before', 'after'), $options));
-
+		extract(filter_options(array('tag', 'userid', 'limit', 'order_by', 'order_dir' => "asc", 'maker', 'before', 'after', 'exclude', 'include'), $options));
 		
 		if($userid)
 		{
-			$this->db->join('Devices', 'Devices.DeviceID = EventLogs.DeviceID');
+			$this->db->join('Devices', 'Devices.DeviceID = DeviceID');
 			$this->db->join('Users', 'Users.DeviceID = Devices.DeviceID');
 			$this->db->where('Users.UserID', $userid);
-			
 		}
+
 		// get types of 
 		$this->db->join('EventTypes', 'EventTypes.EventTypeID = EventLogs.EventTypeID');
 		//specific events
-		if($tag)
-		{
-			$this->db->where('EventTypes.TypeTag', $tag);
-			
-		}
+		if($tag) $this->db->where('EventTypes.TypeTag', $tag);
+
 		// amount wanted
-		if($limit) 
+		if($limit)  $this->db->limit($limit);			
+		if($maker) $this->db->where('EventMaker', $maker);
+		if($before) $this->db->where('EventDateTime <', $before);
+		if($after) $this->db->where('EventDateTime >', $after);
+
+		if($exclude)
 		{
-			$this->db->limit($limit);			
-		}
-		if($maker)
-		{
-			$this->db->where('EventLogs.EventMaker', $maker);
-		}
-		if($before)
-		{
-			$this->db->where('EventLogs.EventDateTime <', $before);
-		}
-		if($after)
-		{
-			$this->db->where('EventLogs.EventDateTime >', $after);
+			foreach ($exclude as $key => $value) 
+			{
+				if(is_array($value)) 
+				{
+					$this->db->where_not_in("$key", $value);
+				} 
+				else 
+				{
+					$this->db->where("$key !=", $value);
+				}
+			}
 		}
 
-		// order of events
-		// asc vs desc
-		if($order)
+		if($include)
 		{
-			$this->db->order_by('EventLogs.EventDateTime', $order);
+			foreach ($include as $key => $value) 
+			{
+				if(is_array($value)) 
+				{
+					$this->db->where_in("$key", $value);
+				} 
+				else 
+				{
+					$this->db->where("$key !=", $value);
+				}
+			}
 		}
-		else{
-			$this->db->order_by('EventLogs.EventDateTime desc');
-		}
+
+		if($order_by) $this->db->order_by($order_by, $order_dir);
 		
-		$this->db->select("EventLogs.*, EventTypes.*");
 		$query = $this->db->get('EventLogs');
 		
 		return $this->helper_functions->return_result($query, $result);

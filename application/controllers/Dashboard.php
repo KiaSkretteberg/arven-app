@@ -10,56 +10,51 @@ class Dashboard extends Site_Controller
 
 	public function index()
 	{
-		// This needs to be limited to pull 3 max
 		$medications = $this->medicines_model->get_list(array(
 			"user_id" => $this->userID,
 			"limit" => 3
 		));		
 		
-		//  This needs to be limited to active ones for this user, 3 max
 		//  This needs to return the medicine name as well (e.g. schedules_model needs to return MedicineName for this schedule)
 		$schedules = $this->schedules_model->get(array(
-			'active'=> 1,
+			"active"=> 1,
 			"user_id" => 1,
 			"limit" => 3
 		));
-		
-		$connection = $this->events_model->get(array(
-			'userid'=> $this->session->UserID,
-			'limit' => 1,
-			'order'=> 'desc',
-			'tag'=> 'robot_battery'
+
+		$alerts = $this->events_model->get(array(
+			"limit" => 2,
+			"order_by" => "EventDateTime",
+			"order_dir" => "desc",
+			"include" => array("EventTypes.TypeTag" => array("system_err"))
 		));
 
+		$location = $this->events_model->get(array(
+			'userid'=> $this->session->UserID,
+			"tag" => "robot_navigation",
+			"order_by" => "EventDateTime",
+			"order_dir" => "desc"
+		), false);
+		$battery = $this->events_model->get(array(
+			'userid'=> $this->session->UserID,
+			"tag" => "robot_battery",
+			"order_by" => "EventDateTime",
+			"order_dir" => "desc"
+		), false);
+		$connection = $this->events_model->get(array(
+			'userid'=> $this->session->UserID
+			"tag" => "robot_connection",
+			"order_by" => "EventDateTime",
+			"order_dir" => "desc"
+		), false);
+		
 		$this->set_view_data(array(			
 			"medications" => $medications,
+			"alerts" => $alerts,
 			"active_schedules" => $schedules,
-			"last_connection" => $connection,
-		));
-	}
-
-	public function GetLastLocation()
-	{
-		
-	}
-	
-	public function GetLastConnection()
-	{
-		return $this->events_model->get(array(
-			'userid'=> $this->session->UserID,
-			'limit' => 1,
-			'order'=> 'desc',
-			'tag'=> 'robot_battery'
-		));
-	}
-	
-	public function GetLastBattery()
-	{
-		return $this->events_model->get(array(
-			'userid'=> $this->session->UserID,
-			'limit' => 1,
-			'order'=> 'desc',
-			'tag'=> 'robot_battery'
+			"location" => $location,
+			"battery" => $battery,
+			"connection" => $connection
 		));
 	}
 }

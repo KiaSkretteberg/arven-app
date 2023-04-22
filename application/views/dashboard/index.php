@@ -8,27 +8,27 @@ $this->load->view('partial/header');
         <h2>Alerts</h2>
         <a href="/history">View All</a>
     </header>
-    <ul>
-        <!-- TODO: This needs to pull from EventLogs and needs to be limited to only 2 most recent alerts -->
-        <?php foreach($alerts as $alert):?>
-            <li>
-                <span><?=$alert->EventDescrition?></span>
-                <span><i class="fas fa-<?=$alert->EventIcon?>"></i></span>
-            </li>
-        <?php endforeach;?>
-    </ul>
+    <?php if($alerts):?>
+        <ul>
+            <?php foreach($alerts as $alert):?>
+                <li>
+                    <span><?=$alert->EventDescription?></span>
+                    <span><i class="fas fa-<?=$alert->EventIcon?>"></i></span>
+                </li>
+            <?php endforeach;?>
+        </ul>
+    <?php else:?>
+        <p>No active alerts.</p>
+    <?php endif;?>
 </aside>
 <section class="full">
     <header>
         <h2>Status</h2>
     </header>
     <ul>
-        <!-- TODO: Pull this as the most recent (limit 1) event from the event logs table for "robot_navigation" event type -->
-        <li>Location: </li> <?php ?>
-        <!-- TODO: Pull this as the most recent (limit 1) event from the event logs table for "robot_connection" event type (where maker == Arven)-->
-        <li>Connection: </li><?php ?>
-        <!-- TODO: Pull this as the most recent (limit 1) event from the event logs table for "robot_battery" event type -->
-        <li>Battery: </li><?php ?>
+        <li>Location: <?= $location->EventDescription?></li>
+        <li>Connection: <?= $connection->EventDescription?></li>
+        <li>Battery: <?= $battery->EventDescription?></li>
     </ul>
 </section>
 <section class="half">
@@ -40,7 +40,6 @@ $this->load->view('partial/header');
         <?php foreach($medications as $medication):?>
             <li>
                 <span><?=$medication->MedicineName?></span>
-                <!-- TODO: Instead of Volume, we need to pull this data as a calculated column based on DeliveryLogs for this medication -->
                 <span>
                     <?php if($medication->VolumeRemaining < $medication->Low):?><span><i class="fas fa-exclamation-triangle tooltip" title="<?=$medication->MedicineName?> running low"></i></span><?php endif;?> 
                     <?=$medication->VolumeRemaining?> <?=$medication->VolumeRemaining != 1 ? $medication->UnitPlural : $medication->Unit?> left
