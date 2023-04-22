@@ -23,10 +23,6 @@ $this->load->view('partial/header');
 </div>
 
 <section class="full">
-<?php 
-// TODO - display history
-            var_dump($history->EventName);
-         ?>
 </section>
 
 <?php $this->load->view('partial/footer'); ?>

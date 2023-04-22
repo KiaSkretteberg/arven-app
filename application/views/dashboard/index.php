@@ -21,14 +21,23 @@ $this->load->view('partial/header');
         <p>No active alerts.</p>
     <?php endif;?>
 </aside>
-<section class="full">
+<section class="full status-bar">
     <header>
         <h2>Status</h2>
     </header>
     <ul>
-        <li>Location: <?= $location->EventDescription?></li>
-        <li>Connection: <?= $connection->EventDescription?></li>
-        <li>Battery: <?= $battery->EventDescription?></li>
+        <li>
+            <span>Location: <?= $location->EventDescription?></span>
+            <span><i class="fas fa-<?=$location->EventIcon?>"></i></span>
+        </li>
+        <li>
+            <span>Connection: <?= $connection->EventDescription?></span>
+            <span><i class="fas fa-<?=$connection->EventIcon?>"></i></span>
+        </li>
+        <li>
+            <span>Battery: <?= $battery->EventDescription?></span>
+            <span><i class="fas fa-<?=$battery->EventIcon?>"></i></span>
+        </li>
     </ul>
 </section>
 <section class="half">

@@ -7,3 +7,35 @@ ul li {
     display: flex;
     justify-content: space-between;
 }
+
+.status-bar ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.status-bar ul li {
+    display: flex;
+    align-items: center;
+}
+
+.status-bar ul li :first-child {
+    margin-right: 16px;
+}
+
+
+/* landscape tablet */
+@media (min-width: 905px) {
+    .grid main > :first-child {
+        margin-top: 0;
+    }
+    .grid .full {
+        margin-top: 16px;
+    }
+}
+
+@media (min-width: 1240px) {
+    .grid main aside {
+        grid-row: 2 / -1;
+    }   
+}
