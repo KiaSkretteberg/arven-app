@@ -18,7 +18,7 @@ class Dashboard extends Site_Controller
 		//  This needs to return the medicine name as well (e.g. schedules_model needs to return MedicineName for this schedule)
 		$schedules = $this->schedules_model->get(array(
 			"active"=> 1,
-			"user_id" => 1,
+			"user_id" => $this->userID,
 			"limit" => 3
 		));
 
@@ -30,19 +30,19 @@ class Dashboard extends Site_Controller
 		));
 
 		$location = $this->events_model->get(array(
-			'userid'=> $this->session->UserID,
+			'userid'=> $this->userID,
 			"tag" => "robot_navigation",
 			"order_by" => "EventDateTime",
 			"order_dir" => "desc"
 		), false);
 		$battery = $this->events_model->get(array(
-			'userid'=> $this->session->UserID,
+			'userid'=> $this->userID,
 			"tag" => "robot_battery",
 			"order_by" => "EventDateTime",
 			"order_dir" => "desc"
 		), false);
 		$connection = $this->events_model->get(array(
-			'userid'=> $this->session->UserID,
+			'userid'=> $this->userID,
 			"tag" => "robot_connection",
 			"order_by" => "EventDateTime",
 			"order_dir" => "desc"
