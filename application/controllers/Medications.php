@@ -10,14 +10,12 @@ class Medications extends Site_Controller
 
 	public function index()
 	{
-		// TODO: This needs to pull schedules associated with medications
-		$medications = $this->medicines_model->get(array("user_id" => $this->userID, "include_schedules" => true));
+		$medications = $this->medicines_model->get_list(array("user_id" => $this->userID, "include_schedules" => true));
 
 		$this->set_view_data(array(
 			'medications' => $medications
 		));
 	}
-	
 
 	public function add()
 	{

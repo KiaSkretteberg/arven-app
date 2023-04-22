@@ -14,9 +14,9 @@ class Schedules extends Site_Controller
 		{
 			$medicationId = $this->input->post("medicationId");
 			
-			// TODO: Filter the schedules based on medicationId
 			$html = $this->load->view('schedules/index', array(
 				"list" => true,
+				"medicine_id" => $medicationId,
 				"schedules" => $this->model->get(),
 				"frequencies" => $this->schedule_frequencies_model->get()
 			), true);

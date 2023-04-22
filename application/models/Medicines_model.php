@@ -6,7 +6,7 @@ class Medicines_model extends CI_Model
 	//READ 
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'user_id', 'limit', 'schedule_id', 'include_schedules'), $options));
+		extract(filter_options(array('id', 'user_id', 'limit', 'schedule_id', 'include_schedules', 'table' => 'Medicines'), $options));
 
 		if($id) $this->db->where('MedicineID', $id);
 		if($user_id) $this->db->where('UserID', $user_id);
@@ -20,7 +20,7 @@ class Medicines_model extends CI_Model
         // limit maxes out how many things returned
         if($limit) $this->db->limit($limit);
 
-		$query = $this->db->get('Medicines');
+		$query = $this->db->get($table);
 
 		if($query->num_rows() > 0)
 		{
@@ -28,7 +28,7 @@ class Medicines_model extends CI_Model
 
 			foreach($results as $row)
 			{
-				if($include_schedules) $row->skills = $this->schedules_model->get(array('medicine_id' => $row->id));
+				if($include_schedules) $row->schedules = $this->schedules_model->get(array('medicine_id' => $row->id));
 			}
 
 			return (($result !== true) ? $results[0] : $results);
@@ -39,30 +39,8 @@ class Medicines_model extends CI_Model
 
     function get_list($options = array())
     {
-		extract(filter_options(array('user_id', 'limit', 'schedule_id', 'include_schedules'), $options));
-
-        if($limit) $this->db->limit($limit);
-		if($user_id) $this->db->where('UserID', $user_id);
-        
-        if($schedule_id)
-        {
-            $this->db->where("ScheduleID", $schedule_id);
-            $this->db->join("Schedules", "Schedules.MedicineID = Medicines.MedicineID");
-        }
-
-        $query = $this->db->get('MedicationList');
-
-		if($query->num_rows() > 0)
-		{
-			$results = $query->result();
-
-			foreach($results as $row)
-			{
-				if($include_schedules) $row->skills = $this->schedules_model->get(array('medicine_id' => $row->id));
-			}
-
-			return (($result !== true) ? $results[0] : $results);
-		}
+		$options["table"] = "MedicationList";
+		return $this->get($options);
     }
 
     // CREATE/UPDATE
