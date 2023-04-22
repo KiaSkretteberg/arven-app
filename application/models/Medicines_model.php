@@ -6,7 +6,7 @@ class Medicines_model extends CI_Model
 	//READ 
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'user_id', 'limit', 'schedule_id'), $options));
+		extract(filter_options(array('id', 'user_id', 'limit', 'schedule_id', 'include_schedules'), $options));
 
 		if($id) $this->db->where('MedicineID', $id);
 		if($user_id) $this->db->where('UserID', $user_id);
@@ -22,12 +22,24 @@ class Medicines_model extends CI_Model
 
 		$query = $this->db->get('Medicines');
 
-		return $this->helper_functions->return_result($query, $result);
+		if($query->num_rows() > 0)
+		{
+			$results = $query->result();
+
+			foreach($results as $row)
+			{
+				if($include_schedules) $row->skills = $this->schedules_model->get(array('medicine_id' => $row->id));
+			}
+
+			return (($result !== true) ? $results[0] : $results);
+		}
+		
+		return false;
 	}
 
     function get_list($options = array())
     {
-		extract(filter_options(array('user_id', 'limit', 'schedule_id'), $options));
+		extract(filter_options(array('user_id', 'limit', 'schedule_id', 'include_schedules'), $options));
 
         if($limit) $this->db->limit($limit);
 		if($user_id) $this->db->where('UserID', $user_id);
@@ -40,7 +52,17 @@ class Medicines_model extends CI_Model
 
         $query = $this->db->get('MedicationList');
 
-		return $this->helper_functions->return_result($query, true);
+		if($query->num_rows() > 0)
+		{
+			$results = $query->result();
+
+			foreach($results as $row)
+			{
+				if($include_schedules) $row->skills = $this->schedules_model->get(array('medicine_id' => $row->id));
+			}
+
+			return (($result !== true) ? $results[0] : $results);
+		}
     }
 
     // CREATE/UPDATE

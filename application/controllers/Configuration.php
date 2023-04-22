@@ -35,13 +35,7 @@ class Configuration extends Site_Controller
 			), $user->UserID, true);
 
 			// set user session
-		
 			$this->helper_functions->set_session($user->UserID, $user->FirstName);
-
-			
-			//TODO: Do we need to prompt for tracker?
-			
-			
 		}
 
 		$this->set_view_data(array(

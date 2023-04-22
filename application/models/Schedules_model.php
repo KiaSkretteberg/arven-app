@@ -6,9 +6,10 @@ class Schedules_model extends CI_Model
 	//READ 
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'user_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency'), $options));
+		extract(filter_options(array('id', 'user_id', 'medicine_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency'), $options));
 		
 		if($id) $this->db->where('SchedueID', $id);
+		if($medicine_id) $this->db->where('MedicineId', $medicine_id);
 		// if($day) $this->db->where('DAY(DATE(NextDelivery))', $day);
 		// if($date) $this->db->where('DATE(NextDelivery)', $date);
 		// if($time) $this->db->where('TIME(NextDelivery)', $time);

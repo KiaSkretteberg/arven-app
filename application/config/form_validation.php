@@ -70,7 +70,46 @@ $config = array
 			'label' => 'password',
 			'rules' => 'required|trim'
 		),
-	)
+	),
+	'save_medication' => array
+	(
+		array
+		(
+			'field' => 'name',
+			'label' => 'name',
+			'rules' => 'required|trim'
+		),
+		array
+		(
+			'field' => 'dose',
+			'label' => 'dose quantity',
+			'rules' => 'required|trim'
+		),
+		array
+		(
+			'field' => 'unit',
+			'label' => 'dose units',
+			'rules' => 'required|trim'
+		),
+		array
+		(
+			'field' => 'unit_plural',
+			'label' => 'dose units plural',
+			'rules' => 'trim'
+		),
+		array
+		(
+			'field' => 'volume',
+			'label' => 'starting volume',
+			'rules' => 'required|trim'
+		),
+		array
+		(
+			'field' => 'low_threshold',
+			'label' => 'low threshold',
+			'rules' => 'trim'
+		),
+	),
 );
 
 ?>

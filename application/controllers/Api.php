@@ -97,7 +97,6 @@ class Api extends Site_Controller
 	{
 		extract(filter_options(array("schedule_id"), $this->params));
 
-		// TODO: Allow retrieving medicine by schedule_id
 		$medicine = $this->medicines_model->get(array("schedule_id" => $schedule_id), false);
 
 		echo $medicine->Volume;exit;
@@ -107,7 +106,6 @@ class Api extends Site_Controller
 	{
 		extract(filter_options(array("schedule_id"), $this->params));
 
-		// TODO: Allow retrieving medicine by schedule_id
 		$medicine = $this->medicines_model->get(array("schedule_id" => $schedule_id), false);
 
 		$this->deliveries_model->log_delivery(array(

@@ -11,9 +11,7 @@ class Medications extends Site_Controller
 	public function index()
 	{
 		// TODO: This needs to pull schedules associated with medications
-		$medications = $this->medicines_model->get(array("user_id" => $this->userID));
-		// TODO: This should be removed once schedules have been added to be pulled as part of the above query
-		$medications[0]->schedules = $this->schedules_model->get();
+		$medications = $this->medicines_model->get(array("user_id" => $this->userID, "include_schedules" => true));
 
 		$this->set_view_data(array(
 			'medications' => $medications
@@ -37,16 +35,27 @@ class Medications extends Site_Controller
 
 	private function save($id = "new")
 	{
-		$medication = $this->medicines_model->get(array("id" => $id), false);
-		// TODO: This should be removed once schedules have been added to be pulled as part of the above query
-		// TODO: This list of schedules needs to include the FrequencyName for each schedule
-		if($medication) $medication->schedules = $this->schedules_model->get();
+		$medication = $this->medicines_model->get(array("id" => $id, "include_schedules" => true), false);
 
-		//TODO: Set up the form validation rules in the config file
+		// if this isn't a new one, and there's no medication, redirect out of here
+		if($id != "new" && !$medication)
+		{
+			redirect("/medications");
+		}
+
 		if($this->form_validation->run("save_medication"))
 		{
-			//TODO: Add the medication and grab the new id (only)
-			$medication_id = 0;
+			$units = $this->input->post("unit");
+			$units_plural = $this->input->post("unit_plural") ?? $units . "s";
+			$medication_id = $this->medicines_model->save(array(
+				"MedicineName" => $this->input->post("name"),
+				"Dose" => $this->input->post("dose"),
+				"Unit" => $units,
+				"Volume" => $this->input->post("volume"),
+				"Low" => $this->input->post("low_threshold"),
+				"UnitPlural" => $units_plural
+			), $id != "new" ? $id : null, false);
+
 			redirect("/medications/edit/$medication_id");
 		}
 
