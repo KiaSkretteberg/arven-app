@@ -28,7 +28,7 @@ class Medicines_model extends CI_Model
 
 			foreach($results as $row)
 			{
-				if($include_schedules) $row->schedules = $this->schedules_model->get(array('medicine_id' => $row->id));
+				if($include_schedules) $row->schedules = $this->schedules_model->get(array('medicine_id' => $row->MedicineID));
 			}
 
 			return (($result !== true) ? $results[0] : $results);
