@@ -17,6 +17,8 @@ class Medicines_model extends CI_Model
             $this->db->join("Schedules", "Schedules.MedicineID = Medicines.MedicineID");
         }
 
+		$this->db->where("Archived", 0);
+
         // limit maxes out how many things returned
         if($limit) $this->db->limit($limit);
 
@@ -76,10 +78,28 @@ class Medicines_model extends CI_Model
     }
 
     //DELETE
-    // TODO - not doing yet
     function delete($options = array())
     {
-        //return $this->db->delete('Medicines');
+		extract(filter_options(array('id', 'archive'), $options));
+
+		if(!$id) return false;
+		
+		if($archive)
+		{
+			$this->save(array("Archived" => 1), $id);
+		}
+		else
+		{
+			$this->db->where("MedicineID", $id);
+			$this->db->delete("Medicines");
+		}
+		
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+
+		return false;
     }
 	/********************************************************************** 
 	

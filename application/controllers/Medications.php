@@ -27,8 +27,14 @@ class Medications extends Site_Controller
 		$this->save($id);
 	}
 
-	public function delete()
+	public function delete($url, $id)
 	{
+		if($this->medicines_model->delete(array("id" => $id, "archive" => true)))
+		{
+			$this->session->set_flashdata("success", "Medication deleted successfully.");
+		}
+
+		redirect("/medications");
 	}
 
 	private function save($id = "new")
