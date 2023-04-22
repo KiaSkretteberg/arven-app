@@ -54,7 +54,7 @@ class Api extends Site_Controller
 		$user = $this->users_model->get(array("id" => $user_id), false);
 
 		$position = json_decode($user->TrackerPosition);
-		echo "x:".$position->x.";y:".$position->y.";z:".$position->z;
+		echo "x:".$position->x.";y:".$position->y.";z:".$position->z.";";
 	}
 
 	// expect url format: "check_schedule/device/RX-AR2023-####"
@@ -62,16 +62,16 @@ class Api extends Site_Controller
 	{
 		extract(filter_options(array(), $this->params));
 
-		// TODO: get needs to be able to filter where the TIME() portion of the ScheduleDateTime is >= TIME(time_after) 
-		// and the TIME() portion of the ScheduleDateTime is <= TIME(time_before)
-		// and it needs to be able to ORDER BY the order_by field in the specified order_dir (default to ASC)
-		// it ALSO needs to return the UserID of the user this schedule is tied to
+		$start_date = new DateTime();
+		$end_date = new DateTime("+ $this->MAX_TRAVEL_TIME minutes");
+
 		$schedules = $this->schedules_model->get(array(
 			"device" => $this->device->DeviceID, 
 			"order_by" => "ScheduleDateTime",
 			"order_dir" => "DESC",
-			"time_after" => date('Y-m-d H:i:s'),
-			"time_before" => date('Y-m-d H:i:s', date("+ $MAX_TRAVEL_TIME minutes"))
+			"include_once" =>  true,
+			"time_after" => $start_date->format('Y-m-d H:i:s'),
+			"time_before" => $end_date->format('Y-m-d H:i:s')
 		));
 
 		foreach($schedules as $schedule)
@@ -84,7 +84,7 @@ class Api extends Site_Controller
 				// uniquely identify which tag is associated with this schedule, so that future requests
 				// to check position would be able to specify which tag to look for
 				// given hardware limitations, we aren't returning that since we only have 1 user tag
-				echo "UserID:1;ScheduleID:1";//"UserID:".$schedule->UserID.";ScheduleID:".$schedule->ScheduleID;
+				"UserID:".$schedule->UserID.";ScheduleID:".$schedule->ScheduleID.";";
 				exit;
 			}
 		}

@@ -6,15 +6,18 @@ class Schedules_model extends CI_Model
 	//READ 
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'user_id', 'medicine_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency', 'include_device_id', 'manual', 'include_once'), $options));
+		extract(filter_options(array('id', 'user_id', 'medicine_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency', 'include_device_id', 'manual', 'include_once', 'time_after', 'time_before', 'order_by', 'order_dir' => 'asc'), $options));
 		
 		if($id) $this->db->where('ScheduleID', $id);
 		if($medicine_id) $this->db->where('Schedules.MedicineID', $medicine_id);
+		if($prescription_id) $this->db->where('PrescriptionID', $prescription_id);
+		if($frequency_id) $this->db->where('FrequencyID', $frequency_id);
+
 		// if($day) $this->db->where('DAY(DATE(NextDelivery))', $day);
 		// if($date) $this->db->where('DATE(NextDelivery)', $date);
 		// if($time) $this->db->where('TIME(NextDelivery)', $time);
-		if($prescription_id) $this->db->where('PrescriptionID', $prescription_id);
-		if($frequency_id) $this->db->where('FrequencyID', $frequency_id);
+		if($time_after) $this->db->where("TIME(ScheduleDateTime) >= TIME('$time_after')");
+		if($time_before) $this->db->where("TIME(ScheduleDateTime) <= TIME('$time_before')");
 
 		if($user_id) $this->db->where('UserID', $user_id);
 
@@ -42,7 +45,17 @@ class Schedules_model extends CI_Model
 
 		if($frequency) $this->db->where('ScheduleFrequencies.FrequencyName', $frequency);
 
-		$this->db->select("Schedules.*, ScheduleFrequencies.FrequencyName, ScheduleFrequencies.FrequencyTag as Frequency, MedicineName");
+		if($order_by)
+		{
+			$this->db->order_by($order_by, $order_dir);
+		}
+
+		$this->db->select(
+			"Schedules.*, 
+			ScheduleFrequencies.FrequencyName, 
+			ScheduleFrequencies.FrequencyTag as Frequency, 
+			MedicineName, 
+			Medicines.UserID");
 
 		$query = $this->db->get('Schedules');
 
