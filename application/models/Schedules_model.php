@@ -6,7 +6,7 @@ class Schedules_model extends CI_Model
 	//READ 
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'user_id', 'medicine_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency', 'include_device_id', 'manual'), $options));
+		extract(filter_options(array('id', 'user_id', 'medicine_id', 'day', 'date', 'time', 'prescription_id', 'frequency_id', 'frequency', 'include_device_id', 'manual', 'include_once'), $options));
 		
 		if($id) $this->db->where('ScheduleID', $id);
 		if($medicine_id) $this->db->where('Schedules.MedicineID', $medicine_id);
@@ -38,8 +38,9 @@ class Schedules_model extends CI_Model
 			$this->db->select("Users.DeviceID");
 		}
 
-		if($frequency) $this->db->where('ScheduleFrequencies.FrequencyName', $frequency);
+		if(!$include_once) $this->db->where("ScheduleFrequencies.FrequencyTag !=", "once");
 
+		if($frequency) $this->db->where('ScheduleFrequencies.FrequencyName', $frequency);
 
 		$this->db->select("Schedules.*, ScheduleFrequencies.FrequencyName, ScheduleFrequencies.FrequencyTag as Frequency, MedicineName");
 
@@ -49,15 +50,35 @@ class Schedules_model extends CI_Model
 	}
 
     // CREATE/UPDATE
-    function save()
-    {
-        //CREATE
-        //$query = $this->db->insert('Schedule');
+    function save($data, $id = false, $return_schedule = false)
+    {   
+		$this->db->set($data);
 
-        //UPDATE
-        //$query = $this->db->update('Schedule');
+        // UPDATE
+		if($id !== false)
+		{
+			$this->db->where('ScheduleID', $id);
+			
+			$this->db->update('Schedules');
+		}
+		//CREATE
+		else
+		{
+			$this->db->insert('Schedules');
+		}
 
-		//return $this->helper_functions->return_result($query, $result);
+		$schedule_id = $this->helper_functions->return_id($id);
+		
+		if(!$return_schedule || !$schedule_id)
+		{
+			return $schedule_id;
+		}
+		else
+		{
+			$options = array('id' => $schedule_id);
+
+			return $this->get($options, false);
+		}
     }
 
     //DELETE

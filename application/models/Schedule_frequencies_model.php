@@ -24,23 +24,6 @@ class Schedule_frequencies_model extends CI_Model
 		return $this->helper_functions->return_result($query, $result);
 	}
 
-    // CREATE/UPDATE
-    function save()
-    {
-        //CREATE
-        //$query = $this->db->insert('Schedule');
-
-        //UPDATE
-        //$query = $this->db->update('Schedule');
-
-		//return $this->helper_functions->return_result($query, $result);
-    }
-
-    //DELETE
-    function delete()
-    {
-        //return $this->db->delete('Schedule');
-    }
 	/********************************************************************** 
 	
 	Helper/Private Functions
