@@ -16,11 +16,10 @@ $this->load->view('partial/header');
         <i class="fas fa-tram"></i>
         <span>Locate Stairs</span>
     </button> -->
-    <!-- TODO (Kia): Is this a thing we can even control programmatically? -->
-    <button>
+    <a href="/configuration/reboot" class="tooltip btn" title="Indicate to the device it is at home base again">
         <i class="fas fa-power-off"></i>
         <span>Reboot Device</span>
-    </button>
+    </a>
     <!-- TODO: Hook this up so that it sets a flag or something somewhere that the robot can query the server for -->
     <button>
         <i class="fas fa-heartbeat"></i>

@@ -80,6 +80,11 @@ class Configuration extends Site_Controller
 		$this->set_view_data($view_data);
 	}
 
+	public function reboot()
+	{
+		$this->devices_model->reboot();
+		redirect("/configuration");
+	}
 
 
 	/********************************************************************** 

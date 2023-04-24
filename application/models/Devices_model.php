@@ -4,7 +4,7 @@ class Devices_model extends CI_Model
 {	
 	function get($options = array(), $result = true) 
 	{
-		extract(filter_options(array('id', 'serial'), $options));
+		extract(filter_options(array('id', 'serial', 'user_id'), $options));
 
 		if($id) $this->db->where('DeviceID', $id);
 		if($serial) $this->db->where('SerialNum', $serial);
@@ -19,15 +19,13 @@ class Devices_model extends CI_Model
 		return $this->helper_functions->return_result($query, $result);
 	}
 
-	function save()
+	function reboot()
 	{
-		//CREATE
-        //$query = $this->db->insert('Devices');
+		$device = $this->get(array("user_id" => $this->session->UserID), false);
 
-        //UPDATE
-        //$query = $this->db->update('Devices');
-
-		//return $this->helper_functions->return_result($query, $result);
+		$this->db->set("Stuck", 0);
+		$this->db->where("DeviceID", $device->DeviceID);
+		$this->db->update("Devices");
 	}
 
 	/********************************************************************** 
