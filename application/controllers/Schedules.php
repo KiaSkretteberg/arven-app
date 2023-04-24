@@ -12,12 +12,13 @@ class Schedules extends Site_Controller
 	{
 		if($this->input->post('method') == 'ajax')
 		{
-			$medicationId = $this->input->post("medicationId");
+			$medication_id = $this->input->post("medication_id");
 			
 			$html = $this->load->view('schedules/index', array(
 				"list" => true,
-				"schedules" => $this->model->get(array("medicine_id" => $medicationId)),
-				"frequencies" => $this->schedule_frequencies_model->get()
+				"schedules" => $this->model->get(array("medicine_id" => $medication_id)),
+				"frequencies" => $this->schedule_frequencies_model->get(),
+				"medication_id" => $medication_id
 			), true);
 
 			$this->set_view_data('data', $html);
@@ -39,7 +40,7 @@ class Schedules extends Site_Controller
 		}
 	}
 
-	public function edit($url, $id)
+	public function edit($url, $id = null)
 	{
 		if($this->input->post('method') == 'ajax')
 		{
@@ -56,18 +57,48 @@ class Schedules extends Site_Controller
 
 	private function save($id = "new")
 	{
-		$schedule = $this->schedules_model->get(array("id" => $id), false);
-
-		if($id != "new" && !$schedule)
+		if($this->input->post("method") == "ajax")
 		{
-			// bail out, this doesn't exist
+			$id = $this->input->post("id");
+			$medication_id = $this->input->post("medication_id");
+
+			$schedule = $this->schedules_model->get(array("id" => $id, 'medicine_id' => $medication_id), false);
+
+			if($id != "new" && !$schedule)
+			{
+				// bail out, this doesn't exist
+				exit;
+			}
+
+			if($this->form_validation->run("save_frequency"))
+			{
+				$frequency = $this->input->post("frequency");
+				$date = $this->input->post("date");
+				$time = $this->input->post("time");
+
+				$datevalues = explode("-", $date);
+				$timevalues = explode(":", $time);
+
+				// create a new datetime to represent the values provided
+				$datetime = new DateTime();
+				// ensure the datetime is in our timezone
+				$datetime->setTimeZone(new DateTimeZone("America/Edmonton"));
+				// set the date and time that were provided
+				$datetime->setDate($datevalues[0], $datevalues[1], $datevalues[2]);
+				$datetime->setTime($timevalues[0], $timevalues[1]);
+				// switch the timezone back to utc so it can be saved to databsse properly
+				$datetime->setTimeZone(new DateTimeZone("UTC"));
+
+				$id = $this->schedules_model->save(array(
+					"MedicineID" => $medication_id,
+					"FrequencyID" => $frequency,
+					"ScheduleDateTime" => $datetime->format("Y-m-d H:i:s"),
+					"Active" => 1
+				), $id != "new" ? $id : false, false);
+			}
+
+			echo $id;
 			exit;
 		}
-
-		$this->set_view_data(array(
-			"schedule" => $schedule
-		));
-		
-		$this->set_view_file("save");
 	}
 }

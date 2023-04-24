@@ -110,6 +110,27 @@ $config = array
 			'rules' => 'trim'
 		),
 	),
+	'save_frequency' => array
+	(
+		array
+		(
+			'field' => 'frequency',
+			'label' => 'frequency',
+			'rules' => 'required|trim'//|callback_valid_frequency'
+		),
+		array
+		(
+			'field' => 'date',
+			'label' => 'date',
+			'rules' => 'required|trim'
+		),
+		array
+		(
+			'field' => 'time',
+			'label' => 'time',
+			'rules' => 'required|trim'
+		),
+	),
 );
 
 ?>

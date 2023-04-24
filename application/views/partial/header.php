@@ -37,7 +37,7 @@ function active_page_aria($tag, $page_tag) { return active_page($tag, $page_tag)
 			<?php $pages = array(
 				array("url" => "dashboard", "tag" => "dashboard", "icon" => "tachometer-alt", "name" => "Dashboard"),
 				array("url" => "medications", "icon" => "prescription", "name" => "Medications"),
-				array("url" => "history", "icon" => "history", "name" => "History"),
+				// array("url" => "history", "icon" => "history", "name" => "History"),
 				array("url" => "configuration", "icon" => "cog", "name" => "Configuration"),
 			);?>
 			<?php foreach($pages as $page): $tag = $page["tag"] ?? $page["url"]?>

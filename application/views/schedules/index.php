@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <?php if($list):?>
-    <form id="schedules-form" data-id="medicine-<?=$medicationId?>">
+    <form id="schedules-form" data-id="medicine-<?=$medication_id?>">
         <!--<div class="action-row">
             <div class="form-field">
                 <input type="checkbox" id="select-all">
@@ -21,10 +21,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php foreach($schedules as $schedule): 
             $datetime = new DateTime($schedule->ScheduleDateTime); 
             $datetime->setTimeZone(new DateTimeZone("America/Edmonton"));?>
-            <li data-id="schedule-<?=$schedule->ScheduleID?>">
-                <div class="form-field">
+            <li data-id="schedule-<?=$schedule->ScheduleID?>" class="js-schedule-row">
+                <!-- <div class="form-field">
                     <input type="checkbox" name="schedule-<?=$schedule->ScheduleID?>">
-                </div>
+                </div> -->
                 <div class="form-field">
                     <select name="frequency" class="frequency">
                         <option value="">-- Frequency --</option>
@@ -53,9 +53,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <li class="template" id="template" data-id="schedule-new">
         <?php $datetime = new DateTime(); 
               $datetime->setTimeZone(new DateTimeZone("America/Edmonton"));?>
-        <div class="form-field">
+        <!-- <div class="form-field">
             <input type="checkbox">
-        </div>
+        </div> -->
         <div class="form-field">
             <select name="frequency" class="frequency">
                 <option value="">-- Frequency --</option>
@@ -79,12 +79,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </script>
     <?php endif;?>
 <?php else: ?>
-    <h3>Schedules</h3>
-    <button class="js-add-schedule" data-id="medicine-<?=$medicationId?>">
+    <?/*<h3>Schedules</h3>
+    <button class="js-add-schedule" data-id="medicine-<?=$medication_id?>">
         <i class="fas fa-calendar-plus"></i> 
         <span>Add Schedule</span>
     </button>
-    <table class="schedules" data-id="medicine-<?=$medicationId?>">
+    <table class="schedules" data-id="medicine-<?=$medication_id?>">
         <thead>
             <tr class="grid">
                 <th class="col-frequency">Frequency</th>
@@ -109,13 +109,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </tr>
             <?php endforeach;?>
         </tbody>
-    </table>
+    </table>*/?>
+    <p class="last-delivered">
     <?php if($latest_delivery):?>
         <?php $last_delivery_date = new DateTime($latest_delivery->DeliveryLogDateTime); $last_delivery_date->setTimeZone(new DateTimeZone("America/Edmonton"));?>
         <!-- TODO: This needs to link to view the list of delivery events, maybe -->
-        <a href="<?=current_url()?>">Last Delivered: <?=$last_delivery_date ? $last_delivery_date->format("M jS, Y @ g:ia") : "Not delivered yet"?></a>
+        <!-- <a href="<?=current_url()?>" class="last-delivered">Last Delivered: <?=$last_delivery_date ? $last_delivery_date->format("M jS, Y @ g:ia") : "Not delivered yet"?></a> -->
+        Last Delivered: <?=$last_delivery_date ? $last_delivery_date->format("M jS, Y @ g:ia") : "Not delivered yet"?>
     <?php else:?>
-    <p>Latest delivery will appear here once a delivery has been made.</p>
+        Latest delivery will appear here once a delivery has been made.
     <?php endif;?>
+    </p>
     
 <?php endif;?>
