@@ -27,4 +27,10 @@ $(document).ready(function() {
 			}
 		});
     });
+
+	$(document).on("click", ".js-add-schedule", (e) => {
+		let newRow = $("#template").clone();
+		newRow.removeClass("template").attr("id", "");
+		$("#schedules-form ul").append(newRow);
+    });
 });

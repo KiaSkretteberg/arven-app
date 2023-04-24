@@ -409,6 +409,7 @@ section, aside {
     color: var(--primary-lightened);
     text-decoration: underline;
     padding: 0;
+    cursor: pointer;
 }
 .button-link:hover, .button-link:focus {
     font-weight: bold;

@@ -39,15 +39,11 @@ class Schedules extends Site_Controller
 		}
 	}
 
-	public function edit($id)
+	public function edit($url, $id)
 	{
 		if($this->input->post('method') == 'ajax')
 		{
 			$this->save($id);
-		}
-		else
-		{
-			
 		}
 	}
 
@@ -58,11 +54,20 @@ class Schedules extends Site_Controller
 		}
 	}
 
-	private function save($id = null)
+	private function save($id = "new")
 	{
+		$schedule = $this->schedules_model->get(array("id" => $id), false);
+
+		if($id != "new" && !$schedule)
+		{
+			// bail out, this doesn't exist
+			exit;
+		}
+
 		$this->set_view_data(array(
-			"schedule" => $this->schedules_model->get(array("id" => $id), false)
+			"schedule" => $schedule
 		));
+		
 		$this->set_view_file("save");
 	}
 }

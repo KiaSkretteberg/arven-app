@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <?php if($list):?>
-    <form id="schedules-form">
-        <div class="action-row">
+    <form id="schedules-form" data-id="medicine-<?=$medicationId?>">
+        <!--<div class="action-row">
             <div class="form-field">
                 <input type="checkbox" id="select-all">
             </div>
@@ -16,9 +16,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <button type="submit" disabled>Go</button>
         </div>
-        <hr>
+        <hr>-->
         <ul>
-        <?php foreach($schedules as $schedule): $datetime = new DateTime($schedule->ScheduleDateTime);?>
+        <?php foreach($schedules as $schedule): 
+            $datetime = new DateTime($schedule->ScheduleDateTime); 
+            $datetime->setTimeZone(new DateTimeZone("America/Edmonton"));?>
             <li data-id="schedule-<?=$schedule->ScheduleID?>">
                 <div class="form-field">
                     <input type="checkbox" name="schedule-<?=$schedule->ScheduleID?>">
@@ -42,11 +44,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?php endforeach;?>
         </ul>
     </form>
-    <a href="/schedules/add" class="btn">
+    
+    <button class="js-add-schedule">
         <i class="fas fa-calendar-plus"></i> 
         <span>Add Schedule</span>
-    </a>
+    </button>
+
     <li class="template" id="template" data-id="schedule-new">
+        <?php $datetime = new DateTime(); 
+              $datetime->setTimeZone(new DateTimeZone("America/Edmonton"));?>
         <div class="form-field">
             <input type="checkbox">
         </div>
@@ -60,19 +66,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <label>Start: </label>
         <div class="form-field">
-            <input class="date" type="date" value="<?=date("Y-m-d")?>" name="date">
+            <input class="date" type="date" value="<?=$datetime->format("Y-m-d")?>" name="date">
         </div>
         <div class="form-field">
-            <input class="time" type="time" value="<?=date('H:i')?>" name="time">
+            <input class="time" type="time" value="<?=$datetime->format('H:i')?>" name="time">
         </div>
     </li>
+
+    <?php if(!$schedules):?>
+        <script>
+            $(".js-add-schedule").click();
+        </script>
+    <?php endif;?>
 <?php else: ?>
     <h3>Schedules</h3>
-    <a href="/schedules/add" class="btn">
+    <button class="js-add-schedule" data-id="medicine-<?=$medicationId?>">
         <i class="fas fa-calendar-plus"></i> 
         <span>Add Schedule</span>
-    </a>
-    <table class="schedules">
+    </button>
+    <table class="schedules" data-id="medicine-<?=$medicationId?>">
         <thead>
             <tr class="grid">
                 <th class="col-frequency">Frequency</th>
