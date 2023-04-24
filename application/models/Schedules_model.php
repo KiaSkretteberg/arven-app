@@ -41,7 +41,7 @@ class Schedules_model extends CI_Model
 			$this->db->select("Users.DeviceID");
 		}
 
-		if(!$include_once) $this->db->where("ScheduleFrequencies.FrequencyTag !=", "once");
+		if(!$include_once && !$manual) $this->db->where("ScheduleFrequencies.FrequencyTag !=", "once");
 
 		if($frequency) $this->db->where('ScheduleFrequencies.FrequencyName', $frequency);
 

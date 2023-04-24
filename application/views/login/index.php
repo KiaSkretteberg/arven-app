@@ -23,7 +23,7 @@ $this->load->view('partial/header', array("exclude_header" => true));
     </div>
 
     <button type="submit">Login</button>
-    <p>Haven't met Arven yet? <a href="/setup">Connet with Arven</a> now.</p>
+    <p>Haven't met Arven yet? <a href="/setup">Connect with Arven</a> now.</p>
 </form>
 
 <?php $this->load->view('partial/footer'); ?>
